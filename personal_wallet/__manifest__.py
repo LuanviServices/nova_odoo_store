@@ -48,7 +48,7 @@ with a clean dashboard and automated calculations.
             'lv_personal_wallet/static/src/components/**/*.xml',
         ]
     },
-    'images': ['static/description/banner.gpng'],
+    'images': ['static/description/banner.png','static/description/icon.png'],
     'price': 12.00,
     'currency': 'USD',
 }

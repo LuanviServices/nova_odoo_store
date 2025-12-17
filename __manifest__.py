@@ -48,4 +48,6 @@ with a clean dashboard and automated calculations.
             'lv_personal_wallet/static/src/components/**/*.xml',
         ]
     },
+    'price': 12.00,
+    'currency': 'USD',
 }

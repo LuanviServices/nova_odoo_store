@@ -1,2 +1,2 @@
-# personal_wallet
-Modulo de gastos personales para Odoo App Store
+# Nova Odoo Store
+Modulos disponibles para la venta o gratuitos en Odoo App Store

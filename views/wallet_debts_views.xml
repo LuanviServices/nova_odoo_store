@@ -1,0 +1,362 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- DEUDAS FORMULARIO TODAS -->
+    <record id="view_wallet_debts_all_form" model="ir.ui.view">
+        <field name="name">wallet.debts.form</field>
+        <field name="model">wallet.debts</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" icon="fa-file" invisible="state!='draft'" type="object" string="Confirm"/>
+                    <button name="action_settle_debt" type="object" class="btn btn-primary" icon="fa-money" invisible="payment_status in ('liquidated','forgiven') or state == 'draft'or debt_type == 'receive'" string="Pay"/>
+                    <button name="action_settle_debt" type="object" class="btn btn-primary" icon="fa-money" invisible="payment_status in ('liquidated','forgiven') or state == 'draft' or debt_type == 'pay'" string="Receive"/>
+                    <button name="action_forgive_debt" type="object" class="btn btn-primary" icon="fa-handshake-o" invisible="payment_status in ('liquidated','forgiven') or state == 'draft'" string="Forgive"/>
+                    <button name="action_postpone_debt" type="object" class="btn btn-primary" invisible="state == 'draft' or not is_overdue" icon="fa-clock-o" string="Postpone"/>
+                    <button name="action_to_draft" type="object" invisible="state == 'draft'" string="Reset to draft"/>
+                    <field name="state" widget="statusbar" readonly="1" />
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Liquidated" bg_color="text-bg-success" invisible="payment_status != 'liquidated'"/>
+                    <widget name="web_ribbon" title="Forgiven" bg_color="text-bg-info" invisible="payment_status != 'forgiven'"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="payment_status" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="company_currency_id" invisible="1"/>
+                            <label for="partner_id" string="Partner" style="font-weight:bold;"/>
+                            <div class="o_col">
+                                <field name="partner_id" widget="res_partner_many2one" nolabel="1" context="{'show_address': 1, 'default_is_company': True, 'show_vat': True}" domain="[('company_id', 'in', (False, company_id))]" options='{"no_quick_create": True}'/>
+                            </div>
+                            <field name="debt_type" options="{'horizontal': True}" readonly="state != 'draft'" widget="radio"/>
+                            <field name="wallet_account" force_save="1" readonly="state != 'draft'" options="{'no_open':True, 'no_create': True}"/>
+                            <field name="description" placeholder="Debt Details ....."/>
+                        </group>
+                        <group>
+                            <label for="start_date" string="Validity"/>
+                            <div class="o_row">
+                                <field name="start_date" required="1" widget="daterange" readonly="state != 'draft'" options="{'end_date_field': 'end_date'}" />
+                            </div>
+                            <field name="is_overdue" invisible="1"/>
+                            <field name="end_date" string="Expiration" widget="remaining_days" readonly="1"/>
+                            <field name="amount" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0" widget='monetary' force_save="1" readonly="state != 'draft'"/>
+                            <field name="amount_paid"/>
+                            <field name="amount_residual" invisible = "amount_residual == 0"/>
+                            <field name="payment_status" widget="badge"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="transactions" invisible="state == 'draft'" string="Transactions">
+                            <field name="transaction_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- DEUDAS FORMULARIO PAGAR -->
+    <record id="view_wallet_debts_pay_form" model="ir.ui.view">
+        <field name="name">wallet.debts.pay.form</field>
+        <field name="model">wallet.debts</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" icon="fa-file" invisible="state!='draft'" type="object" string="Confirm"/>
+                    <button name="action_settle_debt" type="object" class="btn btn-primary" icon="fa-money" invisible="payment_status in ('liquidated','forgiven') or state == 'draft'" string="Pay"/>
+                    <button name="action_forgive_debt" type="object" class="btn btn-primary" icon="fa-handshake-o" invisible="payment_status in ('liquidated','forgiven') or state == 'draft'" string="Forgiven"/>
+                    <button name="action_postpone_debt" type="object" class="btn btn-primary" invisible="state == 'draft' or not is_overdue" icon="fa-clock-o" string="Postpone"/>
+                    <button name="action_to_draft" type="object" invisible="state == 'draft'" string="Reset to draft"/>
+                    <field name="state" widget="statusbar" readonly="1" />
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Liquidated" bg_color="text-bg-success" invisible="payment_status != 'liquidated'"/>
+                    <widget name="web_ribbon" title="Forgiven" bg_color="text-bg-info" invisible="payment_status != 'forgiven'"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="payment_status" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="company_currency_id" invisible="1"/>
+                            <label for="partner_id" string="Partner" style="font-weight:bold;"/>
+                            <div class="o_col">
+                                <field name="partner_id" widget="res_partner_many2one" nolabel="1" context="{'show_address': 1, 'default_is_company': True, 'show_vat': True}" domain="[('company_id', 'in', (False, company_id))]" options='{"no_quick_create": True}'/>
+                            </div>
+                            <field name="debt_type" options="{'horizontal': True}" widget="radio" invisible="1"/>
+                            <field name="wallet_account" force_save="1" readonly="state != 'draft'" options="{'no_open':True, 'no_create': True}"/>
+                            <field name="description" placeholder="Debt Details ....."/>
+                        </group>
+                        <group>
+                            <label for="start_date" string="Validity"/>
+                            <div class="o_row">
+                                <field name="start_date" required="1" widget="daterange" readonly="state != 'draft'" options="{'end_date_field': 'end_date'}" />
+                            </div>
+                            <field name="is_overdue" invisible="1"/>
+                            <field name="end_date" string="Expiration" widget="remaining_days" readonly="1"/>
+                            <field name="amount" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0" widget='monetary' force_save="1" readonly="state != 'draft'"/>
+                            <field name="amount_paid"/>
+                            <field name="amount_residual" invisible = "amount_residual == 0"/>
+                            <field name="payment_status" widget="badge"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="transactions" invisible="state == 'draft'" string="Transactions">
+                            <field name="transaction_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- DEUDAS FORMULARIO COBRAR -->
+    <record id="view_wallet_debts_receive_form" model="ir.ui.view">
+        <field name="name">wallet.debts.receive.form</field>
+        <field name="model">wallet.debts</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" icon="fa-file" invisible="state!='draft'" type="object" string="Confirm"/>
+                    <button name="action_settle_debt" type="object" class="btn btn-primary" icon="fa-money" invisible="payment_status in ('liquidated','forgiven') or state == 'draft'" string="Receive"/>
+                    <button name="action_forgive_debt" type="object" class="btn btn-primary" icon="fa-handshake-o" invisible="payment_status in ('liquidated','forgiven') or state == 'draft'" string="Forgiven"/>
+                    <button name="action_postpone_debt" type="object" class="btn btn-primary" invisible="state == 'draft' or not is_overdue" icon="fa-clock-o" string="Postpone"/>
+                    <button name="action_to_draft" type="object" invisible="state == 'draft'" string="Reset to draft"/>
+                    <field name="state" widget="statusbar" readonly="1" />
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Liquidated" bg_color="text-bg-success" invisible="payment_status != 'liquidated'"/>
+                    <widget name="web_ribbon" title="Forgiven" bg_color="text-bg-info" invisible="payment_status != 'forgiven'"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="payment_status" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="company_currency_id" invisible="1"/>
+                            <label for="partner_id" string="Partner" style="font-weight:bold;"/>
+                            <div class="o_col">
+                                <field name="partner_id" widget="res_partner_many2one" nolabel="1" context="{'show_address': 1, 'default_is_company': True, 'show_vat': True}" domain="[('company_id', 'in', (False, company_id))]" options='{"no_quick_create": True}'/>
+                            </div>
+                            <field name="debt_type" options="{'horizontal': True}" widget="radio" invisible="1"/>
+                            <field name="wallet_account" force_save="1" readonly="state != 'draft'" options="{'no_open':True, 'no_create': True}"/>
+                            <field name="description" placeholder="Debt Details ....."/>
+                        </group>
+                        <group>
+                            <label for="start_date" string="Validity"/>
+                            <div class="o_row">
+                                <field name="start_date" required="1" widget="daterange" readonly="state != 'draft'" options="{'end_date_field': 'end_date'}" />
+                            </div>
+                            <field name="is_overdue" invisible="1"/>
+                            <field name="end_date" string="Expiration" widget="remaining_days" readonly="1"/>
+                            <field name="amount" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0" widget='monetary' force_save="1" readonly="state != 'draft'"/>
+                            <field name="amount_paid"/>
+                            <field name="amount_residual" invisible = "amount_residual == 0"/>
+                            <field name="payment_status" widget="badge"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="transactions" invisible="state == 'draft'" string="Transactions">
+                            <field name="transaction_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- DEUDAS LISTADO TODAS -->
+    <record id="view_wallet_debts_all_tree" model="ir.ui.view">
+        <field name="name">wallet.debts.tree</field>
+        <field name="model">wallet.debts</field>
+        <field name="arch" type="xml">
+            <list decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
+                <field name="is_overdue" column_invisible="1"/>
+                <field name="company_currency_id" invisible="1" optional="hide"/>
+                <field name="name"/>
+                <field name="debt_type"/>
+                <field name="wallet_account" optional="hide"/>
+                <field name="account_tag" string="Account" />
+                <field name="partner_id"/>
+                <field name="description" widget="section_and_note_text"/>
+                <field name="end_date"/>
+                <field name="state" widget="badge"/>
+                <field name="payment_status" widget="badge" decoration-danger="payment_status != 'forgiven'" decoration-success="payment_status != 'liquidated'"/>
+                <field name="amount" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- DEUDAS LISTADO PAGAR -->
+    <record id="view_wallet_debts_pay_tree" model="ir.ui.view">
+        <field name="name">wallet.debts.pay.tree</field>
+        <field name="model">wallet.debts</field>
+        <field name="arch" type="xml">
+            <list decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
+                <field name="is_overdue" column_invisible="1"/>
+                <field name="company_currency_id" invisible="1" optional="hide"/>
+                <field name="name"/>
+                <field name="wallet_account" optional="hide"/>
+                <field name="account_tag" string="Account" />
+                <field name="partner_id"/>
+                <field name="description" widget="section_and_note_text"/>
+                <field name="end_date"/>
+                <field name="state" widget="badge"/>
+                <field name="payment_status" widget="badge" decoration-danger="payment_status != 'forgiven'" decoration-success="payment_status != 'liquidated'"/>
+                <field name="amount" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- DEUDAS LISTADO COBRAR -->
+    <record id="view_wallet_debts_receive_tree" model="ir.ui.view">
+        <field name="name">wallet.debts.receive.tree</field>
+        <field name="model">wallet.debts</field>
+        <field name="arch" type="xml">
+            <list decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
+                <field name="is_overdue" column_invisible="1"/>
+                <field name="company_currency_id" invisible="1" optional="hide"/>
+                <field name="name"/>
+                <field name="wallet_account" optional="hide"/>
+                <field name="account_tag" string="Account" />
+                <field name="partner_id"/>
+                <field name="description" widget="section_and_note_text"/>
+                <field name="end_date"/>
+                <field name="state" widget="badge"/>
+                <field name="payment_status" widget="badge" decoration-danger="payment_status != 'forgiven'" decoration-success="payment_status != 'liquidated'"/>
+                <field name="amount" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FILTROS Y AGRUPADORES DEUDAS -->
+    <record id="view_wallet_debts_search" model="ir.ui.view">
+        <field name="name">view.wallet.debts.search</field>
+        <field name="model">wallet.debts</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="wallet_account"/>
+                <field name="amount"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="debt_type"/>
+                <!-- Filtros-->
+                <filter name="state_active" string="Active" domain="[('state', '=', 'active')]" />
+                <filter name="type_pay" string="Pay" domain="[('debt_type', '=', 'pay')]" />
+                <filter name="type_receive" string="Receive" domain="[('debt_type', '=', 'receive')]" />
+                <!-- Agrupadores-->
+                <filter name="state" string="State" context="{'group_by': 'state'}" />
+                <filter name="payment_status" string="Payment Status" context="{'group_by': 'payment_status'}" />
+                <filter name="partner_id" string="Creditor" context="{'group_by': 'partner_id'}" />
+                <filter name="debt_type" string="Type" context="{'group_by': 'debt_type'}" />
+                <filter name="wallet_account" string="Account" context="{'group_by': 'wallet_account'}" />
+                <filter name="start_date" string="Start Date" context="{'group_by': 'start_date'}" />
+                <filter name="end_date" string="End Date" context="{'group_by': 'end_date'}" />
+            </search>
+        </field>
+    </record>
+
+    <!-- FILTROS Y AGRUPADORES DEUDAD PAGAR Y COBRAR -->
+    <record id="view_wallet_debts_pay_receive_search" model="ir.ui.view">
+        <field name="name">view.wallet.debts.pay.receive.search</field>
+        <field name="model">wallet.debts</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="wallet_account"/>
+                <field name="amount"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="debt_type"/>
+                <!-- Filtros-->
+                <filter name="state_active" string="Active" domain="[('state', '=', 'active')]" />
+                <!-- Agrupadores-->
+                <filter name="state" string="State" context="{'group_by': 'state'}" />
+                <filter name="payment_status" string="Payment Status" context="{'group_by': 'payment_status'}" />
+                <filter name="partner_id" string="Creditor" context="{'group_by': 'partner_id'}" />
+                <filter name="wallet_account" string="Account" context="{'group_by': 'wallet_account'}" />
+                <filter name="start_date" string="Start Date" context="{'group_by': 'start_date'}" />
+                <filter name="end_date" string="End Date" context="{'group_by': 'end_date'}" />
+            </search>
+        </field>
+    </record>
+
+    <!-- ACCIÓN PARA LISTAR DEUDAS TODAS -->
+    <record id="action_wallet_debts_all" model="ir.actions.act_window">
+        <field name="name">All debts</field>
+        <field name="res_model">wallet.debts</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0), 
+                                  (0, 0, {'view_mode': 'list', 'view_id': ref('view_wallet_debts_all_tree')}),
+                                  (0, 0, {'view_mode': 'form', 'view_id': ref('view_wallet_debts_all_form')})]"/>
+        <field name="search_view_id" ref="view_wallet_debts_search"/>
+        <field name="context">{'search_default_state_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new debts for records
+            </p>
+            <p>
+                Nova helps you manage multiple debts.
+            </p>
+        </field>
+    </record>
+
+    <!-- ACCIÓN PARA LISTAR DEUDAS PAGAR -->
+    <record id="action_wallet_debts_pay" model="ir.actions.act_window">
+        <field name="name">Pay debts</field>
+        <field name="res_model">wallet.debts</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0), 
+                                  (0, 0, {'view_mode': 'list', 'view_id': ref('view_wallet_debts_pay_tree')}),
+                                  (0, 0, {'view_mode': 'form', 'view_id': ref('view_wallet_debts_pay_form')})]"/>
+        <field name="search_view_id" ref="view_wallet_debts_pay_receive_search"/>
+        <field name="domain">[('debt_type', '=', 'pay')]</field>
+        <field name="context">{'default_debt_type': 'pay','search_default_state_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new debts for records
+            </p>
+            <p>
+                Nova helps you manage multiple debts.
+            </p>
+        </field>
+    </record>
+
+    <!-- ACCIÓN PARA LISTAR DEUDAS COBRAR -->
+    <record id="action_wallet_debts_receive" model="ir.actions.act_window">
+        <field name="name">Receive debts</field>
+        <field name="res_model">wallet.debts</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0), 
+                                  (0, 0, {'view_mode': 'list', 'view_id': ref('view_wallet_debts_receive_tree')}),
+                                  (0, 0, {'view_mode': 'form', 'view_id': ref('view_wallet_debts_receive_form')})]"/>
+        <field name="search_view_id" ref="view_wallet_debts_pay_receive_search"/>
+        <field name="domain">[('debt_type', '=', 'receive')]</field>
+        <field name="context">{'default_debt_type': 'receive'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new debts for records
+            </p>
+            <p>
+                Nova helps you manage multiple debts.
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- CONFIGURACIONES -->
+    <record id="ir_rule_lv_personal_wallet_account_multi_company" model="ir.rule">
+        <field name="name">Account wallet: Multi Company</field>
+        <field name="model_id" ref="model_wallet_account"/>
+        <field name="domain_force">
+            ['|',
+                ('permissions_ids.user_id', '=', user.id),
+                '|',
+                    ('company_id', '=', False),
+                    ('company_id', 'in', company_ids)
+            ]
+        </field>
+    </record>
+
+    <record id="ir_rule_lv_personal_wallet_tag_multi_company" model="ir.rule">
+        <field name="name">Tag wallet: Multi Company</field>
+        <field name="model_id" ref="model_wallet_tag"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="ir_rule_lv_personal_wallet_template_multi_company" model="ir.rule">
+        <field name="name">Template wallet: Multi Company</field>
+        <field name="model_id" ref="model_wallet_template"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="ir_rule_lv_personal_wallet_scheduled_payment_multi_company" model="ir.rule">
+        <field name="name">Scheduled payment wallet: Multi Company</field>
+        <field name="model_id" ref="model_wallet_scheduled_payment"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <!-- REGISTROS -->
+    <record id="ir_rule_lv_personal_wallet_transaction_multi_company" model="ir.rule">
+        <field name="name">Transaction wallet: Multi Company</field>
+        <field name="model_id" ref="model_wallet_transaction"/>
+        <field name="domain_force">
+            ['|',
+                ('wallet_account.permissions_ids.user_id', '=', user.id),
+                '|',
+                    ('company_id', '=', False),
+                    ('company_id', 'in', company_ids)
+            ]
+        </field>
+    </record>
+
+    <record id="ir_rule_lv_personal_wallet_transfer_multi_company" model="ir.rule">
+        <field name="name">Transfer wallet: Multi Company</field>
+        <field name="model_id" ref="model_wallet_transfer"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="ir_rule_lv_personal_wallet_debts_multi_company" model="ir.rule">
+        <field name="name">Debts wallet: Multi Company</field>
+        <field name="model_id" ref="model_wallet_debts"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

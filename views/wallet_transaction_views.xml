@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- TRANSACCIONES FORMULARIO TODAS -->
+    <record id="view_wallet_transaction_form" model="ir.ui.view">
+        <field name="name">wallet.transaction.form</field>
+        <field name="model">wallet.transaction</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <notebook>
+                        <field name="tag" widget="many2many_tags"/>
+                        <field name="template_id"/>
+                        <field name="shared_record" invisible="1"/>
+                        <page name="page_transaction" string="Transaction">
+                            <group>
+                                <group colspan="2">
+                                    <field name="description" placeholder="Enter a brief and clear description of your transaction ..." readonly="shared_record not in ('propietary','transaction')"/>
+                                </group>
+                                <group name="wallet_transaction_left">
+                                    <field name="date" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="beneficiary_id" options="{'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="category" required="1" options="{'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="payment_method" required="1" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="tag" placeholder="Tags ...." widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary','transaction')"/>
+                                </group>
+                                <group name="wallet_transaction_right">
+                                    <field name="wallet_account" options="{'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary')"/>
+                                    <field name="transaction_type" widget="radio" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="amount" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="amount_tax"/>
+                                    <field name="amount_total"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="taxes" string="Taxes">
+                            <field name="tax_ids" readonly="shared_record not in ('propietary','transaction')"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- TRANSACCIONES FORMULARIO INGRESOS -->
+    <record id="view_wallet_transaction_income_form" model="ir.ui.view">
+        <field name="name">wallet.transaction.income.form</field>
+        <field name="model">wallet.transaction</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <notebook>
+                        <field name="tag" widget="many2many_tags"/>
+                        <field name="template_id"/>
+                        <page name="page_transaction" string="Transaction">
+                            <group>
+                                <group colspan="2">
+                                    <field name="description" placeholder="Enter a brief and clear description of your transaction ..." readonly="shared_record not in ('propietary','transaction')"/>
+                                </group>
+                                <group name="wallet_transaction_left">
+                                    <field name="date" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="beneficiary_id" options="{'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="category" required="1" options="{'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="payment_method" required="1" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="tag" placeholder="Tags ...." widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary','transaction')"/>
+                                </group>
+                                <group name="wallet_transaction_right">
+                                    <field name="wallet_account" options="{'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary')"/>
+                                    <field name="transaction_type" widget="radio" invisible="1"/>
+                                    <field name="amount" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="amount_tax"/>
+                                    <field name="amount_total"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="taxes" string="Taxes">
+                            <field name="tax_ids" readonly="shared_record not in ('propietary','transaction')"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- TRANSACCIONES FORMULARIO EGRESOS -->
+    <record id="view_wallet_transaction_expense_form" model="ir.ui.view">
+        <field name="name">wallet.transaction.expense.form</field>
+        <field name="model">wallet.transaction</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <notebook>
+                        <field name="tag" widget="many2many_tags"/>
+                        <field name="template_id"/>
+                        <page name="page_transaction" string="Transaction">
+                            <group>
+                                <group colspan="2">
+                                    <field name="description" placeholder="Enter a brief and clear description of your transaction ..." readonly="shared_record not in ('propietary','transaction')"/>
+                                </group>
+                                <group name="wallet_transaction_left">
+                                    <field name="date" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="beneficiary_id" options="{'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="category" required="1" options="{'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="payment_method" required="1" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="tag" placeholder="Tags ...." widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary','transaction')"/>
+                                </group>
+                                <group name="wallet_transaction_right">
+                                    <field name="wallet_account" options="{'no_create': True, 'no_create_edit': True}" readonly="shared_record not in ('propietary')"/>
+                                    <field name="transaction_type" widget="radio" invisible="1"/>
+                                    <field name="amount" readonly="shared_record not in ('propietary','transaction')"/>
+                                    <field name="amount_tax"/>
+                                    <field name="amount_total"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="taxes" string="Taxes">
+                            <field name="tax_ids" readonly="shared_record not in ('propietary','transaction')"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- TRANSACCIONES LISTADO -->
+    <record id="view_wallet_transaction_tree" model="ir.ui.view">
+        <field name="name">wallet.transaction.tree</field>
+        <field name="model">wallet.transaction</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="company_currency_id" invisible="1" optional="hide"/>
+                <field name="name"/>
+                <field name="transaction_type"/>
+                <field name="category"/>
+                <field name="wallet_account" optional="hide" />
+                <field name="account_tag" string="Account" />
+                <field name="beneficiary_id"/>
+                <field name="description"/>
+                <field name="date"/>
+                <field name="amount" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+                <field name="amount_tax" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+                <field name="amount_total" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- TRANSACCIONES LISTADO INGRESOS -->
+    <record id="view_wallet_transaction_income_tree" model="ir.ui.view">
+        <field name="name">wallet.transaction.income.tree</field>
+        <field name="model">wallet.transaction</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="company_currency_id" invisible="1" optional="hide"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="wallet_account" optional="hide" />
+                <field name="account_tag" string="Account" />
+                <field name="beneficiary_id"/>
+                <field name="description"/>
+                <field name="date"/>
+                <field name="amount" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+                <field name="amount_tax" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+                <field name="amount_total" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- TRANSACCIONES LISTADO EGRESOS -->
+    <record id="view_wallet_transaction_expense_tree" model="ir.ui.view">
+        <field name="name">wallet.transaction.expense.tree</field>
+        <field name="model">wallet.transaction</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="company_currency_id" invisible="1" optional="hide"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="wallet_account" optional="hide" />
+                <field name="account_tag" string="Account" />
+                <field name="beneficiary_id"/>
+                <field name="description"/>
+                <field name="date"/>
+                <field name="amount" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+                <field name="amount_tax" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+                <field name="amount_total" sum="Total" decoration-danger= "amount &lt; 0" decoration-success= "amount > 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FILTROS Y AGRUPADORES TRANSACCIONES -->
+    <record id="view_wallet_transaction_search" model="ir.ui.view">
+        <field name="name">view.wallet.transaction.search</field>
+        <field name="model">wallet.transaction</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="beneficiary_id"/>
+                <field name="wallet_account"/>
+                <field name="amount"/>
+                <field name="date"/>
+                <field name="transaction_type"/>
+                <field name="tag"/>
+                <field name="category"/>
+                <!-- Filtros-->
+                <separator/>
+                <filter name="type_expense" string="Expenses" domain="[('transaction_type', '=', 'expense')]" />
+                <filter name="type_income" string="Incomes" domain="[('transaction_type', '=', 'income')]" />
+                <separator/>
+                <filter name="is_transfer" string="Tranfers" domain="[('transfer', '=', True)]" />
+                <filter name="with_taxes" string="With taxes" domain="[('tax_ids', '!=', False)]" />
+                <filter name="without_taxes" string="Without taxes" domain="[('tax_ids', '=', False)]" />
+                <!-- Agrupadores-->
+                <separator/>
+                <filter name="beneficiary_id" string="Beneficiary" context="{'group_by': 'beneficiary_id'}" />
+                <filter name="transaction_type" string="Type" context="{'group_by': 'transaction_type'}" />
+                <filter name="wallet_account" string="Account" context="{'group_by': 'wallet_account'}" />
+                <filter name="category" string="Category" context="{'group_by': 'category'}" />
+                <filter name="tag" string="Tag" context="{'group_by': 'tag'}" />
+                <filter name="date" string="Date" context="{'group_by': 'date'}" />
+            </search>
+        </field>
+    </record>
+
+    <!-- FILTROS Y AGRUPADORES TRANSACCIONES INGRESOS Y EGRESOS -->
+    <record id="view_wallet_transaction_income_expense_search" model="ir.ui.view">
+        <field name="name">view.wallet.transaction.income.expense.search</field>
+        <field name="model">wallet.transaction</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="beneficiary_id"/>
+                <field name="wallet_account"/>
+                <field name="amount"/>
+                <field name="date"/>
+                <field name="tag"/>
+                <field name="category"/>
+                <separator/>
+                <!-- Filtros-->
+                <filter name="is_transfer" string="Tranfers" domain="[('transfer', '=', True)]" />
+                <filter name="with_taxes" string="With taxes" domain="[('tax_ids', '!=', False)]" />
+                <filter name="without_taxes" string="Without taxes" domain="[('tax_ids', '=', False)]" />
+                <!-- Agrupadores-->
+                <separator/>
+                <filter name="beneficiary_id" string="Beneficiary" context="{'group_by': 'beneficiary_id'}" />
+                <filter name="wallet_account" string="Account" context="{'group_by': 'wallet_account'}" />
+                <filter name="category" string="Category" context="{'group_by': 'category'}" />
+                <filter name="tag" string="Tag" context="{'group_by': 'tag'}" />
+                <filter name="date" string="Date" context="{'group_by': 'date'}" />
+            </search>
+        </field>
+    </record>
+
+    <!-- ACCIÓN PARA LISTAR TRANSACCIONES -->
+    <record id="action_wallet_transaction_all" model="ir.actions.act_window">
+        <field name="name">All transaction</field>
+        <field name="res_model">wallet.transaction</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0), 
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_wallet_transaction_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_wallet_transaction_form')})]"/>
+        <field name="search_view_id" ref="view_wallet_transaction_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new transaction for records
+            </p>
+            <p>
+                Nova helps you manage multiple transactions.
+            </p>
+        </field>
+    </record>
+
+    <!-- ACCIÓN PARA LISTAR TRANSACCIONES INGRESOS -->
+    <record id="action_wallet_transaction_income" model="ir.actions.act_window">
+        <field name="name">Incomes transaction</field>
+        <field name="res_model">wallet.transaction</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0), 
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_wallet_transaction_income_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_wallet_transaction_income_form')})]"/>
+        <field name="search_view_id" ref="view_wallet_transaction_income_expense_search"/>
+        <field name="domain">[('transaction_type', '=', 'income')]</field>
+        <field name="context">{'default_transaction_type': 'income'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new transaction for records
+            </p>
+            <p>
+                Nova helps you manage multiple transactions.
+            </p>
+        </field>
+    </record>
+
+    <!-- ACCIÓN PARA LISTAR TRANSACCIONES GASTOS -->
+    <record id="action_wallet_transaction_expense" model="ir.actions.act_window">
+        <field name="name">Expenses transaction</field>
+        <field name="res_model">wallet.transaction</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0), 
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_wallet_transaction_expense_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_wallet_transaction_expense_form')})]"/>
+        <field name="search_view_id" ref="view_wallet_transaction_income_expense_search"/>
+        <field name="domain">[('transaction_type', '=', 'expense')]</field>
+        <field name="context">{'default_transaction_type': 'expense'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new transaction for records
+            </p>
+            <p>
+                Nova helps you manage multiple transactions.
+            </p>
+        </field>
+    </record>
+
+    <!-- TRANSACCIONES LISTADO IMPUESTOS -->
+    <record id="view_wallet_transaction_tax_tree" model="ir.ui.view">
+        <field name="name">wallet.transaction.tax.tree</field>
+        <field name="model">wallet.transaction.tax</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="tax_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                <field name="beneficiary_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                <field name="amount"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

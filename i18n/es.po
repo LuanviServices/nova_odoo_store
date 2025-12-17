@@ -1,0 +1,2698 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* lv_personal_wallet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-27 17:37+0000\n"
+"PO-Revision-Date: 2025-11-27 12:38-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "%s | Debt forgiven: %s"
+msgstr "%s | Deuda condonada: %s"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<i class=\"fa fa-briefcase text-warning\" title=\"Wallet\"/>"
+msgstr "<i class=\"fa fa-briefcase text-warning\" title=\"Billetera\"/>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<i class=\"fa fa-credit-card text-danger\" title=\"Credit card\"/>"
+msgstr "<i class=\"fa fa-credit-card text-danger\" title=\"Tarjeta de crédito\"/>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<i class=\"fa fa-line-chart text-info\" title=\"Investments\"/>"
+msgstr "<i class=\"fa fa-line-chart text-info\" title=\"Inversiones\"/>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<i class=\"fa fa-money text-success\" title=\"Cash\"/>"
+msgstr "<i class=\"fa fa-money text-success\" title=\"Efectivo\"/>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<i class=\"fa fa-save text-warning\" title=\"Savings\"/>"
+msgstr "<i class=\"fa fa-save text-warning\" title=\"Ahorros\"/>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_form
+msgid "<i class=\"fa fa-share-alt\"/> Shared account"
+msgstr "<i class=\"fa fa-share-alt\"/> Cuenta compartida"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<i class=\"fa fa-university text-primary\" title=\"Bank\"/>"
+msgstr "<i class=\"fa fa-university text-primary\" title=\"Banco\"/>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_form
+msgid ""
+"<span invisible=\"can_transact == True\">Only view</span>\n"
+"                        <span invisible=\"can_transact == False\">Can transact</span>"
+msgstr ""
+"<span invisible=\"can_transact == True\">Solo ver</span>\n"
+"                        <span invisible=\"can_transact == False\">Puede transaccionar</span>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid ""
+"<strong>\n"
+"                                        <i class=\"fa fa-check-circle\"/> Settle Debt\n"
+"                                    </strong>\n"
+"                                    <br/>\n"
+"                                    Please enter the payment details to settle the selected debt."
+msgstr ""
+"<strong>\n"
+"                                        <i class=\"fa fa-check-circle\"/> Liquidar deuda\n"
+"                                    </strong>\n"
+"                                    <br/>\n"
+"                                    Ingrese los detalles del pago para liquidar la deuda seleccionada."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<strong>Amount allocated: </strong>"
+msgstr "<strong>Monto asignado: </strong>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<strong>Amount available: </strong>"
+msgstr "<strong>Monto disponible: </strong>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<strong>Amount: </strong>"
+msgstr "<strong>Monto: </strong>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<strong>Bank: </strong>"
+msgstr "<strong>Banco: </strong>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<strong>Card: </strong>"
+msgstr "<strong>Tarjeta: </strong>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "<strong>Cut-off Date: </strong>"
+msgstr "<strong>Fecha corte: </strong>"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_form
+msgid "<strong>Permissions: </strong>"
+msgstr "<strong>Permisos: </strong>"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc5_4
+msgid "Accessories"
+msgstr "Accesorios"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__wallet_account
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__wallet_account_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__wallet_account
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_receive_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_expense_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_expense_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transfer_form
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/settings.py:0
+msgid "Account - %s"
+msgstr "Cuenta - %s"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_form
+msgid "Account Name ..."
+msgstr "Nombre de la cuenta ..."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__account_tag
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__account_tag
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__account_tag
+msgid "Account Tag"
+msgstr "Etiqueta"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__account_type
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_search
+msgid "Account Type"
+msgstr "Tipo de cuenta"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_account
+msgid "Account Wallet"
+msgstr "Billetera de cuenta"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "Account image"
+msgstr "Imagen cuenta"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts_actions_wizard__wallet_account_id
+msgid "Account where the debt is recorded"
+msgstr "Cuenta donde se registra la deuda"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_settings_wallet_account
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_wallet_account
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_accounts
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_settings_accounts
+msgid "Accounts"
+msgstr "Cuentas"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.js:0
+msgid "Accounts Report"
+msgstr "Reporte cuentas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__message_needaction
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__message_needaction
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__message_needaction
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__message_needaction
+msgid "Action Needed"
+msgstr "Acción necesaria"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__actions
+msgid "Actions"
+msgstr "Acciones"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__active
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__active
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_tag__active
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__active
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts__state__active
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_receive_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_search
+msgid "Active"
+msgstr "Activo"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__activity_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__activity_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__activity_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__activity_exception_decoration
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__activity_exception_decoration
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__activity_exception_decoration
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de excepción de actividad"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__activity_state
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__activity_state
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__activity_state
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__activity_state
+msgid "Activity State"
+msgstr "Estado actividad"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__activity_type_icon
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__activity_type_icon
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__activity_type_icon
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono tipo actividad"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_budget_plan_operation__operation_type__adjustment
+msgid "Adjustment"
+msgstr "Ajuste"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc6_1
+msgid "Alcohol, tobacco"
+msgstr "Alcohol, tabaco"
+
+#. module: lv_personal_wallet
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_debts_all
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_transaction_all
+msgid "All"
+msgstr "Todas"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_wallet_debts_all
+msgid "All debts"
+msgstr "Todas las deudas"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_wallet_transaction_all
+msgid "All transaction"
+msgstr "Todas las transacciones"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account_permission__permission_type__transaction
+msgid "Allows transactions"
+msgstr "Puede transaccionar"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__amount
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__amount
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__amount
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__amount
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__amount
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__amount
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__amount
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__amount
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__amount
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__amount
+msgid "Amount"
+msgstr "Monto"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__amount_allocated
+msgid "Amount Allocated"
+msgstr "Monto asignado"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__amount_available
+msgid "Amount Available"
+msgstr "Monto disponible"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__amount_debt
+msgid "Amount Debt"
+msgstr "Monto de la deuda"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__amount_paid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__amount_paid
+msgid "Amount Paid"
+msgstr "Monto pagado"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__amount_residual
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__amount_residual
+msgid "Amount Residual"
+msgstr "Monto restante"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__amount_tax
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__amount_tax
+msgid "Amount Tax"
+msgstr "Impuestos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__amount_total
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__amount_total
+msgid "Amount Total"
+msgstr "Total"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts_actions_wizard__payment_amount
+msgid "Amount to be paid"
+msgstr "Cantidad a pagar"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Amounts"
+msgstr "Montos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__periodicity__annually
+msgid "Annually"
+msgstr "Anualmente"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "April"
+msgstr "Abril"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__assigned_amount
+msgid "Assigned Amount"
+msgstr "Monto asignado"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__message_attachment_count
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__message_attachment_count
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__message_attachment_count
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de archivos adjuntos"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "August"
+msgstr "Agosto"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__available_amount
+msgid "Available Amount"
+msgstr "Monto disponible"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc3_2
+msgid "Babies, children"
+msgstr "Bebés, hijos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__bank_id
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account__account_type__bank
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_search
+msgid "Bank"
+msgstr "Banco"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__bank_number
+msgid "Bank Number"
+msgstr "Número de banco"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__bank_id
+msgid "Bank to which this account is related"
+msgstr "Banco al que está relacionada esta cuenta"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__beneficiary_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__beneficiary_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__beneficiary_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__beneficiary_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__beneficiary_id
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_expense_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+msgid "Beneficiary"
+msgstr "Beneficiario"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account__cutoff_day_color__1
+msgid "Blue"
+msgstr "Azul"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_budget_plan_form_view
+msgid "Budget 2025 ......"
+msgstr "Presupuesto 2025 ......"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__budget_line_id
+msgid "Budget Line"
+msgstr "Line presupuesto"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__line_ids
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_budget_plan_form_view
+msgid "Budget Lines"
+msgstr "Líneas presupuesto"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__name
+msgid "Budget Name"
+msgstr "Nombre presupuesto"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__plan_id
+msgid "Budget Plan"
+msgstr "Plan presupuestario"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_budget.py:0
+msgid "Budget Plan %s"
+msgstr "Plan presupuestario %s"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_budget_plan_form_view
+msgid "Budget Planning"
+msgstr "Planificación presupuestaria"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_budget_tag
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_budget_tag_form_view
+msgid "Budget Tag"
+msgstr "Etiqueta presupuesto"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_wallet_budget_tag
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_budget_tag_list_view
+msgid "Budget Tags"
+msgstr "Etiquetas de presupuestos"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_budget_tag
+msgid "Budget tags help you categorize your budgets."
+msgstr "Las etiquetas de presupuesto te ayudan a categorizar tus presupuestos."
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_wallet_budget
+msgid "Budgets"
+msgstr "Presupuestos"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc4_3
+msgid "Bus"
+msgstr "Autobús"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc4_4
+msgid "Business"
+msgstr "Negocios"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__card_number
+msgid "Card Number"
+msgstr "Número de tarjeta"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account__account_type__cash
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__payment_method__cash
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_template__payment_method__cash
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_transaction__payment_method__cash
+msgid "Cash"
+msgstr "Efectivo"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_settings_wallet_category
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_settings_category
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_category_tree
+msgid "Categories"
+msgstr "Categorias"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__category_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__category
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__category
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__category
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_expense_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+msgid "Category"
+msgstr "Categoria"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_category
+msgid "Category Wallet"
+msgstr "Categoría Monedero"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_1
+msgid "Charges"
+msgstr "Cargos"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_7
+msgid "Checks, coupons"
+msgstr "Cheques, cupones"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__child_id
+msgid "Children Categories"
+msgstr "Categorías hijas"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_category_form
+msgid "Childrens"
+msgstr "Hijas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_budget_plan__state__closed
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts__state__closed
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc3_8
+msgid "Clothing"
+msgstr "Ropa"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__color
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_tag__color
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_category_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_tag_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_budget_plan_form_view
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_budget_tag_form_view
+msgid "Color"
+msgstr ""
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__color
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__color
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_tag__color
+msgid "Color Index"
+msgstr "Índice color"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__committed_amount
+msgid "Committed Amount"
+msgstr "Monto comprometido"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__company_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__company_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__company_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__company_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__company_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__company_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__company_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_tag__company_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__company_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__company_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__company_id
+msgid "Company"
+msgstr "Compañia"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__complete_name
+msgid "Complete Name"
+msgstr "Nombre completo"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_budget_plan__state__confirmed
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_contacts_wallet
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_contacts
+msgid "Contacts"
+msgstr "Contactos"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_contacts_wallet
+msgid "Create a Contact in your address book"
+msgstr "Crea un contacto en tu libreta de direcciones"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_settings_wallet_account
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_account
+msgid "Create a new account for records"
+msgstr "Crear una nueva cuenta para registros"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_budget_tag
+msgid "Create a new budget tag"
+msgstr "Crear una nueva etiqueta de presupuesto"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_budget
+msgid "Create a new budgets for records"
+msgstr "Crear un nuevo presupuesto para registros"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_settings_wallet_category
+msgid "Create a new category for records"
+msgstr "Crear una nueva categoría para registros"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_debts_all
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_debts_pay
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_debts_receive
+msgid "Create a new debts for records"
+msgstr "Crear una nueva deuda para los registros"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_settings_wallet_scheduled_payment
+msgid "Create a new scheduled payment for records"
+msgstr "Crear un nuevo pago programado para registros"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_settings_wallet_tag
+msgid "Create a new tag for records"
+msgstr "Crear una nueva etiqueta para los registros"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_settings_wallet_template
+msgid "Create a new template for records"
+msgstr "Crear una nueva plantilla para registros"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_transaction_all
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_transaction_expense
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_transaction_income
+msgid "Create a new transaction for records"
+msgstr "Crear una nueva transaccion para registros"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_transfer
+msgid "Create a new transfer for records"
+msgstr "Crear una nueva transferencia para registros"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account_permission__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_tag__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_tag__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__create_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account_permission__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_tag__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_tag__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__create_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account__account_type__credit_card
+msgid "Credit card"
+msgstr "Tarjeta de crédito"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__partner_id
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_receive_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_search
+msgid "Creditor"
+msgstr "Acreedor"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc6_4
+msgid "Culture"
+msgstr "Cultura"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__company_currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__company_currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__company_currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__company_currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__company_currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__company_currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__company_currency_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__company_currency_id
+msgid "Currency"
+msgstr "Divisa"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__cutoff_day_color
+msgid "Cutoff Color"
+msgstr "Color fecha corte"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__cutoff_day
+msgid "Cutoff Day"
+msgstr "Día corte"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__periodicity__daily
+msgid "Daily"
+msgstr "Diariamente"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.client,name:lv_personal_wallet.action_lv_personal_wallet_dashboard
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_dashboard
+msgid "Dashboard"
+msgstr "Panel"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__date
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_expense_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transfer_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts_actions_wizard__expiration_date
+msgid "Date when the debt expire"
+msgstr "Fecha de vencimiento de la deuda"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts_actions_wizard__payment_date
+msgid "Date when the payment will be made"
+msgstr "Fecha en que se realizará el pago"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__days
+msgid "Days"
+msgstr "Días"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__notifications__deadline
+msgid "Deadline"
+msgstr "Fecha límite"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__debt_id
+msgid "Debt"
+msgstr "Deuda"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Debt Amount"
+msgstr "Monto deuda"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_company__debt_category_id
+msgid "Debt Category"
+msgstr "Categoría deuda"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+msgid "Debt Details ....."
+msgstr "Detalles de la deuda ....."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Debt Information"
+msgstr "Información deuda"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__name
+msgid "Debt Reference"
+msgstr "Referencia de deuda"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "Debt Settlement"
+msgstr "Liquidación de deudas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__debt_type
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__debt_type
+msgid "Debt Type"
+msgstr "Tipo de deuda"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "Debt forgiven: %s"
+msgstr "Deuda condonada: %s"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_debts.py:0
+msgid "Debt related transaction %s"
+msgstr "Transacción relacionada con deuda %s"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "Debt settled with an amount of %s."
+msgstr "Deuda saldada con un importe de %s."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_debts.py:0
+msgid "Debt: "
+msgstr "Deuda: "
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_partner__debts_count
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_users__debts_count
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_debts
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.partner_view_buttons_inherit_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_company_form_inherit_wallet_seq
+msgid "Debts"
+msgstr "Deudas"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_debts_actions_wizard
+msgid "Debts Action Wizard"
+msgstr "Asistente de acción de deudas"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.js:0
+msgid "Debts Report"
+msgstr "Reporte deudas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__debt_id
+msgid "Debts associated with this transaction"
+msgstr "Deudas asociadas a esta transacción"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "Debts to pay"
+msgstr "Deudas por pagar"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "Debts to receive"
+msgstr "Deudas por cobrar"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_debts
+msgid "Debts wallet"
+msgstr "Billetera de deudas"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "December"
+msgstr "Diciembre"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__description
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__description
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__description
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__description
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__description
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Description ..."
+msgstr "Descripción ..."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__destiny_id
+msgid "Destiny"
+msgstr "Destino"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__destiny_account
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transfer_search
+msgid "Destiny Account"
+msgstr "Cuenta destino"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc3_9
+msgid "Digital purchases"
+msgstr "Compras digitales"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account_permission__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_tag__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_tag__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__display_name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_budget_plan__state__draft
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_debts.py:0
+msgid "Draft Debt"
+msgstr "Borrador de deuda"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc1_1
+msgid "Drinks"
+msgstr "Bebidas"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc2
+msgid "Dwelling"
+msgstr "Vivienda"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc6_5
+msgid "Education"
+msgstr "Educación"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc3_3
+msgid "Electronics, accessories"
+msgstr "Electrónica, accesorios"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__end_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__end_date
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_receive_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_search
+msgid "End Date"
+msgstr "Fecha de finalización"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__end_date
+msgid "End date must be after start date"
+msgstr "La fecha de finalización debe ser posterior a la fecha de inicio"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_scheduled_payment_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_expense_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_form
+msgid "Enter a brief and clear description of your transaction ..."
+msgstr "Ingrese una descripción breve y clara de su transacción..."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Enter payment amount..."
+msgstr "Introduzca el importe del pago..."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Enter the <strong> number of days </strong> you wish to add to the debt due date."
+msgstr ""
+"Ingrese el <strong>número de días</strong> que desea agregar a la fecha de vencimiento de la deuda."
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc6
+msgid "Entertainment"
+msgstr "Entretenimiento"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/settings.py:0
+msgid "Error! You cannot create recursive categories."
+msgstr "¡Error! No se pueden crear categorías recursivas."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__executed_amount
+msgid "Executed Amount"
+msgstr "Monto ejecutado"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__exist_transaction
+msgid "Exist Transaction"
+msgstr "Transacción existente"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Existing Transaction"
+msgstr "Transacción existente"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_budget_plan_operation__operation_type__expense
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts_actions_wizard__debt_type__expense
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__transaction_type__expense
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_template__transaction_type__expense
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_transaction__transaction_type__expense
+msgid "Expense"
+msgstr "Gasto"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_company__wallet_seq_expense_id
+msgid "Expense sequence"
+msgstr "Secuencia gastos"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.js:0
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_transaction_expense
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.partner_view_buttons_inherit_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+msgid "Expenses"
+msgstr "Gastos"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_wallet_transaction_expense
+msgid "Expenses transaction"
+msgstr "Transacción de gastos"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+msgid "Expiration"
+msgstr "Vencimiento"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__expiration_date
+msgid "Expiration date"
+msgstr "Fecha vencimiento"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc1_3
+msgid "Fast food"
+msgstr "Comida rápida"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "February"
+msgstr "Febrero"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc1
+msgid "Feeding"
+msgstr "Alimentación"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_2
+msgid "Fees"
+msgstr "Tarifas"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_8
+msgid "Fees, donations"
+msgstr "Cuotas, donaciones"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7
+msgid "Financial"
+msgstr "Finanzas"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_4
+msgid "Fines"
+msgstr "Multas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__message_follower_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__message_follower_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__message_follower_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__message_partner_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__message_partner_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__message_partner_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Partners)"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__activity_type_icon
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__activity_type_icon
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__activity_type_icon
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de Font Awesome, por ejemplo, fa-tasks"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+msgid "Forgive"
+msgstr "Perdonar"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_debts.py:0
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts_actions_wizard__actions__forgive_debt
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Forgive Debt"
+msgstr "Perdonar deuda"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts__payment_status__forgiven
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+msgid "Forgiven"
+msgstr "Perdonada"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc5_2
+msgid "Fuel"
+msgstr "Combustible"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.js:0
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account__account_type__general
+msgid "General"
+msgstr ""
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_company_form_inherit_wallet_seq
+msgid "Generate Wallet Sequences"
+msgstr "Generar secuencias de billetera"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc3_7
+msgid "Gifts"
+msgstr "Regalos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__has_message
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__has_message
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__has_message
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc6_2
+msgid "Health"
+msgstr "Salud"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc6_6
+msgid "Hobbies"
+msgstr "Pasatiempos"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc6_8
+msgid "Holidays, trips, hotels"
+msgstr "Vacaciones, viajes, hoteles"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc3_1
+msgid "Home and garden"
+msgstr "Hogar y jardín"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account_permission__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_tag__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_tag__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__id
+msgid "ID"
+msgstr ""
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__activity_exception_icon
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__activity_exception_icon
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__activity_exception_icon
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__activity_exception_icon
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__activity_exception_icon
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__activity_exception_icon
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__message_needaction
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__message_needaction
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__message_needaction
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, los mensajes nuevos requieren su atención."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__message_has_error
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__message_has_sms_error
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__message_has_error
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__message_has_sms_error
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__message_has_error
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__message_has_sms_error
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__message_has_error
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tendrán un error de entrega."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__image
+msgid "Image"
+msgstr "Imagen"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_budget_plan_operation__operation_type__income
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts_actions_wizard__debt_type__income
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__transaction_type__income
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_template__transaction_type__income
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_transaction__transaction_type__income
+msgid "Income"
+msgstr "Ingreso"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_company__wallet_seq_income_id
+msgid "Income sequence"
+msgstr "Secuencia ingresos"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_transaction_income
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.partner_view_buttons_inherit_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+msgid "Incomes"
+msgstr "Ingresos"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_wallet_transaction_income
+msgid "Incomes transaction"
+msgstr "Transacción de ingresos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts_actions_wizard__exist_transaction
+msgid "Indicates if the debt has an existing transaction"
+msgstr "Indica si la deuda tiene una transacción existente"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_form
+msgid "Information"
+msgstr "Información"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc2_5 model:wallet.category,name:lv_personal_wallet.wc7_6
+msgid "Insurance"
+msgstr "Seguros"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_5
+msgid "Interest, dividends"
+msgstr "Intereses, dividendos"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc8
+msgid "Investment"
+msgstr "Inversion"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account__account_type__investments
+msgid "Investments"
+msgstr "Inversiones"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_11
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__message_is_follower
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__message_is_follower
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__message_is_follower
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__is_propietary
+msgid "Is Propietary"
+msgstr "Es propietario"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "January"
+msgstr "Enero"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "July"
+msgstr "Julio"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "June"
+msgstr "Junio"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account_permission__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_tag__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_tag__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__write_uid
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account_permission__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_line__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_tag__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_tag__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__write_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts__payment_status__liquidated
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+msgid "Liquidated"
+msgstr "Liquidada"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_9
+msgid "Loans"
+msgstr "Préstamos"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "Main Transactions"
+msgstr "Transacciones principales"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc5_5
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc2_3
+msgid "Maintenance, repairs"
+msgstr "Mantenimiento, reparaciones"
+
+#. module: lv_personal_wallet
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_settings_management
+msgid "Management"
+msgstr "Gestor"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "March"
+msgstr "Marzo"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "May"
+msgstr "Mayo"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__message_has_error
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__message_has_error
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__message_has_error
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de entrega del mensaje"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__message_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__message_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__message_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__periodicity__monthly
+msgid "Monthly"
+msgstr "Mensual"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.js:0
+msgid "Monthly Transactions Report"
+msgstr "Reporte transacciones mensuales"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc2_4
+msgid "Mortgage"
+msgstr "Hipoteca"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_search
+msgid "My Accounts"
+msgstr "Mis cuentas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__my_activity_date_deadline
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__my_activity_date_deadline
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__my_activity_date_deadline
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha límite de mi actividad"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_tag__name
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/settings.py:0
+msgid "New"
+msgstr "Nuevo"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__activity_date_deadline
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__activity_date_deadline
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__activity_date_deadline
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha límite para la próxima actividad"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__activity_summary
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__activity_summary
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__activity_summary
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la próxima actividad"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__activity_type_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__activity_type_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__activity_type_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__activity_type_id
+msgid "Next Activity Type"
+msgstr "Siguiente tipo de actividad"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__next_cutoff_date
+msgid "Next cut-off date"
+msgstr "Siguiente fecha de corte"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "No reason provided"
+msgstr "No se proporcionó ninguna razón"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__notifications__none
+msgid "None"
+msgstr "Ninguno"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__notifications
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_scheduled_payment_form
+msgid "Notifications"
+msgstr "Notificaciones"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_budget
+msgid "Nova helps you manage budgets."
+msgstr "Nova le ayuda a administrar presupuestos."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_settings_wallet_account
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_account
+msgid "Nova helps you manage multiple accounts."
+msgstr "Nova le ayuda a administrar múltiples cuentas."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_settings_wallet_category
+msgid "Nova helps you manage multiple categories."
+msgstr "Nova le ayuda a administrar múltiples categorias."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_debts_all
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_debts_pay
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_debts_receive
+msgid "Nova helps you manage multiple debts."
+msgstr "Nova le ayuda a administrar múltiples deudas."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_settings_wallet_scheduled_payment
+msgid "Nova helps you manage multiple scheduled payments."
+msgstr "Nova le ayuda a administrar múltiples pagos programados."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_settings_wallet_tag
+msgid "Nova helps you manage multiple tags."
+msgstr "Nova le ayuda a administrar múltiples etiquetas."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_settings_wallet_template
+msgid "Nova helps you manage multiple templates."
+msgstr "Nova le ayuda a administrar múltiples plantillas."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_transaction_all
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_transaction_expense
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_transaction_income
+msgid "Nova helps you manage multiple transactions."
+msgstr "Nova le ayuda a administrar múltiples transacciones."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_wallet_transfer
+msgid "Nova helps you manage multiple transfers."
+msgstr "Nova le ayuda a administrar múltiples transferencias."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.actions.act_window,help:lv_personal_wallet.action_contacts_wallet
+msgid "Nova helps you track all activities related to your contacts."
+msgstr ""
+"Nova te ayuda a realizar un seguimiento de todas las actividades relacionadas con tus contactos."
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "November"
+msgstr "Noviembre"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__message_needaction_counter
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__message_needaction_counter
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__message_needaction_counter
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts_actions_wizard__days
+msgid "Number of days that the user wishes to postpone the debt due date"
+msgstr "Número de días que el usuario desea posponer la fecha de vencimiento de la deuda"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__message_has_error_counter
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__message_has_error_counter
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__message_has_error_counter
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__message_needaction_counter
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__message_needaction_counter
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__message_needaction_counter
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren acción"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__message_has_error_counter
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__message_has_error_counter
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__message_has_error_counter
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "October"
+msgstr "Octubre"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__notifications__one_day_before
+msgid "One day before"
+msgstr "Un día antes"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__notifications__one_week_before
+msgid "One week before"
+msgstr "Una semana antes"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "Open record"
+msgstr "Abrir registro"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__date
+msgid "Operation Date"
+msgstr "Fecha de operación"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__name
+msgid "Operation Reference"
+msgstr "Referencia de operación"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__operation_type
+msgid "Operation Type"
+msgstr "Tipo de operación"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__origin_id
+msgid "Origin"
+msgstr "Origen"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__origin_account
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transfer_search
+msgid "Origin Account"
+msgstr "Cuenta origen"
+
+#. module: lv_personal_wallet
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_settings_others
+msgid "Others"
+msgstr "Otros"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__is_overdue
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts__state__overdue
+msgid "Overdue"
+msgstr "Atrasada"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__parent_id
+msgid "Parent Category"
+msgstr "Categoría padre"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__parent_path
+msgid "Parent Path"
+msgstr "Ruta padre"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_category__parents_and_self
+msgid "Parents And Self"
+msgstr "Padres y yo"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc5_3
+msgid "Parking"
+msgstr "Estacionamiento"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts__payment_status__partial
+msgid "Partial"
+msgstr "Parcial"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+msgid "Partner"
+msgstr "Contacto"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts__debt_type__pay
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_debts_pay
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_search
+msgid "Pay"
+msgstr "Pagar"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_company__wallet_seq_pay_debt_id
+msgid "Pay Debts sequence"
+msgstr "Secuencia pago deudas"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_wallet_debts_pay
+msgid "Pay debts"
+msgstr "Pagar deudas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__payment_id
+msgid "Payment"
+msgstr "Pago"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__payment_amount
+msgid "Payment Amount"
+msgstr "Monto del pago"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__payment_date
+msgid "Payment Date"
+msgstr "Fecha de pago"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__payment_method
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__payment_method
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__payment_method
+msgid "Payment Method"
+msgstr "Método de pago"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Payment Notes"
+msgstr "Notas de pago"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__payment_status
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_receive_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_search
+msgid "Payment Status"
+msgstr "Estado de pago"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts__payment_status__pending
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__periodicity
+msgid "Periodicity"
+msgstr "Periocidad"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc3_5
+msgid "Pets, animals"
+msgstr "Mascotas, animales"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc3_4
+msgid "Pharmacy, drugstore"
+msgstr "Farmacia, droguería"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc4_1
+msgid "Plane"
+msgstr "Avion"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Please enter the reason why you are forgiving the debt."
+msgstr "Por favor ingrese el motivo por el cual está perdonando la deuda."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+msgid "Postpone"
+msgstr "Posponer"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_debts.py:0
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts_actions_wizard__actions__postpone_debt
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Postpone Debt"
+msgstr "Aplazar la deuda"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc8_2
+msgid "Real estate"
+msgstr "Bienes raíces"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Reason ..."
+msgstr "Razon ..."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Reason for settlement..."
+msgstr "Motivo de perdonar deuda..."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts__debt_type__receive
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_debts_receive
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_search
+msgid "Receive"
+msgstr "Cobrar"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_company__wallet_seq_rec_debt_id
+msgid "Receive Debts sequence"
+msgstr "Secuencia cobro Deudas"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_wallet_debts_receive
+msgid "Receive debts"
+msgstr "Cobrar deudas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account__cutoff_day_color__3
+msgid "Red"
+msgstr "Rojo"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__ref
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_13
+msgid "Refund"
+msgstr "Reembolso"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__debt_id
+msgid "Related Debts"
+msgstr "Deudas relacionadas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan_operation__transaction_id
+msgid "Related Transaction"
+msgstr "Transacción relacionada"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__transaction_ids
+msgid "Related Transactions"
+msgstr "Transacciones"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc2_1
+msgid "Rent"
+msgstr "Alquiler"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc5_1
+msgid "Rental"
+msgstr "Alquiler"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+msgid "Reset to draft"
+msgstr "Restablecer a borrador"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__activity_user_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__activity_user_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__activity_user_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc1_2
+msgid "Restaurants"
+msgstr "Restaurantes"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.js:0
+msgid "Revenue"
+msgstr "Ingresos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__message_has_sms_error
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__message_has_sms_error
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__message_has_sms_error
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de SMS"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_10
+msgid "Salaries"
+msgstr "Salarios"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc7_12
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account__account_type__savings
+#: model:wallet.category,name:lv_personal_wallet.wc8_1
+msgid "Savings"
+msgstr "Ahorros"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_scheduled_payment
+msgid "Scheduled Payment Wallet"
+msgstr "Billetera pagos programados"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_settings_wallet_scheduled_payment
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_settings_scheduled_payment
+msgid "Scheduled payment"
+msgstr "Pagos programados"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts_actions_wizard__debt_id
+msgid "Selectd debts to perform the action on"
+msgstr "Deudas seleccionadas sobre las que se realizará la acción"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "September"
+msgstr "Septiembre"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc2_2
+msgid "Services"
+msgstr "Servicios"
+
+#. module: lv_personal_wallet
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_settings
+msgid "Settings"
+msgstr "Configuraciones"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_debts.py:0
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_debts_actions_wizard__actions__settle_debt
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Settle Debt"
+msgstr "Liquidar deuda"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__share_available_users
+msgid "Share Available Users"
+msgstr "Usuarios disponibles para compartir"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__shared_record
+msgid "Shared Record"
+msgstr "Registro compartido"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_form
+msgid "Shared Users"
+msgstr "Usuarios compartidos"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_search
+msgid "Shareds"
+msgstr "Compartidas"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc3
+msgid "Shopping"
+msgstr "Compras"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__show_panel
+msgid "Show Panel"
+msgstr "Mostrar en panel"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc6_3
+msgid "Sport"
+msgstr "Deporte"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__start_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__start_date
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__start_date
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_receive_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_search
+msgid "Start Date"
+msgstr "Fecha inicio"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__start_date
+msgid "Start date of the budget plan"
+msgstr "Fecha de inicio del plan presupuestario"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__state
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_receive_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_search
+msgid "State"
+msgstr "Estado"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc3_6
+msgid "Stationery, tools"
+msgstr "Papelería, herramientas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__activity_state
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__activity_state
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__activity_state
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado según actividades\n"
+"Vencido: La fecha de vencimiento ya pasó\n"
+"Hoy: La fecha de la actividad es hoy\n"
+"Planificado: Actividades futuras."
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc8_3
+msgid "Stocks"
+msgstr "Acciones"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc1_5
+msgid "Store"
+msgstr "Tienda"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc1_4
+msgid "Supermarket"
+msgstr "Supermercado"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc6_7
+msgid "TV, streaming"
+msgstr ""
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__tag
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__tag
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__tag
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__tag
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_expense_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transfer_search
+msgid "Tag"
+msgstr "Etiqueta"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_tag__name
+msgid "Tag Name"
+msgstr "Nombre etiqueta"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_tag
+msgid "Tag Wallet"
+msgstr "Billetera etiqueta"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_settings_wallet_tag
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__tag_ids
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_settings_tag
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_scheduled_payment_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_template_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.vview_wallet_tag_tree
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_scheduled_payment_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_expense_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_form
+msgid "Tags ...."
+msgstr "Etiquetas ...."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment_tax__tax_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__tax_id
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__tax_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__tax_ids
+#: model:wallet.category,name:lv_personal_wallet.wc7_3
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_scheduled_payment_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_expense_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_form
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc4_2
+msgid "Taxi"
+msgstr ""
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__template_id
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_template
+msgid "Template Wallet"
+msgstr "Billetera plantilla"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_settings_wallet_template
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_settings_template
+msgid "Templates"
+msgstr "Plantillas"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__wallet_account
+msgid "The account where the debt is recorded"
+msgstr "La cuenta donde se registra la deuda"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_debts.py:0
+msgid "The company does not have a category for debt transactions."
+msgstr "La empresa no tiene una categoría para transacciones de deuda."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_transaction.py:0
+msgid "The company does not have a sequence for expense transactions."
+msgstr "La empresa no tiene una secuencia para las transacciones de gastos."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet.py:0
+#: code:addons/lv_personal_wallet/models/wallet_transaction.py:0
+msgid "The company does not have a sequence for income transactions."
+msgstr "La empresa no tiene una secuencia para las transacciones de ingresos."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/settings.py:0
+msgid "The cut-off day must be between 1 and 31."
+msgstr "El día de corte debe ser entre el 1 y el 31."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "The debt has been <b>forgiven</b>.<br/>Reason: <b>%s</b>"
+msgstr "La deuda ha sido <b>perdonada</b>.<br/>Razón: <b>%s</b>"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid ""
+"The debt has been postponed by <b> %(days)s days </b>. For the following reason : <br/> <b> %"
+"(reason)s </b>"
+msgstr ""
+"La deuda se ha pospuesto por <b> %(days)s días </b>. Por la siguiente razón: <br/> <b> %(reason)s </b>"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "The debt has been settled with an amount of %s. With transaction %s"
+msgstr "La deuda se ha saldado con un importe de %s. Con la transacción %s"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "The number of days to postpone cannot be negative."
+msgstr "El número de días a posponer no puede ser negativo."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "The number of days to postpone must be greater than zero."
+msgstr "El número de días a posponer debe ser mayor que cero."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__partner_id
+msgid "The partner to whom the debt is owed or who owes the debt"
+msgstr "El contacto a quien se debe la deuda o que debe la deuda"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "The payment amount cannot exceed the debt amount."
+msgstr "El monto del pago no puede exceder el monto de la deuda."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "The payment amount cannot exceed the residual amount of the debt."
+msgstr "El monto del pago no puede exceder el monto residual de la deuda."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "The payment amount must be greater than zero."
+msgstr "El importe del pago debe ser mayor que cero."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "The transaction amount cannot exceed the payment amount."
+msgstr "El monto de la transacción no puede exceder el monto del pago."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "The transaction amount cannot exceed the residual amount of the debt."
+msgstr "El monto de la transacción no puede exceder el monto residual de la deuda."
+
+#. module: lv_personal_wallet
+#: model:ir.model.constraint,message:lv_personal_wallet.constraint_wallet_account_permission_unique_user_account
+msgid "The user already has permissions configured for this account."
+msgstr "El usuario ya tiene permisos configurados para esta cuenta."
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_settings_wallet_account_form
+msgid "This account was shared with you by:"
+msgstr "Esta cuenta fue compartida contigo por:"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_company_form_inherit_wallet_seq
+msgid "This will generate the sequences for the operation of the Wallet."
+msgstr "Esto generará las secuencias para el funcionamiento del Wallet."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__notifications__three_day_before
+msgid "Three day before"
+msgstr "Tres días antes"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "Top Accounts"
+msgstr "Cuentas principales"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "Top Expenses"
+msgstr "Gastos principales"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.js:0
+msgid "Top Expenses Report"
+msgstr "Reporte gastos principales"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.xml:0
+msgid "Top Incomes"
+msgstr "Ingresos principales"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.js:0
+msgid "Top Incomes Report"
+msgstr "Reporte ingresos principales"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_expense_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_tree
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transfer_form
+msgid "Total"
+msgstr ""
+
+#. module: lv_personal_wallet
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_transfer
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_expense_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+msgid "Tranfers"
+msgstr "Transferencias"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts_actions_wizard__transaction_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction_tax__transaction_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transfer__transaction_ids
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_scheduled_payment_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_expense_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_form
+msgid "Transaction"
+msgstr "Transacciones"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_debts_actions_wizard_view_form
+msgid "Transaction Amount"
+msgstr "Monto de la transacción"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__name
+msgid "Transaction Reference"
+msgstr "Referencia de transacción"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__transaction_type
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__transaction_type
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__transaction_type
+msgid "Transaction Type"
+msgstr "Tipo transacción"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_transaction
+msgid "Transaction Wallet"
+msgstr "Billetera transacción"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_partner__transaction_expense_count
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_users__transaction_expense_count
+msgid "Transaction expenses"
+msgstr "Transacciones gastos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_partner__transaction_income_count
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_users__transaction_income_count
+msgid "Transaction incomes"
+msgstr "Transacciones ingresos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts_actions_wizard__transaction_id
+msgid "Transaction related to the debt"
+msgstr "Transacción relacionada con la deuda"
+
+#. module: lv_personal_wallet
+#. odoo-javascript
+#: code:addons/lv_personal_wallet/static/src/components/wallet_dashboard.js:0
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_partner__transaction_count
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_users__transaction_count
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_transaction
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.partner_view_buttons_inherit_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_company_form_inherit_wallet_seq
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transfer_form
+msgid "Transactions"
+msgstr "Transacciones"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_debts.py:0
+#: code:addons/lv_personal_wallet/models/wallet_transaction.py:0
+msgid "Transactions must not be the value 0.00"
+msgstr "Las transacciones no deben tener el valor 0,00"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.act_window,name:lv_personal_wallet.action_wallet_transfer
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__transfer
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__payment_method__transfer
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_template__payment_method__transfer
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_transaction__payment_method__transfer
+msgid "Transfer"
+msgstr "Tranferencia"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_res_company__transfer_category
+msgid "Transfer Category"
+msgstr "Categoría de transferencia"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_budget_plan_operation__operation_type__transfer_in
+msgid "Transfer In"
+msgstr "Transferencia de entrada"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_budget_plan_operation__operation_type__transfer_out
+msgid "Transfer Out"
+msgstr "Transferencia de salida"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_transfer
+msgid "Transfer wallet"
+msgstr "Billetera tranferencia"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet.py:0
+msgid "Transfer: "
+msgstr "Transferencia: "
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc4
+msgid "Transport"
+msgstr "Transporte"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+msgid "Type"
+msgstr "Tipo"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account_permission__permission_type
+msgid "Type of permission"
+msgstr "Tipo de permiso"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__activity_exception_decoration
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__activity_exception_decoration
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__activity_exception_decoration
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción registrada."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__ref
+msgid "Unique reference for the budget plan"
+msgstr "Referencia única para el plan presupuestario"
+
+#. module: lv_personal_wallet
+#: model:ir.actions.server,name:lv_personal_wallet.ir_cron_update_cutoff_dates_ir_actions_server
+msgid "Update cut-off dates"
+msgstr "Actualizar fechas de corte"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account_permission__user_id
+msgid "User"
+msgstr "Usuario"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__permissions_ids
+msgid "User Permissions"
+msgstr "Permisos de usuario"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_all_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_pay_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_debts_receive_form
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.wallet_budget_plan_form_view
+msgid "Validity"
+msgstr "Validez"
+
+#. module: lv_personal_wallet
+#: model:wallet.category,name:lv_personal_wallet.wc5
+msgid "Vehicles"
+msgstr "Vehículos"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "View expenses"
+msgstr "Ver gastos"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "View incomes"
+msgstr "Ver ingresos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account_permission__permission_type__view
+msgid "View only"
+msgstr "Solo ver"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_account_kanban
+msgid "View transactions"
+msgstr "Ver transacciones"
+
+#. module: lv_personal_wallet
+#: model:ir.ui.menu,name:lv_personal_wallet.menu_wallet_root
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_company_form_inherit_wallet_seq
+msgid "Wallet"
+msgstr "Billetera"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account_permission__account_id
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_scheduled_payment__wallet_account
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_template__wallet_account
+msgid "Wallet Account"
+msgstr "Cuenta"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_account_permission
+msgid "Wallet Account Permission"
+msgstr "Permisos de la cuenta"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_budget_plan_operation
+msgid "Wallet Budget Operations"
+msgstr "Operaciones de presupuesto de billetera"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_budget_plan_line
+msgid "Wallet Budget Plan Line"
+msgstr "Línea del plan de presupuesto de billetera"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_budget_plan
+msgid "Wallet Budget Planification"
+msgstr "Planificación del presupuesto de la billetera"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_scheduled_payment_tax
+msgid "Wallet Scheduled Payment Tax"
+msgstr "Impuesto pagos programados"
+
+#. module: lv_personal_wallet
+#: model:ir.model,name:lv_personal_wallet.model_wallet_transaction_tax
+msgid "Wallet Transaction Tax"
+msgstr "Transacciones de impuestos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__website_message_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_budget_plan__website_message_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_debts__website_message_ids
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_transaction__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_account__website_message_ids
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_budget_plan__website_message_ids
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_debts__website_message_ids
+#: model:ir.model.fields,help:lv_personal_wallet.field_wallet_transaction__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_scheduled_payment__periodicity__weekly
+msgid "Weekly"
+msgstr "Semanal"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_expense_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+msgid "With taxes"
+msgstr "Con impuestos"
+
+#. module: lv_personal_wallet
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_income_expense_search
+#: model_terms:ir.ui.view,arch_db:lv_personal_wallet.view_wallet_transaction_search
+msgid "Without taxes"
+msgstr "Sin impuestos"
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields.selection,name:lv_personal_wallet.selection__wallet_account__cutoff_day_color__2
+msgid "Yellow"
+msgstr "Amarillo"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "You can only settle debts that are pending or partially paid."
+msgstr "Sólo se podrán liquidar deudas que se encuentren pendientes o parcialmente pagadas."
+
+#. module: lv_personal_wallet
+#: model:ir.model.fields,field_description:lv_personal_wallet.field_wallet_account__can_transact
+msgid "You can transact"
+msgstr "Puede transaccionar"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_transaction.py:0
+msgid "You cannot delete a transaction associated with a debt. Please delete the debt instead."
+msgstr "No se puede eliminar una transacción asociada a una deuda. Elimine la deuda."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_transaction.py:0
+msgid "You cannot modify a transaction associated with a debt. Please modify the debt instead."
+msgstr "No se puede modificar una transacción asociada a una deuda. Modifique la deuda en su lugar."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "You cannot perform the following action on debts that are not active"
+msgstr "No puedes realizar la siguiente acción en deudas que no están activas"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_debts.py:0
+msgid "You cannot revert a debt that is already closed or canceled."
+msgstr "No se puede revertir una deuda que ya está cerrada o cancelada."
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/models/wallet_transaction.py:0
+msgid "You do not have permission for this account: %s"
+msgstr "No tienes permiso para esta cuenta: %s"
+
+#. module: lv_personal_wallet
+#. odoo-python
+#: code:addons/lv_personal_wallet/wizard/wallet_debts_actions_wizard.py:0
+msgid "You must select a wallet account to settle the debt."
+msgstr "Debes seleccionar una cuenta de billetera para liquidar la deuda."

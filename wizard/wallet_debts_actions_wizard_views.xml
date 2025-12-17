@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="wallet_debts_actions_wizard_view_form" model="ir.ui.view">
+        <field name="name">wallet.debts.actions.wizard.view.form</field>
+        <field name="model">wallet.debts.actions.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <span class="o_form_label">
+                        <field name="actions" widget="radio" options="{'horizontal': True}" readonly="1" invisible="1" nolabel="1"/>
+                        <!-- Liquidar Deuda -->
+                        <group invisible="actions != 'settle_debt'">
+                            <!-- Mensaje informativo -->
+                            <group colspan="8">
+                                <div class="alert alert-success" role="alert" style="margin-bottom:10px;">
+                                    <strong>
+                                        <i class="fa fa-check-circle"></i> Settle Debt
+                                    </strong>
+                                    <br/>
+                                    Please enter the payment details to settle the selected debt.
+                                </div>
+                            </group>
+                            <!-- Selección de transacción existente -->
+                            <group string="Existing Transaction">
+                                <field name="debt_type" invisible="1"/>
+                                <field name="exist_transaction" widget="boolean_toggle"/>
+                                <field name="transaction_id" domain="[('transaction_type', '=', debt_type),('debt_id', '=', False)]" invisible ="not exist_transaction" options="{'no_create': True}"/>
+                                <field name="payment_amount" readonly="1"  invisible =" not exist_transaction" string="Transaction Amount"/>
+                            </group>
+
+                            <group string="Debt Amount" invisible="not exist_transaction">
+                                <field name="amount_debt" readonly="1"/>
+                                <field name="amount_paid" readonly="1"/>
+                                <field name="amount_residual" readonly="1"/>
+                            </group>
+                            <!-- Información básica de la deuda -->
+                            <group string="Debt Information" invisible="exist_transaction">
+                                <field name="debt_id" readonly="1"/>
+                                <field name="date" required="actions == 'settle_debt'"/>
+                                <field name="wallet_account_id" required="actions == 'settle_debt'" options="{'no_create': True}"/>
+                            </group>
+                            <!-- Información de montos -->
+                            <group string="Amounts" invisible="exist_transaction">
+                                <field name="amount_debt" readonly="1"/>
+                                <field name="amount_paid" readonly="1"/>
+                                <field name="amount_residual" readonly="1"/>
+                                <field name="payment_amount" placeholder="Enter payment amount..." required="actions == 'settle_debt' and not exist_transaction"/>
+                            </group>
+                            <separator string="Payment Notes" colspan="8"/>
+                            <!-- Descripción del pago -->
+                            <group colspan="8" col="4">
+                                <field name="description" placeholder="Reason for settlement..." required="actions == 'settle_debt'"/>
+                            </group>
+                        </group>
+
+                        <!-- Perdonar Deuda-->
+                        <group invisible="actions != 'forgive_debt'">
+                            <group>
+                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    Please enter the reason why you are forgiving the debt.
+                                </div>
+                            </group>
+                            <group>
+                                <field name="debt_id" readonly="1" />
+                                <field name="description" placeholder="Reason ..." required="actions == 'forgive_debt'" />
+                            </group>
+                        </group>
+
+                        <!-- Aplazar deuda -->
+                        <group invisible="actions != 'postpone_debt'">
+                            <group>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    Enter the <strong> number of days </strong> you wish to add to the debt due date.
+                                </div>
+                            </group>
+                            <group>
+                                <field name="debt_id" readonly="1" />
+                                <field name="expiration_date" readonly="1"/>
+                                <field name="days"/>
+                                <field name="description" placeholder="Description ..."/>
+                            </group>
+                        </group>
+                    </span>
+                    <footer>
+                        <button string="Postpone Debt" name="action_date_postpone" invisible="actions != 'postpone_debt'" type="object" class="btn-primary"/>
+                        <button string="Forgive Debt" name="action_forgive_debt" invisible="actions != 'forgive_debt'" type="object" class="btn-primary"/>
+                        <button string="Settle Debt" name="action_settle_debt" invisible="actions != 'settle_debt'" type="object" class="btn-primary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

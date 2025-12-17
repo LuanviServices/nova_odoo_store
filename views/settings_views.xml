@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- CATEGORIAS FORMULARIO -->
+        <record id="view_wallet_category_form" model="ir.ui.view">
+            <field name="name">wallet.category.form</field>
+            <field name="model">wallet.category</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="color" widget="color_picker" string="Color"/>
+                            </group>
+                            <group>
+                                <field name="parent_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="childrens" string="Childrens">
+                                <field name="child_id"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- CATEGORIAS LISTADO -->
+        <record id="view_wallet_category_tree" model="ir.ui.view">
+            <field name="name">wallet.category.tree</field>
+            <field name="model">wallet.category</field>
+            <field name="arch" type="xml">
+                <list string="Categories">
+                    <field name="complete_name"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- ACCIÓN PARA LISTAR CATEGORIAS -->
+        <record id="action_settings_wallet_category" model="ir.actions.act_window">
+            <field name="name">Categories</field>
+            <field name="res_model">wallet.category</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new category for records
+                </p>
+                <p>
+                    Nova helps you manage multiple categories.
+                </p>
+            </field>
+        </record>
+
+        <!-- ETIQUETAS FORMULARIO -->
+        <record id="view_wallet_tag_form" model="ir.ui.view">
+            <field name="name">wallet.tag.form</field>
+            <field name="model">wallet.tag</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="color" widget="color_picker" string="Color"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ETIQUETAS LISTADO -->
+        <record id="vview_wallet_tag_tree" model="ir.ui.view">
+            <field name="name">wallet.tag.tree</field>
+            <field name="model">wallet.tag</field>
+            <field name="arch" type="xml">
+                <list string="Tags">
+                    <field name="name"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- ACCIÓN PARA LISTAR ETIQUETAS -->
+        <record id="action_settings_wallet_tag" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">wallet.tag</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'active_test': False}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new tag for records
+                </p>
+                <p>
+                    Nova helps you manage multiple tags.
+                </p>
+            </field>
+        </record>
+
+        <!-- PLANTILLAS FORMULARIO -->
+        <record id="view_wallet_template_form" model="ir.ui.view">
+            <field name="name">wallet.template.form</field>
+            <field name="model">wallet.template</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="amount"/>
+                                <field name="wallet_account" options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="category" options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="payment_method"/>
+                                <field name="tag" options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="transaction_type"/>
+                                <field name="beneficiary_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- PLANTILLAS LISTADO -->
+        <record id="view_wallet_template_tree" model="ir.ui.view">
+            <field name="name">wallet.template.tree</field>
+            <field name="model">wallet.template</field>
+            <field name="arch" type="xml">
+                <list string="Tags">
+                    <field name="name"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- ACCIÓN PARA LISTAR PLANTILLAS -->
+        <record id="action_settings_wallet_template" model="ir.actions.act_window">
+            <field name="name">Templates</field>
+            <field name="res_model">wallet.template</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'active_test': False}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new template for records
+                </p>
+                <p>
+                    Nova helps you manage multiple templates.
+                </p>
+            </field>
+        </record>
+
+        <!-- PAGOS PROGRAMADOS FORMULARIO -->
+        <record id="view_wallet_scheduled_payment_form" model="ir.ui.view">
+            <field name="name">wallet.scheduled.payment.form</field>
+            <field name="model">wallet.scheduled.payment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page name="page_transaction" string="Transaction">
+                                <group>
+                                    <group name="wallet_description_group" colspan="2">
+                                        <field name="description" placeholder="Enter a brief and clear description of your transaction ..."/>
+                                    </group>
+                                    <group name="wallet_transaction_left">
+                                        <field name="start_date"/>
+                                        <field name="beneficiary_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                                        <field name="category" required="1" options="{'no_create': True, 'no_create_edit': True}" />
+                                        <field name="payment_method" required="1"/>
+                                        <field name="tag" placeholder="Tags ...." widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit': True}"/>
+                                    </group>
+                                    <group name="wallet_transaction_right">
+                                        <field name="wallet_account" options="{'no_create': True, 'no_create_edit': True}"/>
+                                        <field name="transaction_type" widget="radio"/>
+                                        <field name="amount"/>
+                                        <field name="amount_tax"/>
+                                        <field name="amount_total"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="taxes" string="Taxes">
+                                <field name="tax_ids"/>
+                            </page>
+                            <page name="page_notify" string="Notifications">
+                                <group>
+                                    <group>
+                                        <field name="notifications"/>
+                                        <field name="periodicity"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- PAGOS PROGRAMADOS LISTADO -->
+        <record id="view_wallet_scheduled_payment_tree" model="ir.ui.view">
+            <field name="name">wallet.scheduled.payment.tree</field>
+            <field name="model">wallet.scheduled.payment</field>
+            <field name="arch" type="xml">
+                <list string="Tags">
+                    <field name="name"/>
+                    <field name="periodicity"/>
+                    <field name="wallet_account"/>
+                    <field name="beneficiary_id"/>
+                    <field name="description"/>
+                    <field name="amount"/>
+                    <field name="amount_tax"/>
+                    <field name="amount_total"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- ACCIÓN PARA LISTAR PAGOS PROGRAMADOS -->
+        <record id="action_settings_wallet_scheduled_payment" model="ir.actions.act_window">
+            <field name="name">Scheduled payment</field>
+            <field name="res_model">wallet.scheduled.payment</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'active_test': False}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new scheduled payment for records
+                </p>
+                <p>
+                    Nova helps you manage multiple scheduled payments.
+                </p>
+            </field>
+        </record>
+
+        <!-- PAGOS PROGRAMADOS LISTADO IMPUESTOS -->
+        <record id="view_wallet_scheduled_payment_tax_tree" model="ir.ui.view">
+            <field name="name">wallet.scheduled.payment.tax.tree</field>
+            <field name="model">wallet.scheduled.payment.tax</field>
+            <field name="arch" type="xml">
+                <list editable="bottom">
+                    <field name="tax_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                    <field name="beneficiary_id" options="{'no_create': True, 'no_create_edit': True}"/>
+                    <field name="amount"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- SECUENCIAS EN COMPAÑIAS -->
+        <record id="view_company_form_inherit_wallet_seq" model="ir.ui.view">
+            <field name="name">res.company.form.inherit.wallet.seq</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='general_info']" position="after">
+                    <page name="wallet_settings" string="Wallet">
+                        <button name="button_create_wallet_seq" type="object" string="Generate Wallet Sequences" class="btn-link mb-1 px-0" icon="fa-refresh" confirm="This will generate the sequences for the operation of the Wallet."/>
+                        <group>
+                            <group name="transactions" string="Transactions">
+                                <field name="wallet_seq_income_id" required="0" domain="[('code', '=', 'wallet.transaction'), ('company_id', '=', id)]"/>
+                                <field name="wallet_seq_expense_id" required="0" domain="[('code', '=', 'wallet.transaction'), ('company_id', '=', id)]"/>
+                                <field name="transfer_category" required="1"/>
+                            </group>
+                            <group name="debts" string="Debts">
+                                <field name="wallet_seq_pay_debt_id" required="0" domain="[('code', '=', 'wallet.debts'), ('company_id', '=', id)]"/>
+                                <field name="wallet_seq_rec_debt_id" required="0" domain="[('code', '=', 'wallet.debts'), ('company_id', '=', id)]"/>
+                                <field name="debt_category_id" required="1"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

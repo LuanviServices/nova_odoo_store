@@ -4,7 +4,7 @@
 
 {
     'name': 'Personal Wallet',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.2.0',
     'category': 'Accounting/Personal Finance',
     'summary': 'Control your personal income and expenses',
     'description': """
@@ -48,6 +48,7 @@ with a clean dashboard and automated calculations.
             'lv_personal_wallet/static/src/components/**/*.xml',
         ]
     },
+    'images': ['static/description/banner.gpng'],
     'price': 12.00,
     'currency': 'USD',
 }

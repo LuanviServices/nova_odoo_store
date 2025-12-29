@@ -1,10 +1,10 @@
 
-from markupsafe import Markup, escape
-from odoo import api, fields, models, Command, _
+from markupsafe import Markup
+from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
 
-class WalletDebtsActionWizard(models.Model):
+class WalletDebtsActionWizard(models.TransientModel):
     _name = 'wallet.debts.actions.wizard'
     _description = "Debts Action Wizard"
 
@@ -80,7 +80,7 @@ class WalletDebtsActionWizard(models.Model):
     def _onchange_transaction_id(self):
         for wizard in self:
             if wizard.transaction_id:
-                wizard.payment_amount = wizard.transaction_id.amount
+                wizard.payment_amount = abs(wizard.transaction_id.amount)
             else:
                 wizard.payment_amount = 0.0
 
@@ -159,12 +159,14 @@ class WalletDebtsActionWizard(models.Model):
 
     def _validate_settlement(self, wizard, debt):
         """Valida que la deuda y los datos del wizard sean correctos para liquidación."""
+        if wizard.transaction_id and wizard.payment_amount <= 0:
+            wizard.payment_amount = wizard.transaction_id.amount
         validations = [
             (debt.payment_status not in ['pending', 'partial'],
              _("You can only settle debts that are pending or partially paid.")),
-            (wizard.payment_amount <= 0,
+            (abs(wizard.payment_amount) <= 0,
              _("The payment amount must be greater than zero.")),
-            (wizard.payment_amount > abs(debt.amount),
+            (abs(wizard.payment_amount) > abs(debt.amount),
              _("The payment amount cannot exceed the debt amount.")),
             ((wizard.amount_residual < 0 and wizard.debt_type == 'income') or (wizard.amount_residual > 0 and wizard.debt_type == 'expense'),
              _("The payment amount cannot exceed the residual amount of the debt.")),

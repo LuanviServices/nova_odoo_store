@@ -149,7 +149,7 @@ class CustomerStatementWizard(models.TransientModel):
         """Trigger the PDF report and return it to the browser."""
         self.ensure_one()
         return self.env.ref(
-            'customer_statement_portal.action_report_customer_statement'
+            'lv_nova_customer_statement.action_report_customer_statement'
         ).report_action(self)
 
     def action_send_email(self):
@@ -160,7 +160,7 @@ class CustomerStatementWizard(models.TransientModel):
         self.ensure_one()
         # Render the PDF
         pdf_content, _mime = self.env['ir.actions.report']._render_qweb_pdf(
-            'customer_statement_portal.action_report_customer_statement',
+            'lv_nova_customer_statement.action_report_customer_statement',
             res_ids=[self.id],
         )
         filename = 'Account_Statement_{}.pdf'.format(

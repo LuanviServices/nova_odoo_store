@@ -46,7 +46,7 @@ class CustomerStatementPortal(CustomerPortal):
             'page_name': 'statement',
         }
         return request.render(
-            'customer_statement_portal.portal_my_statement', values
+            'lv_nova_customer_statement.portal_my_statement', values
         )
 
     # ------------------------------------------------------------------
@@ -68,7 +68,7 @@ class CustomerStatementPortal(CustomerPortal):
         wizard = request.env['customer.statement.wizard'].sudo().create(wizard_vals)
 
         pdf_content, _ = request.env['ir.actions.report'].sudo()._render_qweb_pdf(
-            'customer_statement_portal.action_report_customer_statement',
+            'lv_nova_customer_statement.action_report_customer_statement',
             res_ids=[wizard.id],
         )
         filename = 'Account_Statement_{}.pdf'.format(

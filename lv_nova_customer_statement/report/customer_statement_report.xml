@@ -5,8 +5,8 @@
         <field name="name">Account Statement</field>
         <field name="model">customer.statement.wizard</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">customer_statement_portal.report_customer_statement</field>
-        <field name="report_file">customer_statement_portal.report_customer_statement</field>
+        <field name="report_name">lv_nova_customer_statement.report_customer_statement</field>
+        <field name="report_file">lv_nova_customer_statement.report_customer_statement</field>
         <field name="print_report_name">'Account_Statement_%s' % object.partner_id.name.replace(' ', '_')</field>
         <field name="binding_model_id" ref="model_customer_statement_wizard"/>
         <field name="binding_type">report</field>

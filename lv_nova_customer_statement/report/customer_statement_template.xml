@@ -170,7 +170,7 @@
     <template id="report_customer_statement">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="customer_statement_portal.report_customer_statement_document"
+                <t t-call="lv_nova_customer_statement.report_customer_statement_document"
                    t-lang="doc.partner_id.lang"/>
             </t>
         </t>

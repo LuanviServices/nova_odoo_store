@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- =====================================================================
+         1. Standalone list view used inside the price-history popup
+         ===================================================================== -->
+    <record id="view_sale_order_line_price_history_list" model="ir.ui.view">
+        <field name="name">sale.order.line.price.history.list</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false" delete="false" import="false">
+                <field name="order_date" string="Date" widget="date"/>
+                <field name="order_id" string="Order"/>
+                <field name="order_partner_id" string="Customer"/>
+                <field name="product_uom_qty" string="Qty"/>
+                <field name="price_unit" string="Unit Price" widget="monetary"/>
+                <field name="price_subtotal" string="Subtotal" widget="monetary"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- =====================================================================
+         2. Inherit quotation form — add history button next to Unit Price,
+            plus three optional columns the user can toggle on from the
+            list's column-selector (gear icon): Last Price, Last Sold, Δ %.
+         ===================================================================== -->
+    <record id="view_order_form_price_history" model="ir.ui.view">
+        <field name="name">sale.order.form.price.history</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Hidden helper field, needed only to drive the button's
+                 visibility condition; never shown to the user. -->
+            <xpath expr="//field[@name='order_line']//field[@name='price_unit']"
+                   position="before">
+                <field name="price_history_count" column_invisible="1"/>
+            </xpath>
+
+            <!-- History icon button right after the Unit Price column. -->
+            <xpath expr="//field[@name='order_line']//field[@name='price_unit']"
+                   position="after">
+                <button name="action_view_price_history"
+                        type="object"
+                        icon="fa-history"
+                        string=""
+                        class="btn-link p-0"
+                        invisible="price_history_count == 0"
+                        title="View price history for this customer"/>
+            </xpath>
+
+            <!-- Optional columns — hidden by default, user enables them via
+                 the column selector if they prefer to see history inline
+                 instead of opening the popup. -->
+            <xpath expr="//field[@name='order_line']//field[@name='price_subtotal']"
+                   position="before">
+                <field name="last_price_unit"
+                       optional="hide"
+                       string="Last Price"
+                       widget="monetary"/>
+                <field name="last_price_date"
+                       optional="hide"
+                       string="Last Sold"/>
+                <field name="price_delta_percent"
+                       optional="hide"
+                       string="Δ %"
+                       widget="percentage"
+                       decoration-danger="price_delta_percent &gt; 0"
+                       decoration-success="price_delta_percent &lt; 0"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

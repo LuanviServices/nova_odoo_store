@@ -6,9 +6,9 @@
         'running balance. Print PDF, send by email, and self-service portal.'
     ),
     'description': 'See static/description/index.html',
-    'author': 'Your Company Name',
-    'website': 'https://yourwebsite.com',
-    'support': 'support@yourwebsite.com',
+    'author': 'YLuanvi Services',
+    'website': 'https://www.luanviservices.com',
+    'support': 'luanviservicesinfo@gmail.com',
     'category': 'Accounting/Accounting',
     'license': 'OPL-1',
     'price': 35.00,

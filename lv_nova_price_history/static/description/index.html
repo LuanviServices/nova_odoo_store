@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #875A7B; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #875A7B; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #875A7B; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Customer Price History on Quotations</h2>
+
+<p>
+    Never guess what you charged a customer last time. As soon as you add a
+    product to a quotation, this module silently checks every confirmed
+    sale order for that customer and shows you the last price charged —
+    right on the line, with one click to see the full history.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>🕓 One-click history</h4>
+        <p>A small clock icon appears next to the unit price whenever history exists. Click it to see every past order, date and price.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📊 Optional inline columns</h4>
+        <p>Enable "Last Price", "Last Sold" and "Δ %" columns from the list's gear icon to see everything without clicking.</p>
+    </div>
+    <div class="feature-box">
+        <h4>⚖ Price variation %</h4>
+        <p>Instantly see if the current quote is higher or lower than the last confirmed price — color-coded red/green.</p>
+    </div>
+    <div class="feature-box">
+        <h4>👨‍👩‍👧 Company-wide contacts</h4>
+        <p>History is matched at the commercial entity level, so it works across different contacts of the same company.</p>
+    </div>
+</div>
+
+<h3>How it works</h3>
+<ol>
+    <li>Open any quotation and select a customer.</li>
+    <li>Add a product line — if that customer has bought it before (confirmed order), a small history icon appears next to the price.</li>
+    <li>Click the icon to see every past order with date, quantity and price.</li>
+    <li>Optionally enable the "Last Price" / "Last Sold" / "Δ %" columns for an always-visible view.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Sales</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>No new database tables — works on existing confirmed sale order lines.</li>
+    <li>Multi-company aware: history is scoped to the order's company.</li>
+    <li>Read-only popup: clicking history never lets you edit a past order.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>support@yourwebsite.com</strong>.
+</p>
+
+</body>
+</html>

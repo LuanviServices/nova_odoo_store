@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+# © 2024 Luanvi (luanviservicesinfo@gmail.com)
+# License OPL-1.0
+
 {
     'name': 'Customer Account Statement — Portal & PDF',
     'version': '18.0.1.0.0',
@@ -6,9 +10,10 @@
         'running balance. Print PDF, send by email, and self-service portal.'
     ),
     'description': 'See static/description/index.html',
-    'author': 'Your Company Name',
-    'website': 'https://yourwebsite.com',
-    'support': 'support@yourwebsite.com',
+    'author': 'Luanvi Services',
+    'company': 'Luanvi Services',
+    'maintainer': 'Luanvi Services',
+    'website': 'https://luanviservices.com',
     'category': 'Accounting/Accounting',
     'license': 'OPL-1',
     'price': 35.00,

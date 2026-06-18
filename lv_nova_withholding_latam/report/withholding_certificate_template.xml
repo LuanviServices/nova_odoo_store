@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_withholding_certificate_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+
+                <div class="row mb-4">
+                    <div class="col-7">
+                        <h3 class="mb-1">Withholding Certificate</h3>
+                        <p class="mb-0">
+                            <strong>Certificate #: </strong>
+                            <t t-esc="doc.withholding_certificate_number or '—'"/>
+                        </p>
+                        <p class="mb-0">
+                            <strong>Related Document: </strong>
+                            <t t-esc="doc.name"/>
+                        </p>
+                        <p class="mb-0">
+                            <strong>Date: </strong>
+                            <t t-esc="doc.invoice_date or doc.date"/>
+                        </p>
+                    </div>
+                    <div class="col-5 text-end">
+                        <p class="mb-0">
+                            <strong>Issued by: </strong><br/>
+                            <t t-esc="doc.company_id.name"/><br/>
+                            <t t-esc="doc.company_id.vat or ''"/>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <strong>Subject to withholding (counterparty): </strong>
+                        <t t-esc="doc.partner_id.name"/>
+                        <t t-if="doc.partner_id.vat">
+                            — Tax ID: <t t-esc="doc.partner_id.vat"/>
+                        </t>
+                    </div>
+                </div>
+
+                <table class="table table-sm table-bordered" style="font-size:12px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Code</th>
+                            <th>Withholding Concept</th>
+                            <th class="text-end">Base Amount</th>
+                            <th class="text-end">%</th>
+                            <th class="text-end">Withheld Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.withholding_line_ids" t-as="line">
+                            <tr>
+                                <td t-esc="line.tax_id.code or ''"/>
+                                <td t-esc="line.tax_id.name"/>
+                                <td class="text-end" t-esc="'%.2f' % line.base_amount"/>
+                                <td class="text-end" t-esc="'%.2f' % line.percent"/>
+                                <td class="text-end" t-esc="'%.2f' % line.amount"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot class="table-light" style="font-weight:700;">
+                        <tr>
+                            <td colspan="4">Total Withheld</td>
+                            <td class="text-end"
+                                t-esc="'%.2f %s' % (doc.withholding_total, doc.currency_id.name)"/>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <p class="text-muted mt-4" style="font-size:11px;">
+                    This certificate is generated for informational and
+                    bookkeeping purposes. Verify the legal format required
+                    by your local tax authority before official filing.
+                </p>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="report_withholding_certificate">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="lv_nova_withholding_latam.report_withholding_certificate_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

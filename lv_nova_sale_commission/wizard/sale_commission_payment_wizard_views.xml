@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_commission_payment_wizard_form" model="ir.ui.view">
+        <field name="name">sale.commission.payment.wizard.form</field>
+        <field name="model">sale.commission.payment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Mark Commissions as Paid">
+                <group>
+                    <field name="commission_line_ids" widget="many2many_tags" readonly="1"/>
+                    <field name="payment_date"/>
+                    <field name="total_amount"/>
+                    <field name="currency_id" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="action_confirm" type="object"
+                            string="Confirm Payment" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Bound to the commission line list view's Action menu, available
+         when one or more lines are selected. -->
+    <record id="action_sale_commission_payment_wizard" model="ir.actions.act_window">
+        <field name="name">Mark as Paid</field>
+        <field name="res_model">sale.commission.payment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_sale_commission_line"/>
+        <field name="binding_view_types">list</field>
+        <field name="context">{'default_commission_line_ids': active_ids}</field>
+    </record>
+
+</odoo>

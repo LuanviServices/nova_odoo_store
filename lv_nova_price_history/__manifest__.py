@@ -6,7 +6,7 @@
         'directly on the quotation line, plus full price history popup.'
     ),
     'description': 'See static/description/index.html',
-    'author': 'YLuanvi Services',
+    'author': 'Luanvi Services',
     'website': 'https://www.luanviservices.com',
     'support': 'luanviservicesinfo@gmail.com',
     'category': 'Sales/Sales',

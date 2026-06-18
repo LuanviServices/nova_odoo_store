@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #854F0B; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #854F0B; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #854F0B; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Withholding Taxes (LATAM) — Customer &amp; Vendor</h2>
+
+<p>
+    Built for countries where customers and companies act as withholding
+    agents (Ecuador, Colombia, Peru, and similar regimes). Register income
+    and VAT withholding lines on any customer invoice or vendor bill, let
+    the module create the matching accounting entry automatically, and
+    print a withholding certificate — all without leaving the document.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>⚙ Configurable tax types</h4>
+        <p>Define as many withholding tax types as you need: income tax, VAT, by percentage and target account.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🧾 One-click journal entry</h4>
+        <p>Generates and posts the accounting entry automatically, reconciling it against the original invoice or bill.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📄 Withholding certificate PDF</h4>
+        <p>Print a clean certificate with a sequential number for your records or to hand to the counterparty.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🔄 Sales &amp; purchases</h4>
+        <p>Works both ways: when your customer withholds from you, and when you withhold from a vendor.</p>
+    </div>
+</div>
+
+<h3>How it works</h3>
+<ol>
+    <li>Configure your withholding tax types under <strong>Accounting → Configuration → Withholding Taxes</strong>.</li>
+    <li>On a posted customer invoice or vendor bill, open the <strong>Withholding</strong> tab and add one or more lines.</li>
+    <li>Click <strong>Create Withholding Entry</strong> — the module posts the journal entry and reconciles it automatically.</li>
+    <li>Click <strong>Print Withholding Certificate</strong> to generate the PDF with a sequential certificate number.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Accounting / Invoicing</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Uses a dedicated miscellaneous journal — create one under Accounting if your company doesn't have one yet.</li>
+    <li>The generated entry is automatically reconciled against the invoice's receivable/payable line.</li>
+    <li>Certificate numbering uses a standard Odoo sequence, configurable per company.</li>
+    <li>This module does not file taxes automatically — it produces the bookkeeping entry and certificate; verify the legal format required by your local authority.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

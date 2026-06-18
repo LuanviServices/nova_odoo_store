@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #534AB7; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #534AB7; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #534AB7; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Sales Commission — Plans, Categories &amp; Tiers</h2>
+
+<p>
+    Stop calculating commissions in spreadsheets. Define commission plans
+    per salesperson, rate them by product category, choose whether
+    commission triggers on order confirmation or invoice payment, and
+    track every line until it's paid.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>📋 Commission plans</h4>
+        <p>Assign a default plan per salesperson, with a global rate plus category-specific overrides.</p>
+    </div>
+    <div class="feature-box">
+        <h4>⚡ Two trigger modes</h4>
+        <p>Generate commission as soon as the order is confirmed, or only once the invoice is actually paid.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📊 Margin or subtotal</h4>
+        <p>Calculate commission on the sale subtotal, or on the real margin (subtotal minus cost).</p>
+    </div>
+    <div class="feature-box">
+        <h4>💰 Bulk "Mark as Paid"</h4>
+        <p>Select multiple commission lines and confirm payment in one click — ready to feed your payroll.</p>
+    </div>
+</div>
+
+<h3>How it works</h3>
+<ol>
+    <li>Go to <strong>Sales → Configuration → Commission Plans</strong> and create a plan: default rate, calculation method, and trigger.</li>
+    <li>Optionally add category-specific rates (e.g. 10% on Services, 3% on Hardware).</li>
+    <li>Assign the plan to each salesperson under their user profile, "Sales Commission" tab.</li>
+    <li>Commission lines appear automatically under <strong>Sales → Commissions</strong> as orders confirm or invoices get paid.</li>
+    <li>Select lines and use <strong>Mark as Paid</strong> from the Action menu when you run payroll.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Sales, Accounting</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Salespeople only see their own commission lines (security rule); managers see everyone's.</li>
+    <li>Commission lines are never duplicated — generation is idempotent per order/invoice.</li>
+    <li>This module computes and tracks commissions; it does not post payroll entries — use the "Paid" status to feed your own payroll process.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

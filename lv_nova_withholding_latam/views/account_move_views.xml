@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_move_form_withholding" model="ir.ui.view">
+        <field name="name">account.move.form.withholding</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Header action buttons -->
+            <xpath expr="//header" position="inside">
+                <button name="action_create_withholding_entry"
+                        type="object"
+                        string="Create Withholding Entry"
+                        class="btn-secondary"
+                        invisible="state != 'posted' or not withholding_line_ids or withholding_move_id"
+                        groups="account.group_account_invoice"/>
+                <button name="action_print_withholding_certificate"
+                        type="object"
+                        string="Print Withholding Certificate"
+                        class="btn-secondary"
+                        invisible="not withholding_certificate_number"/>
+            </xpath>
+
+            <!-- Smart button linking to the generated journal entry -->
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_view_withholding_entry"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-balance-scale"
+                        invisible="not withholding_move_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Withholding</span>
+                        <span class="o_stat_text">Entry</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <!-- New notebook page -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Withholding"
+                      name="withholding"
+                      invisible="move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')">
+                    <field name="withholding_line_ids"
+                           context="{'default_move_id': id}">
+                        <list editable="bottom">
+                            <field name="tax_id"/>
+                            <field name="base_amount"/>
+                            <field name="percent"/>
+                            <field name="amount" widget="monetary"/>
+                            <field name="currency_id" column_invisible="1"/>
+                        </list>
+                    </field>
+                    <group class="oe_subtotal_footer">
+                        <field name="withholding_total" widget="monetary"/>
+                        <field name="withholding_certificate_number"
+                               invisible="not withholding_certificate_number"/>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

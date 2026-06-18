@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_commission" model="ir.ui.view">
+        <field name="name">sale.order.form.commission</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="commission_plan_id"/>
+            </xpath>
+
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_view_commission_lines"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-percent"
+                        invisible="commission_line_count == 0">
+                    <field name="commission_line_count" widget="statinfo"
+                           string="Commissions"/>
+                </button>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

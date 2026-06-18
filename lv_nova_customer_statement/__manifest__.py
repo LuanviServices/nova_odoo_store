@@ -6,7 +6,7 @@
         'running balance. Print PDF, send by email, and self-service portal.'
     ),
     'description': 'See static/description/index.html',
-    'author': 'YLuanvi Services',
+    'author': 'Luanvi Services',
     'website': 'https://www.luanviservices.com',
     'support': 'luanviservicesinfo@gmail.com',
     'category': 'Accounting/Accounting',

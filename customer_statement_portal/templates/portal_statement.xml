@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         1. Portal home — add "Account Statement" link
+         ================================================================ -->
+    <template id="portal_my_home_statement"
+              name="Portal: Account Statement"
+              inherit_id="portal.portal_my_home"
+              customize_show="True">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Account Statement</t>
+                <t t-set="url" t-value="'/my/statement'"/>
+                <t t-set="placeholder_count">0</t>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- ================================================================
+         2. /my/statement — full statement page
+         ================================================================ -->
+    <template id="portal_my_statement" name="My Account Statement">
+        <t t-call="portal.portal_layout">
+
+            <div class="o_portal_wrap">
+                <div class="container py-4">
+
+                    <!-- breadcrumb -->
+                    <nav aria-label="breadcrumb" class="mb-3">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/my/home">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Account Statement
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <h3 class="mb-4">Account Statement</h3>
+
+                    <!-- ── Date filter form ──────────────────────────── -->
+                    <form method="get" action="/my/statement"
+                          class="row g-2 align-items-end mb-4 p-3 border rounded bg-light">
+                        <div class="col-auto">
+                            <label class="form-label mb-1 small fw-semibold"
+                                   for="sf_date_from">From</label>
+                            <input type="date" name="date_from" id="sf_date_from"
+                                   class="form-control form-control-sm"
+                                   t-att-value="date_from"/>
+                        </div>
+                        <div class="col-auto">
+                            <label class="form-label mb-1 small fw-semibold"
+                                   for="sf_date_to">To</label>
+                            <input type="date" name="date_to" id="sf_date_to"
+                                   class="form-control form-control-sm"
+                                   t-att-value="date_to"/>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                Apply filter
+                            </button>
+                            <a href="/my/statement" class="btn btn-outline-secondary btn-sm ms-1">
+                                Reset
+                            </a>
+                        </div>
+                        <div class="col-auto ms-auto">
+                            <t t-set="pdf_url" t-value="'/my/statement/pdf'"/>
+                            <t t-if="date_from">
+                                <t t-set="pdf_url"
+                                   t-value="pdf_url + '?date_from=' + date_from + '&amp;date_to=' + date_to"/>
+                            </t>
+                            <a t-att-href="pdf_url"
+                               class="btn btn-outline-dark btn-sm">
+                                <i class="fa fa-download me-1"/>
+                                Download PDF
+                            </a>
+                        </div>
+                    </form>
+
+                    <!-- ── Summary KPI cards ─────────────────────────── -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="card text-center h-100">
+                                <div class="card-body py-3">
+                                    <p class="text-muted mb-1 small">Total Invoiced</p>
+                                    <h4 class="mb-0"
+                                        t-esc="wizard._fmt(summary['total_debit'])"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center h-100">
+                                <div class="card-body py-3">
+                                    <p class="text-muted mb-1 small">Total Paid</p>
+                                    <h4 class="mb-0 text-success"
+                                        t-esc="wizard._fmt(summary['total_credit'])"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center h-100">
+                                <div class="card-body py-3">
+                                    <p class="text-muted mb-1 small">Amount Due</p>
+                                    <h4 t-attf-class="mb-0 #{summary['closing_balance'] > 0 and 'text-danger' or 'text-success'}"
+                                        t-esc="wizard._fmt(summary['closing_balance'])"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── Transaction table ─────────────────────────── -->
+                    <div class="table-responsive">
+                        <table class="table table-sm table-hover table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Reference</th>
+                                    <th>Description</th>
+                                    <th>Due Date</th>
+                                    <th class="text-end">Debit</th>
+                                    <th class="text-end">Credit</th>
+                                    <th class="text-end">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="not lines">
+                                    <tr>
+                                        <td colspan="7"
+                                            class="text-center text-muted py-4">
+                                            No transactions found for this period.
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-foreach="lines" t-as="line">
+                                    <tr t-attf-class="#{line['is_overdue'] and 'table-warning' or ''}">
+                                        <td t-esc="line['date']"/>
+                                        <td>
+                                            <strong t-esc="line['move_name']"/>
+                                        </td>
+                                        <td t-esc="line['label'] or line['ref']"/>
+                                        <td>
+                                            <t t-if="line['due_date']">
+                                                <span t-attf-class="#{line['is_overdue'] and 'text-danger fw-bold' or ''}">
+                                                    <t t-esc="line['due_date']"/>
+                                                </span>
+                                            </t>
+                                        </td>
+                                        <td class="text-end">
+                                            <t t-if="line['debit']">
+                                                <t t-esc="wizard._fmt(line['debit'])"/>
+                                            </t>
+                                        </td>
+                                        <td class="text-end text-success">
+                                            <t t-if="line['credit']">
+                                                <t t-esc="wizard._fmt(line['credit'])"/>
+                                            </t>
+                                        </td>
+                                        <td class="text-end">
+                                            <strong t-attf-class="#{line['balance'] > 0 and 'text-danger' or 'text-success'}">
+                                                <t t-esc="wizard._fmt(line['balance'])"/>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

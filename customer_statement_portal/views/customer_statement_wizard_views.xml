@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── Wizard form ───────────────────────────────────────────────────── -->
+    <record id="view_customer_statement_wizard_form" model="ir.ui.view">
+        <field name="name">customer.statement.wizard.form</field>
+        <field name="model">customer.statement.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Customer Account Statement">
+                <group>
+                    <group string="Customer">
+                        <field name="partner_id"
+                               options="{'no_create': True, 'no_quick_create': True}"/>
+                        <field name="company_id"
+                               groups="base.group_multi_company"/>
+                    </group>
+                    <group string="Period">
+                        <field name="date_from" placeholder="Leave empty for all history"/>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_print_pdf"
+                            string="🖨 Print PDF"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="action_send_email"
+                            string="✉ Send by Email"
+                            type="object"
+                            class="btn-secondary"/>
+                    <button string="Close"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Window action — opened from the partner form stat button ───────── -->
+    <record id="action_customer_statement_wizard" model="ir.actions.act_window">
+        <field name="name">Account Statement</field>
+        <field name="res_model">customer.statement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_partner_id': active_id}</field>
+    </record>
+
+</odoo>

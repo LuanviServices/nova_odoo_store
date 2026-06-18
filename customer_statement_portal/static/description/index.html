@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #875A7B; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #875A7B; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #875A7B; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Customer Account Statement — Portal &amp; PDF</h2>
+
+<p>
+    Send your customers a clear, professional account statement showing their
+    pending invoices, payments applied, and outstanding balance — directly
+    from the partner form, by email with the PDF attached, or let customers
+    check it themselves in the self-service portal.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>🖨 Print PDF</h4>
+        <p>Generate a branded PDF statement for any date range in one click from the partner form.</p>
+    </div>
+    <div class="feature-box">
+        <h4>✉ Send by Email</h4>
+        <p>Attach the PDF automatically and open the compose dialog pre-filled with the customer's address.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🌐 Customer Portal</h4>
+        <p>Customers log in to <code>/my/statement</code> and view or download their own statement at any time.</p>
+    </div>
+    <div class="feature-box">
+        <h4>⚠ Overdue Highlight</h4>
+        <p>Overdue lines are highlighted in red on both the PDF and the portal page.</p>
+    </div>
+</div>
+
+<h3>How it works</h3>
+<ol>
+    <li>Open any customer (res.partner) and click the <strong>Account Statement</strong> smart button.</li>
+    <li>Choose the date range (leave "From" empty for full history).</li>
+    <li>Click <strong>Print PDF</strong> or <strong>Send by Email</strong>.</li>
+    <li>Customers with portal access can also visit <code>/my/statement</code> to see and download their statement.</li>
+</ol>
+
+<h3>What the statement shows</h3>
+<ul>
+    <li>Opening balance (entries before the selected start date)</li>
+    <li>All posted invoices, credit notes, and payments in chronological order</li>
+    <li>Running balance column with colour-coded overdue dates</li>
+    <li>Summary box: Total Invoiced · Total Paid · <strong>Amount Due</strong></li>
+</ul>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Accounting, Portal</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>PDF rendering requires <strong>wkhtmltopdf</strong> installed on the server (standard Odoo requirement).</li>
+    <li>All amounts are displayed in the company currency.</li>
+    <li>Multi-company aware: each wizard is scoped to a single company.</li>
+    <li>No new database tables are created — uses a transient model.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>support@yourwebsite.com</strong>.
+</p>
+
+</body>
+</html>

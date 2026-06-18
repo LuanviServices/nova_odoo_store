@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- =====================================================================
+         Inner document — one page per wizard record
+         doc  = customer.statement.wizard record
+         ===================================================================== -->
+    <template id="report_customer_statement_document">
+        <t t-call="web.external_layout">
+
+            <t t-set="lines"   t-value="doc.get_lines()"/>
+            <t t-set="summary" t-value="doc.get_summary(lines=lines)"/>
+
+            <div class="page">
+
+                <!-- ── Header row ────────────────────────────────────────── -->
+                <div class="row mb-4">
+                    <div class="col-7">
+                        <h3 class="mb-1">Account Statement</h3>
+                        <p class="mb-0">
+                            <strong t-esc="doc.partner_id.name"/>
+                        </p>
+                        <p class="text-muted mb-0" t-if="doc.partner_id.street">
+                            <t t-esc="doc.partner_id.street"/>
+                        </p>
+                        <p class="text-muted mb-0">
+                            <t t-if="doc.partner_id.city">
+                                <t t-esc="doc.partner_id.city"/><t t-if="doc.partner_id.country_id">, </t>
+                            </t>
+                            <t t-if="doc.partner_id.country_id">
+                                <t t-esc="doc.partner_id.country_id.name"/>
+                            </t>
+                        </p>
+                        <p class="text-muted mb-0" t-if="doc.partner_id.vat">
+                            Tax ID: <t t-esc="doc.partner_id.vat"/>
+                        </p>
+                    </div>
+                    <div class="col-5 text-end">
+                        <t t-if="doc.date_from">
+                            <p class="mb-1">
+                                <strong>Period:</strong>
+                                <t t-esc="doc.date_from"/> – <t t-esc="doc.date_to"/>
+                            </p>
+                        </t>
+                        <t t-else="">
+                            <p class="mb-1">
+                                <strong>As of:</strong>
+                                <t t-esc="doc.date_to"/>
+                            </p>
+                        </t>
+                        <p class="mb-0 text-muted">
+                            Currency: <t t-esc="doc.company_id.currency_id.name"/>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ── Opening balance notice ─────────────────────────────── -->
+                <t t-if="summary['opening_balance'] != 0.0">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="alert alert-secondary py-2 mb-0">
+                                <strong>Opening Balance: </strong>
+                                <t t-esc="doc._fmt(summary['opening_balance'])"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+
+                <!-- ── Transaction lines ──────────────────────────────────── -->
+                <table class="table table-sm table-hover" style="font-size:12px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width:85px;">Date</th>
+                            <th style="width:130px;">Reference</th>
+                            <th>Description</th>
+                            <th style="width:85px;">Due Date</th>
+                            <th class="text-end" style="width:110px;">Debit</th>
+                            <th class="text-end" style="width:110px;">Credit</th>
+                            <th class="text-end" style="width:120px;">Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-if="not lines">
+                            <tr>
+                                <td colspan="7" class="text-center text-muted py-3">
+                                    No transactions found for this period.
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-foreach="lines" t-as="line">
+                            <tr>
+                                <td t-esc="line['date']"/>
+                                <td><strong t-esc="line['move_name']"/></td>
+                                <td t-esc="line['label'] or line['ref']"/>
+                                <td>
+                                    <t t-if="line['due_date']">
+                                        <span t-attf-style="color:#{line['is_overdue'] and '#dc3545' or 'inherit'}; font-weight:#{line['is_overdue'] and 'bold' or 'normal'}">
+                                            <t t-esc="line['due_date']"/>
+                                        </span>
+                                    </t>
+                                </td>
+                                <td class="text-end">
+                                    <t t-if="line['debit']">
+                                        <t t-esc="doc._fmt(line['debit'])"/>
+                                    </t>
+                                </td>
+                                <td class="text-end" style="color:#198754;">
+                                    <t t-if="line['credit']">
+                                        <t t-esc="doc._fmt(line['credit'])"/>
+                                    </t>
+                                </td>
+                                <td class="text-end">
+                                    <strong t-attf-style="color:#{line['balance'] > 0 and '#dc3545' or '#198754'}">
+                                        <t t-esc="doc._fmt(line['balance'])"/>
+                                    </strong>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot class="table-light" style="font-weight:600;">
+                        <tr>
+                            <td colspan="4">Period Totals</td>
+                            <td class="text-end" t-esc="doc._fmt(summary['total_debit'])"/>
+                            <td class="text-end" style="color:#198754;"
+                                t-esc="doc._fmt(summary['total_credit'])"/>
+                            <td class="text-end"/>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <!-- ── Summary box (bottom-right) ────────────────────────── -->
+                <div class="row mt-3">
+                    <div class="offset-6 col-6">
+                        <table class="table table-sm table-bordered" style="font-size:12px;">
+                            <t t-if="summary['opening_balance'] != 0.0">
+                                <tr>
+                                    <td>Opening Balance</td>
+                                    <td class="text-end"
+                                        t-esc="doc._fmt(summary['opening_balance'])"/>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td>Total Invoiced</td>
+                                <td class="text-end"
+                                    t-esc="doc._fmt(summary['total_debit'])"/>
+                            </tr>
+                            <tr>
+                                <td>Total Paid</td>
+                                <td class="text-end" style="color:#198754;"
+                                    t-esc="doc._fmt(summary['total_credit'])"/>
+                            </tr>
+                            <tr style="font-weight:700; font-size:13px;">
+                                <td>Amount Due</td>
+                                <td class="text-end"
+                                    t-attf-style="color:#{summary['closing_balance'] > 0 and '#dc3545' or '#198754'}">
+                                    <t t-esc="doc._fmt(summary['closing_balance'])"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div><!-- /page -->
+        </t>
+    </template>
+
+    <!-- =====================================================================
+         Wrapper — called by the report engine, iterates over docs
+         ===================================================================== -->
+    <template id="report_customer_statement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="customer_statement_portal.report_customer_statement_document"
+                   t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

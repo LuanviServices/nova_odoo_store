@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_form_statement_button" model="ir.ui.view">
+        <field name="name">res.partner.form.statement.button</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!--
+                Adds an "Account Statement" button to the partner smart button bar.
+                Visible only to users with Accounting / Billing access.
+            -->
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_account_statement"
+                        string="Account Statement"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-file-text-o"
+                        groups="account.group_account_invoice"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

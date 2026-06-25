@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_overtime_compute_wizard_form" model="ir.ui.view">
+        <field name="name">hr.overtime.compute.wizard.form</field>
+        <field name="model">hr.overtime.compute.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Compute Overtime from Attendance">
+                <group string="Scope">
+                    <field name="employee_ids" widget="many2many_tags"
+                           options="{'no_create': True}"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <group string="Overtime Rules">
+                    <field name="compensation_type"/>
+                    <field name="rate"
+                           invisible="compensation_type != 'pay'"/>
+                    <field name="minimum_threshold"/>
+                </group>
+                <p class="text-muted" style="padding: 0 8px 8px;">
+                    The wizard compares the total attendance hours per day
+                    against the employee's scheduled calendar hours and
+                    creates one draft overtime line for each day where the
+                    difference exceeds the minimum threshold. Days that
+                    already have an overtime line are skipped.
+                </p>
+                <footer>
+                    <button name="action_compute" type="object"
+                            string="Compute" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

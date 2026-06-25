@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_overtime_line_hr_officer,overtime line HR officer,model_hr_overtime_line,hr.group_hr_user,1,1,1,1
+access_hr_overtime_line_employee,overtime line employee,model_hr_overtime_line,base.group_user,1,0,0,0
+access_hr_overtime_compute_wizard,overtime compute wizard,model_hr_overtime_compute_wizard,hr.group_hr_user,1,1,1,1

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_approval_rule_list" model="ir.ui.view">
+        <field name="name">sale.approval.rule.list</field>
+        <field name="model">sale.approval.rule</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="trigger"/>
+                <field name="amount_threshold" optional="show"
+                       invisible="trigger == 'discount'"/>
+                <field name="discount_threshold" optional="show"
+                       invisible="trigger == 'amount'"/>
+                <field name="approver_type"/>
+                <field name="approver_user_id"
+                       invisible="approver_type != 'user'"/>
+                <field name="approver_group_id"
+                       invisible="approver_type != 'group'"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sale_approval_rule_form" model="ir.ui.view">
+        <field name="name">sale.approval.rule.form</field>
+        <field name="model">sale.approval.rule</field>
+        <field name="arch" type="xml">
+            <form string="Approval Rule">
+                <sheet>
+                    <group>
+                        <group string="Rule">
+                            <field name="name"/>
+                            <field name="sequence"
+                                   help="Lower number = first level to approve."/>
+                            <field name="active"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Trigger Condition">
+                            <field name="trigger"/>
+                            <field name="amount_threshold"
+                                   invisible="trigger == 'discount'"/>
+                            <field name="currency_id"
+                                   invisible="trigger == 'discount'"/>
+                            <field name="discount_threshold"
+                                   invisible="trigger == 'amount'"/>
+                        </group>
+                    </group>
+                    <group string="Approver">
+                        <field name="approver_type"/>
+                        <field name="approver_user_id"
+                               invisible="approver_type != 'user'"
+                               required="approver_type == 'user'"/>
+                        <field name="approver_group_id"
+                               invisible="approver_type != 'group'"
+                               required="approver_type == 'group'"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_approval_rule" model="ir.actions.act_window">
+        <field name="name">Approval Rules</field>
+        <field name="res_model">sale.approval.rule</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smart_action">
+                Create your first approval rule
+            </p>
+            <p>
+                Rules are evaluated in sequence order. All matching rules
+                must be approved in sequence before a quotation can be confirmed.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sale_approval_rule"
+              name="Approval Rules"
+              parent="sale.menu_sale_config"
+              action="action_sale_approval_rule"
+              sequence="55"/>
+
+</odoo>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         1.  Inherit quotation form
+         ================================================================ -->
+    <record id="view_order_form_approval" model="ir.ui.view">
+        <field name="name">sale.order.form.approval</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- ── Header buttons ────────────────────────────────────── -->
+            <xpath expr="//header" position="inside">
+
+                <!-- Submit for Approval (salesperson) -->
+                <button name="action_submit_for_approval"
+                        string="Submit for Approval"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state not in ('draft','sent') or approval_state == 'pending' or approval_state == 'approved' or not needs_approval"/>
+
+                <!-- Approve (approver at current level) -->
+                <button name="action_approve"
+                        string="✔ Approve"
+                        type="object"
+                        class="btn-success"
+                        invisible="approval_state != 'pending' or not current_user_can_approve"/>
+
+                <!-- Reject (approver at current level) -->
+                <button name="action_reject"
+                        string="✘ Reject"
+                        type="object"
+                        class="btn-danger"
+                        invisible="approval_state != 'pending' or not current_user_can_approve"/>
+
+                <!-- Reset approval (manager only) -->
+                <button name="action_reset_approval"
+                        string="Reset Approval"
+                        type="object"
+                        class="btn-secondary"
+                        invisible="approval_state not in ('rejected','pending')"
+                        groups="sales_team.group_sale_manager"/>
+
+            </xpath>
+
+            <!-- ── Approval status badge next to native statusbar ─────── -->
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="approval_state" widget="badge"
+                       invisible="approval_state == 'none'"
+                       decoration-warning="approval_state == 'pending'"
+                       decoration-success="approval_state == 'approved'"
+                       decoration-danger="approval_state == 'rejected'"/>
+                <field name="needs_approval" invisible="1"/>
+                <field name="current_user_can_approve" invisible="1"/>
+            </xpath>
+
+            <!-- ── Approval lines notebook page ──────────────────────── -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Approval History"
+                      name="approval_history"
+                      invisible="not approval_line_ids">
+                    <field name="approval_line_ids" readonly="1">
+                        <list decoration-success="state == 'approved'"
+                              decoration-danger="state == 'rejected'"
+                              decoration-warning="state == 'pending'">
+                            <field name="sequence" string="Level #"/>
+                            <field name="level_name" string="Level"/>
+                            <field name="approver_user_id" string="Assigned To"/>
+                            <field name="approver_group_id" string="Group"
+                                   optional="hide"/>
+                            <field name="state" widget="badge"
+                                   decoration-success="state == 'approved'"
+                                   decoration-danger="state == 'rejected'"
+                                   decoration-warning="state == 'pending'"/>
+                            <field name="approved_by" string="Decided By"/>
+                            <field name="decision_date" string="Date"/>
+                            <field name="comment" string="Comment"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- ================================================================
+         2.  Reject wizard view
+         ================================================================ -->
+    <record id="view_sale_approval_reject_wizard_form" model="ir.ui.view">
+        <field name="name">sale.approval.reject.wizard.form</field>
+        <field name="model">sale.approval.reject.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reject Quotation">
+                <group>
+                    <field name="order_id" readonly="1"/>
+                    <field name="line_id" invisible="1"/>
+                    <field name="reason" placeholder="Provide a reason for rejection…"/>
+                </group>
+                <footer>
+                    <button name="action_confirm_reject" type="object"
+                            string="Confirm Rejection" class="btn-danger"/>
+                    <button string="Cancel" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================================
+         3.  Quotations list — show approval_state column
+         ================================================================ -->
+    <record id="view_quotation_list_approval" model="ir.ui.view">
+        <field name="name">sale.order.list.approval</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="approval_state" optional="show" widget="badge"
+                       decoration-warning="approval_state == 'pending'"
+                       decoration-success="approval_state == 'approved'"
+                       decoration-danger="approval_state == 'rejected'"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

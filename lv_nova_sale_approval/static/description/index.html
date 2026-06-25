@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #185FA5; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #185FA5; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #185FA5; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+        table { border-collapse: collapse; width: 100%; font-size: 13px; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+        th { background: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+<h2>Multi-Level Quotation Approval</h2>
+
+<p>
+    Prevent salespeople from confirming orders above a certain amount or
+    discount threshold without management sign-off. Configure as many approval
+    levels as you need — each with its own trigger, approver and sequence —
+    and track every decision in the quotation chatter.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>⚙ Configurable rules</h4>
+        <p>Trigger by order amount, line discount %, or both. Assign a specific user or a whole group per level.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🔢 Multiple levels</h4>
+        <p>Level 10 (Sales Manager) → Level 20 (Director). Each level is notified in sequence via chatter.</p>
+    </div>
+    <div class="feature-box">
+        <h4>✔ / ✘ Approve or Reject</h4>
+        <p>Approvers see action buttons directly on the quotation. Rejection requires a written reason.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📋 Full audit trail</h4>
+        <p>Every decision (who, when, comment) is recorded in the Approval History tab and the chatter.</p>
+    </div>
+</div>
+
+<h3>Example configuration</h3>
+<table>
+    <tr><th>Level</th><th>Rule Name</th><th>Trigger</th><th>Approver</th></tr>
+    <tr><td>10</td><td>Manager Approval</td><td>Amount &gt; $5,000</td><td>Sales Manager (group)</td></tr>
+    <tr><td>20</td><td>Director Approval</td><td>Amount &gt; $20,000</td><td>John Smith (user)</td></tr>
+    <tr><td>10</td><td>Discount Approval</td><td>Discount &gt; 15%</td><td>Sales Manager (group)</td></tr>
+</table>
+
+<h3>How it works</h3>
+<ol>
+    <li>Go to <strong>Sales → Configuration → Approval Rules</strong> and create your rules.</li>
+    <li>When a salesperson tries to confirm a matching quotation, Odoo blocks confirmation and shows the <strong>Submit for Approval</strong> button.</li>
+    <li>The salesperson submits → Level 1 approver is notified via chatter.</li>
+    <li>Level 1 approves → Level 2 approver is notified, and so on.</li>
+    <li>Once all levels are approved, the salesperson can confirm the order normally.</li>
+    <li>If any level rejects, the approver must provide a reason, the salesperson is notified, and the order returns to draft.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Sales</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Uses a custom <code>approval_state</code> field — does not modify the native <code>state</code> machine.</li>
+    <li>Notifications use the Odoo chatter (no external mail server config required).</li>
+    <li>Salespeople can only read (not edit) their own approval history lines.</li>
+    <li>Sales Managers can reset a rejected or pending approval back to draft.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

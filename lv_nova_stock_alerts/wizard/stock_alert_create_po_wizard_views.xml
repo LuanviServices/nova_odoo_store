@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_stock_alert_create_po_wizard_form" model="ir.ui.view">
+        <field name="name">stock.alert.create.po.wizard.form</field>
+        <field name="model">stock.alert.create.po.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Purchase Orders from Stock Alerts">
+                <group>
+                    <group>
+                        <field name="total_lines" string="Products"/>
+                        <field name="total_suppliers" string="Suppliers (POs to create)"/>
+                    </group>
+                </group>
+                <field name="line_ids">
+                    <list editable="bottom">
+                        <field name="alert_level" widget="badge"
+                               decoration-danger="alert_level == 'critical'"
+                               decoration-warning="alert_level == 'warning'"/>
+                        <field name="product_id" readonly="1"/>
+                        <field name="supplier_id"/>
+                        <field name="qty_to_order"/>
+                        <field name="price_unit" optional="show"/>
+                    </list>
+                </field>
+                <p class="text-muted" style="padding: 4px 8px 8px;">
+                    One purchase order will be created per supplier.
+                    Lines without a supplier will be skipped.
+                </p>
+                <footer>
+                    <button name="action_confirm" type="object"
+                            string="Create Purchase Orders"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

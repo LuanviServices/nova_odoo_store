@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #C2410C; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #C2410C; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #C2410C; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Stock Alerts Dashboard — Reorder &amp; Quick PO</h2>
+
+<p>
+    Stop finding out you ran out of stock too late. A visual kanban dashboard
+    groups your reorder rules by alert level — out of stock, low stock, OK —
+    with a mini progress bar, supplier lead time, and a one-click "Create PO"
+    button per card. For bulk ordering, select multiple products and create
+    all purchase orders (grouped by vendor) in a single wizard.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>📊 Visual kanban dashboard</h4>
+        <p>Three columns: Out of Stock, Low Stock, OK. Color-coded cards with progress bars and supplier info.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🛒 One-click PO creation</h4>
+        <p>Create a purchase order for a single product directly from its card, pre-filled with supplier and quantity.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📦 Bulk ordering wizard</h4>
+        <p>Select multiple lines from the list view → Action → "Create Purchase Orders". One PO per supplier, automatic.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📧 Daily email digest</h4>
+        <p>Automatic daily summary email to stock managers listing all critical and low-stock products.</p>
+    </div>
+</div>
+
+<h3>How it works</h3>
+<ol>
+    <li>Make sure your products have <strong>Reorder Rules</strong> configured (min/max quantities) — this module reads those rules.</li>
+    <li>Open <strong>Inventory → Stock Alerts</strong>. The dashboard shows only products that need attention by default.</li>
+    <li>Click <strong>Create PO</strong> on any card to place an order for that product immediately.</li>
+    <li>Switch to the list view, select multiple products, and use <strong>Action → Create Purchase Orders</strong> to place orders for all of them at once.</li>
+    <li>A scheduled action sends a daily digest email to all users with the "Stock Manager" role.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Inventory, Purchase</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Extends <code>stock.warehouse.orderpoint</code> (reorder rules) with computed fields — no extra master data to configure.</li>
+    <li>Alert level is recomputed automatically when on-hand quantity changes.</li>
+    <li>Lead time and supplier are read from the product's preferred supplier (first active <code>product.supplierinfo</code> record).</li>
+    <li>The daily email cron is active by default; it can be disabled under <strong>Technical → Automation → Scheduled Actions</strong>.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

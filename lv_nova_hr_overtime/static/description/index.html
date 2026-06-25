@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #0F6E56; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #0F6E56; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #0F6E56; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Overtime &amp; Time Bank from Attendance</h2>
+
+<p>
+    Detect overtime automatically by comparing daily attendance hours
+    against each employee's scheduled calendar. Approve it, route it
+    to payroll or to a compensatory time bank, let employees consume
+    banked hours later as paid time off, and print a full summary PDF
+    — all from the Attendances app without any external spreadsheet.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>⏱ Auto-detection</h4>
+        <p>Wizard compares attendance records vs. the work calendar and creates draft lines for every day with overtime above your threshold.</p>
+    </div>
+    <div class="feature-box">
+        <h4>✅ Approval workflow</h4>
+        <p>HR officers review and approve each line. Draft → Approved → Paid / Compensated with clear status tracking.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🏦 Time bank</h4>
+        <p>Route overtime to a compensatory bank instead of payroll. Employees consume hours later via negative "Time Off Taken" lines.</p>
+    </div>
+    <div class="feature-box">
+        <h4>💰 Payable hours</h4>
+        <p>For paid overtime, configure a pay rate multiplier (1.5×, 2.0×) and the module calculates payable hours ready for your payroll input.</p>
+    </div>
+</div>
+
+<h3>How it works</h3>
+<ol>
+    <li>Go to <strong>Attendances → Overtime → Compute Overtime</strong>.</li>
+    <li>Select employees and date range — the wizard compares worked hours vs. calendar and creates draft lines automatically.</li>
+    <li>HR officers review lines and click <strong>Approve</strong>. Approved lines update the employee's time bank balance (visible as a smart button on the employee form).</li>
+    <li>For paid overtime, mark lines as <strong>Paid</strong> once processed in payroll.</li>
+    <li>When an employee takes compensatory time off, create a negative "Time Off Taken" line which deducts from the bank.</li>
+    <li>Print a per-employee overtime summary PDF at any time.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Attendances</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Uses the employee's <code>resource.calendar</code> to determine expected daily hours. Employees without a calendar are skipped.</li>
+    <li>Time bank balance is computed live from all approved lines — no stored balance that can drift out of sync.</li>
+    <li>Employees can view (read-only) their own lines; only HR officers can create, edit or approve.</li>
+    <li>This module tracks and manages overtime; it does not post payroll journal entries automatically — use the "Payable Hours" column to feed your payroll process.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

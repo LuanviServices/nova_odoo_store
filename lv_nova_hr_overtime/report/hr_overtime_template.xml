@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_hr_overtime_document">
+        <t t-call="web.external_layout">
+            <t t-set="lines" t-value="doc.env['hr.overtime.line'].search(
+                [('employee_id','=',doc.id)],
+                order='date asc'
+            )"/>
+            <t t-set="earned" t-value="sum(l.hours for l in lines if l.move_type == 'overtime' and l.state == 'approved')"/>
+            <t t-set="taken"  t-value="sum(abs(l.hours) for l in lines if l.move_type == 'compensation' and l.state == 'approved')"/>
+            <t t-set="bank"   t-value="earned - taken"/>
+
+            <div class="page">
+
+                <!-- Header -->
+                <div class="row mb-4">
+                    <div class="col-7">
+                        <h3 class="mb-1">Overtime &amp; Time Bank Summary</h3>
+                        <p class="mb-0">
+                            <strong t-esc="doc.name"/>
+                        </p>
+                        <p class="text-muted mb-0" t-if="doc.job_id">
+                            <t t-esc="doc.job_id.name"/>
+                        </p>
+                        <p class="text-muted mb-0" t-if="doc.department_id">
+                            <t t-esc="doc.department_id.name"/>
+                        </p>
+                    </div>
+                    <div class="col-5 text-end">
+                        <p class="mb-0">
+                            <strong>Printed: </strong>
+                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- KPI strip -->
+                <div class="row mb-4 text-center">
+                    <div class="col-4">
+                        <div class="border rounded p-3">
+                            <div class="fw-bold" style="font-size:22px;">
+                                <t t-esc="'%.2f h' % earned"/>
+                            </div>
+                            <div class="text-muted small">Overtime Earned</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="border rounded p-3">
+                            <div class="fw-bold" style="font-size:22px; color:#dc3545;">
+                                <t t-esc="'%.2f h' % taken"/>
+                            </div>
+                            <div class="text-muted small">Time Off Taken</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="border rounded p-3">
+                            <div t-attf-style="font-size:22px; font-weight:700; color:#{bank >= 0 and '#198754' or '#dc3545'}">
+                                <t t-esc="'%.2f h' % bank"/>
+                            </div>
+                            <div class="text-muted small">Bank Balance</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lines table -->
+                <table class="table table-sm table-hover table-bordered"
+                       style="font-size:12px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th class="text-end">Hours</th>
+                            <th>Compensation</th>
+                            <th class="text-end">Payable Hrs</th>
+                            <th>Status</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-if="not lines">
+                            <tr>
+                                <td colspan="7" class="text-center text-muted py-3">
+                                    No lines found.
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-foreach="lines" t-as="line">
+                            <tr>
+                                <td t-esc="line.date"/>
+                                <td t-esc="dict(line.fields_get(['move_type'])['move_type']['selection']).get(line.move_type, line.move_type)"/>
+                                <td class="text-end"
+                                    t-attf-style="color:#{line.hours &lt; 0 and '#dc3545' or 'inherit'}">
+                                    <t t-esc="'%.2f' % line.hours"/>
+                                </td>
+                                <td t-esc="dict(line.fields_get(['compensation_type'])['compensation_type']['selection']).get(line.compensation_type, '') if line.move_type == 'overtime' else ''"/>
+                                <td class="text-end">
+                                    <t t-if="line.payable_hours">
+                                        <t t-esc="'%.2f' % line.payable_hours"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-attf-style="color:#{line.state == 'paid' and '#198754' or line.state == 'approved' and '#0d6efd' or '#856404'}">
+                                        <t t-esc="line.state.capitalize()"/>
+                                    </span>
+                                </td>
+                                <td t-esc="line.note or ''"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="report_hr_overtime">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="lv_nova_hr_overtime.report_hr_overtime_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

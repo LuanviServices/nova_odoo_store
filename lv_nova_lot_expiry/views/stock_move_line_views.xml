@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         1. Stock picking form — alert banner + expiry column in moves
+         ================================================================ -->
+    <record id="view_picking_form_expiry" model="ir.ui.view">
+        <field name="name">stock.picking.form.expiry</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Alert banner just below the header -->
+            <xpath expr="//sheet" position="inside">
+                <div class="alert alert-danger mb-3"
+                     invisible="not has_expiry_alerts or not move_line_ids">
+                    <i class="fa fa-exclamation-triangle me-2"/>
+                    <strong>Expiry Alert: </strong>
+                    <field name="expiry_alert_summary" readonly="1"/>
+                </div>
+                <field name="has_expiry_alerts" invisible="1"/>
+            </xpath>
+
+            <!-- Add Expiry Date + Status columns in Detailed Operations tab -->
+            <xpath expr="//field[@name='move_line_ids']//field[@name='lot_id']"
+                   position="after">
+                <field name="lot_expiration_date"
+                       string="Expiry Date"
+                       optional="show"
+                       readonly="1"/>
+                <field name="expiry_state"
+                       string="Status"
+                       optional="show"
+                       widget="badge"
+                       decoration-danger="expiry_state == 'expired'"
+                       decoration-warning="expiry_state == 'warning'"
+                       decoration-success="expiry_state == 'ok'"
+                       readonly="1"/>
+                <field name="days_to_expiry"
+                       string="Days Left"
+                       optional="hide"
+                       readonly="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

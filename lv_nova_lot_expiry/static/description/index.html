@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #B45309; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #B45309; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #B45309; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+        .alert-demo { display: flex; gap: 12px; margin: 12px 0; }
+        .badge { padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        .badge-danger  { background: #fee2e2; color: #dc2626; }
+        .badge-warning { background: #fef9c3; color: #854d0e; }
+        .badge-success { background: #dcfce7; color: #166534; }
+    </style>
+</head>
+<body>
+
+<h2>Lot Expiry Dates on Deliveries &amp; Invoices</h2>
+
+<p>
+    Know the expiry status of every lot before you ship or invoice.
+    This module adds expiry date columns and color-coded status badges
+    to delivery orders, receipts and customer invoices — and includes
+    the lot and expiry information in the printed PDF documents.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>🏭 Delivery &amp; receipt orders</h4>
+        <p>Expiry Date and Status columns in the Detailed Operations tab. Alert banner when the picking has expired or expiring-soon lots.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🧾 Customer invoices</h4>
+        <p>Each invoice line shows the lot numbers and expiry dates from the related deliveries, automatically resolved via the sale order.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🖨 PDF reports</h4>
+        <p>Expiry dates appear in the printed Delivery Slip and on the Invoice PDF — essential for food, pharma and cosmetics audits.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🎨 Color-coded alerts</h4>
+        <p>Three levels: expired (red), expiring within 30 days (orange), OK (green). Warning threshold is configurable in the module code.</p>
+    </div>
+</div>
+
+<h3>Alert levels</h3>
+<div class="alert-demo">
+    <span class="badge badge-danger">EXPIRED</span> Expiry date is in the past
+    &nbsp;&nbsp;
+    <span class="badge badge-warning">Expiring Soon</span> Expires within 30 days
+    &nbsp;&nbsp;
+    <span class="badge badge-success">OK</span> More than 30 days remaining
+</div>
+
+<h3>Where it shows</h3>
+<ul>
+    <li><strong>Stock Picking form</strong>: "Expiry Date" and "Status" columns in the Detailed Operations tab. Banner alert at the top if any lot is expired or close to expiry.</li>
+    <li><strong>Invoice form</strong>: "Lots / Expiry" column after the Product column in the invoice lines list.</li>
+    <li><strong>Delivery Slip PDF</strong>: Expiry Date column added to the lot/serial section.</li>
+    <li><strong>Invoice PDF</strong>: Lot numbers and expiry dates printed as a sub-line below each invoice line.</li>
+</ul>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Inventory, Accounting, Expiration Dates (product_expiry)</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Reads expiry dates from <code>stock.lot.expiration_date</code> — requires the <strong>Expiration Dates</strong> module to be enabled (Inventory → Configuration → Settings → Traceability → Expiration Dates).</li>
+    <li>Invoice lots are resolved via the sale order line's stock moves. Works for sales invoices and vendor bills.</li>
+    <li>The 30-day warning threshold can be changed by editing the <code>EXPIRY_WARNING_DAYS</code> constant in <code>models/stock_move_line.py</code>.</li>
+    <li>No new database tables — all fields are computed on the fly.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

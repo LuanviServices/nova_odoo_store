@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         Inherit the standard Delivery Slip QWeb report to add
+         expiry date and status next to each lot/serial column.
+         ================================================================ -->
+    <template id="report_deliveryslip_expiry"
+              inherit_id="stock.report_deliveryslip_line">
+
+        <!-- Add "Expiry" column header after the Lot column -->
+        <xpath expr="//th[last()]" position="after">
+            <th class="text-end"
+                t-if="any(ml.lot_id and ml.lot_id.expiration_date
+                          for ml in o.move_line_ids)">
+                Expiry Date
+            </th>
+        </xpath>
+
+        <!-- Add expiry date cell in each row -->
+        <xpath expr="//td[last()]" position="after">
+            <t t-set="exp_date" t-value="move_line.lot_id.expiration_date
+                                          if move_line.lot_id else False"/>
+            <td t-if="any(ml.lot_id and ml.lot_id.expiration_date
+                          for ml in o.move_line_ids)">
+                <t t-if="exp_date">
+                    <t t-set="today"
+                       t-value="context_timestamp(datetime.datetime.now()).date()"/>
+                    <t t-set="exp_d"
+                       t-value="exp_date.date() if hasattr(exp_date,'date') else exp_date"/>
+                    <t t-set="delta" t-value="(exp_d - today).days"/>
+                    <span t-attf-style="color:#{delta &lt; 0 and '#dc3545' or
+                                                delta &lt;= 30 and '#856404' or
+                                                '#198754'}; font-weight: #{delta &lt;= 30 and 'bold' or 'normal'}">
+                        <t t-esc="str(exp_d)"/>
+                        <t t-if="delta &lt; 0"> ⚠ EXPIRED</t>
+                        <t t-elif="delta &lt;= 30"> ⚠ <t t-esc="delta"/>d</t>
+                    </span>
+                </t>
+                <t t-else="">—</t>
+            </td>
+        </xpath>
+
+    </template>
+
+</odoo>

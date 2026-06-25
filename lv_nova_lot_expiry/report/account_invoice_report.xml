@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         Inherit the standard invoice report to add lot expiry info
+         as a sub-line below each invoice line that has linked lots.
+         ================================================================ -->
+    <template id="report_invoice_document_expiry"
+              inherit_id="account.report_invoice_document">
+
+        <!-- After each invoice line's product/description row, add a
+             small lot+expiry line if the invoice line has linked lots. -->
+        <xpath expr="//t[@t-foreach='invoice_lines']" position="inside">
+            <t t-set="expiry_info" t-value="line.lot_expiry_display"/>
+            <t t-set="expiry_st"   t-value="line.lot_expiry_state"/>
+            <t t-if="expiry_info">
+                <tr style="font-size:10px;">
+                    <td colspan="2" style="padding-top:0; padding-bottom:4px;">
+                        <span style="color:#6c757d;">Lots/Serial: </span>
+                        <span t-attf-style="color:#{expiry_st == 'expired' and '#dc3545' or
+                                                    expiry_st == 'warning' and '#856404' or
+                                                    '#198754'}; font-weight:#{expiry_st in ('expired','warning') and 'bold' or 'normal'}">
+                            <t t-esc="expiry_info"/>
+                        </span>
+                    </td>
+                    <td colspan="4"/>
+                </tr>
+            </t>
+        </xpath>
+
+    </template>
+
+</odoo>

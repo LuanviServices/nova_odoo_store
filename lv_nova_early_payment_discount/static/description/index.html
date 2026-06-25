@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #065F46; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #065F46; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #065F46; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+        .alert { padding: 10px 14px; border-radius: 6px; font-size: 13px; margin: 8px 0; }
+        .alert-success { background: #d1fae5; border-left: 4px solid #059669; }
+        .alert-warning { background: #fef9c3; border-left: 4px solid #d97706; }
+    </style>
+</head>
+<body>
+
+<h2>Early Payment Discounts — Auto-Apply on Invoice Payment</h2>
+
+<p>
+    Incentivize faster payment by offering a cash discount to customers
+    who pay within a short window. Configure the discount on your payment
+    terms, let the invoice banner remind the customer of the savings,
+    and apply the discount with one click — the journal entry is created
+    and reconciled automatically.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>⚙ Configure on payment terms</h4>
+        <p>Add a discount % and deadline (e.g. 2% if paid within 10 days) to any payment term — works for all invoices using that term.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📢 Invoice banner</h4>
+        <p>A green banner on posted invoices shows the discount amount, the reduced total, and the deadline. Turns orange when the window expires.</p>
+    </div>
+    <div class="feature-box">
+        <h4>💰 One-click apply</h4>
+        <p>Click "Apply Early Discount" to open a pre-filled wizard. Confirm to post the journal entry and reconcile it against the invoice.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📒 Automatic journal entry</h4>
+        <p>Debit Accounts Receivable (reduces balance) and Credit a Sales Discount account. The discount is fully traceable in accounting.</p>
+    </div>
+</div>
+
+<h3>Example: "2/10 net 30"</h3>
+<div class="alert alert-success">
+    💰 <strong>Early Payment Discount Available</strong><br/>
+    Pay by <strong>2025-01-15</strong> to save <strong>2%</strong> ($48.00).
+    Amount to pay: <strong>$2,352.00</strong> instead of $2,400.00.
+</div>
+<div class="alert alert-warning">
+    ⏰ <strong>Discount Window Expired</strong> — The 2% discount was available until 2025-01-15.
+</div>
+
+<h3>How to set up</h3>
+<ol>
+    <li>Go to <strong>Accounting → Configuration → Payment Terms</strong>.</li>
+    <li>Enable <strong>Early Payment Discount</strong> on any payment term.</li>
+    <li>Set the <strong>Discount %</strong>, <strong>Discount Days</strong>, and the <strong>Discount Account</strong> (usually a "Sales Discounts" income account).</li>
+    <li>Assign that payment term to a customer invoice. The banner appears automatically once the invoice is posted.</li>
+    <li>When the customer pays within the window, click <strong>💰 Apply Early Discount</strong>. The wizard pre-fills all values — just confirm.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Accounting / Invoicing</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>The discount is applied on the <strong>untaxed amount</strong>. Taxes are not discounted (standard accounting practice).</li>
+    <li>The journal entry debits the receivable/payable account and credits the configured discount account, then reconciles with the original invoice line.</li>
+    <li>The module adds no new database columns to <code>account.move</code> except <code>early_discount_applied</code> (Boolean). All other fields are computed on the fly.</li>
+    <li>Works for both customer invoices and vendor bills.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

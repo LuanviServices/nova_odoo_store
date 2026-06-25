@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_move_form_early_discount" model="ir.ui.view">
+        <field name="name">account.move.form.early.discount</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <!-- ── Header button ──────────────────────────────────────── -->
+            <xpath expr="//header" position="inside">
+                <button name="action_apply_early_discount"
+                        type="object"
+                        string="💰 Apply Early Discount"
+                        class="btn-warning"
+                        invisible="not early_discount_available
+                                   or state != 'posted'
+                                   or early_discount_applied
+                                   or payment_state in ('paid','in_payment')
+                                   or not within_discount_period"/>
+            </xpath>
+
+            <!-- ── Hidden computed fields (used in conditions) ────────── -->
+            <xpath expr="//sheet" position="inside">
+                <field name="early_discount_available" invisible="1"/>
+                <field name="within_discount_period"   invisible="1"/>
+                <field name="early_discount_applied"   invisible="1"/>
+
+                <!-- ── Discount info banner ──────────────────────────── -->
+                <div class="alert alert-success mb-3"
+                     invisible="not early_discount_available
+                                or state != 'posted'
+                                or early_discount_applied
+                                or payment_state in ('paid','in_payment')
+                                or not within_discount_period">
+                    <strong>💰 Early Payment Discount Available</strong><br/>
+                    Pay by <strong><field name="early_discount_deadline" readonly="1"/></strong>
+                    to save <strong><field name="early_discount_pct" readonly="1"/>%</strong>
+                    (<field name="early_discount_amount" widget="monetary" readonly="1"/>).
+                    Amount to pay: <strong><field name="early_discount_total" widget="monetary" readonly="1"/></strong>
+                    instead of
+                    <field name="amount_total" widget="monetary" readonly="1"/>.
+                </div>
+
+                <!-- ── Discount expiry warning ────────────────────────── -->
+                <div class="alert alert-warning mb-3"
+                     invisible="not early_discount_available
+                                or state != 'posted'
+                                or early_discount_applied
+                                or payment_state in ('paid','in_payment')
+                                or within_discount_period">
+                    <strong>⏰ Early Discount Window Expired</strong> —
+                    The <field name="early_discount_pct" readonly="1"/>% discount was
+                    available until <field name="early_discount_deadline" readonly="1"/>.
+                </div>
+
+                <!-- ── Applied confirmation ──────────────────────────── -->
+                <div class="alert alert-info mb-3"
+                     invisible="not early_discount_applied">
+                    <strong>✓ Early Payment Discount Applied</strong> —
+                    A discount of <field name="early_discount_pct" readonly="1"/>%
+                    (<field name="early_discount_amount" widget="monetary" readonly="1"/>)
+                    has been posted to this invoice.
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

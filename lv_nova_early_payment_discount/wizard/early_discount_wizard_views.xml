@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_early_discount_wizard_form" model="ir.ui.view">
+        <field name="name">early.payment.discount.wizard.form</field>
+        <field name="model">early.payment.discount.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Apply Early Payment Discount">
+                <group>
+                    <group string="Invoice">
+                        <field name="move_id" readonly="1"/>
+                        <field name="deadline"
+                               string="Discount Deadline"
+                               readonly="1"/>
+                        <field name="within_period"
+                               string="Within Discount Period"
+                               readonly="1"/>
+                    </group>
+                    <group string="Discount">
+                        <field name="discount_pct"    readonly="1"
+                               string="Rate (%)"/>
+                        <field name="discount_amount" readonly="1"
+                               string="Amount"
+                               widget="monetary"/>
+                        <field name="currency_id"     invisible="1"/>
+                        <field name="company_id"      invisible="1"/>
+                    </group>
+                </group>
+                <group string="Accounting">
+                    <field name="discount_account_id"
+                           options="{'no_create': True}"/>
+                    <field name="journal_id"
+                           options="{'no_create': True}"/>
+                    <field name="date"/>
+                </group>
+                <div class="alert alert-warning"
+                     invisible="within_period">
+                    ⚠ The early payment discount window for this invoice
+                    has already passed. You can still apply it manually.
+                </div>
+                <footer>
+                    <button name="action_apply"
+                            type="object"
+                            string="Apply Discount"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="report_product_label">
+<t t-call="web.html_container">
+<t t-foreach="docs" t-as="doc">
+<t t-set="all_labels" t-value="doc.get_expanded_lines()"/>
+<t t-set="w" t-value="doc.label_width_mm"/>
+<t t-set="h" t-value="doc.label_height_mm"/>
+<t t-set="cols" t-value="doc.cols_per_row"/>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<style t-attf-type="text/css">
+    @page {
+        size: A4;
+        margin: 5mm;
+    }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 7pt;
+        margin: 0;
+        padding: 0;
+    }
+    .label-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2mm;
+        align-content: flex-start;
+    }
+    .label {
+        width: <t t-esc="w"/>mm;
+        height: <t t-esc="h"/>mm;
+        border: 0.4pt solid #999;
+        box-sizing: border-box;
+        padding: 1.2mm 1.5mm;
+        overflow: hidden;
+        page-break-inside: avoid;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+    }
+    .label-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        min-width: 0;
+    }
+    .label-qr {
+        width: <t t-esc="min(h * 0.78, w * 0.30)"/>mm;
+        min-width: <t t-esc="min(h * 0.78, w * 0.30)"/>mm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 1mm;
+    }
+    .label-qr img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .lbl-name {
+        font-weight: bold;
+        font-size: 7.5pt;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
+    }
+    .lbl-ref  { font-size: 6.5pt; color: #444; }
+    .lbl-cat  { font-size: 6pt;   color: #666; font-style: italic; }
+    .lbl-lot  { font-size: 6pt;   color: #555; }
+    .lbl-barcode {
+        font-family: monospace;
+        font-size: 6pt;
+        color: #333;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .lbl-price {
+        font-weight: bold;
+        font-size: 8pt;
+        color: #1a1a1a;
+        margin-top: auto;
+    }
+    .lbl-currency { font-size: 6.5pt; }
+</style>
+</head>
+<body>
+<div class="label-grid">
+    <t t-foreach="all_labels" t-as="lbl">
+        <div class="label">
+            <!-- Text area -->
+            <div class="label-text">
+                <t t-if="doc.show_name">
+                    <div class="lbl-name" t-esc="lbl.product_id.name"/>
+                </t>
+                <t t-if="doc.show_reference and lbl.product_id.default_code">
+                    <div class="lbl-ref">
+                        Ref: <t t-esc="lbl.product_id.default_code"/>
+                    </div>
+                </t>
+                <t t-if="doc.show_category and lbl.display_category">
+                    <div class="lbl-cat" t-esc="lbl.display_category"/>
+                </t>
+                <t t-if="doc.show_lot and lbl.lot_id">
+                    <div class="lbl-lot">
+                        Lot: <t t-esc="lbl.lot_id.name"/>
+                    </div>
+                </t>
+                <t t-if="doc.show_barcode and lbl.display_barcode">
+                    <div class="lbl-barcode" t-esc="lbl.display_barcode"/>
+                </t>
+                <t t-if="doc.show_price">
+                    <div class="lbl-price">
+                        <span class="lbl-currency"
+                              t-esc="lbl.product_id.currency_id.symbol or ''"/>
+                        <t t-esc="'%.2f' % lbl.display_price"/>
+                    </div>
+                </t>
+            </div>
+            <!-- QR code area -->
+            <t t-if="doc.show_qr and lbl.qr_image_b64">
+                <div class="label-qr">
+                    <img t-attf-src="data:image/png;base64,#{lbl.qr_image_b64}"
+                         alt="QR"/>
+                </div>
+            </t>
+        </div>
+    </t>
+</div>
+</body>
+</html>
+</t>
+</t>
+</template>
+
+</odoo>

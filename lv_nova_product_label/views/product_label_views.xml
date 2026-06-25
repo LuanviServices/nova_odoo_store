@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         1. Wizard form view
+         ================================================================ -->
+    <record id="view_product_label_wizard_form" model="ir.ui.view">
+        <field name="name">product.label.wizard.form</field>
+        <field name="model">product.label.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Print Product Labels">
+
+                <sheet>
+                    <!-- Configuration row -->
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="fw-bold">Label Size</label>
+                            <field name="label_size" nolabel="1"/>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="fw-bold">QR Code Content</label>
+                            <field name="qr_content" nolabel="1"
+                                   invisible="not show_qr"/>
+                        </div>
+                    </div>
+
+                    <!-- Fields to show -->
+                    <group string="Fields to Print on Each Label">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <field name="show_name" class="me-1"/>
+                                <label for="show_name"/>
+                            </div>
+                            <div class="col-md-2">
+                                <field name="show_reference" class="me-1"/>
+                                <label for="show_reference"/>
+                            </div>
+                            <div class="col-md-2">
+                                <field name="show_price" class="me-1"/>
+                                <label for="show_price"/>
+                            </div>
+                            <div class="col-md-2">
+                                <field name="show_category" class="me-1"/>
+                                <label for="show_category"/>
+                            </div>
+                            <div class="col-md-2">
+                                <field name="show_lot" class="me-1"/>
+                                <label for="show_lot"/>
+                            </div>
+                            <div class="col-md-2">
+                                <field name="show_barcode" class="me-1"/>
+                                <label for="show_barcode"/>
+                            </div>
+                            <div class="col-md-2">
+                                <field name="show_qr" class="me-1"/>
+                                <label for="show_qr"/>
+                            </div>
+                        </div>
+                    </group>
+
+                    <!-- Product lines -->
+                    <field name="line_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="product_id"/>
+                            <field name="qty"/>
+                            <field name="lot_id"
+                                   optional="hide"/>
+                            <field name="custom_price"
+                                   optional="hide"/>
+                            <field name="display_price" readonly="1"
+                                   string="Price" optional="show"/>
+                            <field name="display_barcode" readonly="1"
+                                   string="Barcode" optional="show"/>
+                        </list>
+                    </field>
+
+                    <!-- Computed helpers (invisible, needed in template) -->
+                    <field name="label_width_mm"  invisible="1"/>
+                    <field name="label_height_mm" invisible="1"/>
+                    <field name="cols_per_row"    invisible="1"/>
+                </sheet>
+
+                <footer>
+                    <button name="action_print_labels"
+                            type="object"
+                            string="🖨 Print Labels"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================================
+         2. Action that opens the wizard
+         ================================================================ -->
+    <record id="action_product_label_wizard" model="ir.actions.act_window">
+        <field name="name">Print Product Labels</field>
+        <field name="res_model">product.label.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ================================================================
+         3. Bind to product.product list (Action menu)
+         ================================================================ -->
+    <record id="action_product_label_from_product" model="ir.actions.act_window">
+        <field name="name">Print Labels</field>
+        <field name="res_model">product.label.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+    <!-- Bind to product.template list too -->
+    <record id="action_product_label_from_template" model="ir.actions.act_window">
+        <field name="name">Print Labels</field>
+        <field name="res_model">product.label.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+    <!-- ================================================================
+         4. Button on purchase.order form
+         ================================================================ -->
+    <record id="view_purchase_order_label_button" model="ir.ui.view">
+        <field name="name">purchase.order.form.label.button</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_receipt_button']" position="after">
+                <button name="%(lv_nova_product_label.action_product_label_wizard)d"
+                        string="🏷 Print Labels"
+                        type="action"
+                        class="btn-secondary"
+                        context="{'active_model': 'purchase.order',
+                                  'active_id': id}"
+                        invisible="state == 'draft'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================================================================
+         5. Button on stock.picking form (delivery / receipt)
+         ================================================================ -->
+    <record id="view_stock_picking_label_button" model="ir.ui.view">
+        <field name="name">stock.picking.form.label.button</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_put_in_pack']" position="after">
+                <button name="%(lv_nova_product_label.action_product_label_wizard)d"
+                        string="🏷 Print Labels"
+                        type="action"
+                        class="btn-secondary"
+                        context="{'active_model': 'stock.picking',
+                                  'active_id': id}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #6D28D9; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #6D28D9; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #6D28D9; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Project Profitability Report</h2>
+
+<p>
+    Know exactly how much each project earned and cost. This module combines
+    invoiced revenue, timesheet labor costs, and vendor bill purchases — all
+    linked via analytic accounts — into a single profitability view per project,
+    with a color-coded list and a printable PDF breakdown.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>📊 Profitability dashboard</h4>
+        <p>Color-coded list of all projects: green (≥15% margin), amber (0–15%), red (negative). Sortable by any column.</p>
+    </div>
+    <div class="feature-box">
+        <h4>💰 Three cost sources</h4>
+        <p>Timesheet labor (hours × employee rate), vendor bills, and purchases — all linked via analytic accounts.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📄 PDF report</h4>
+        <p>Print a detailed breakdown per project: revenue lines, timesheet entries, and purchase lines with full drill-down.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🔢 Margin % smart button</h4>
+        <p>The project form shows the current margin % in a smart button — click to open the full profitability view.</p>
+    </div>
+</div>
+
+<h3>How it works</h3>
+<ol>
+    <li>Each project needs an <strong>Analytic Account</strong> configured (set it in the project settings tab).</li>
+    <li>Open <strong>Project → Profitability</strong> to see all projects side by side.</li>
+    <li>Click any project to see the KPI strip (invoiced, costs, margin, margin %).</li>
+    <li>Click <strong>Print PDF</strong> to export a detailed report with every invoice, timesheet entry, and vendor bill.</li>
+</ol>
+
+<h3>Data sources used</h3>
+<ul>
+    <li><strong>Revenue</strong>: posted customer invoice lines whose analytic distribution includes the project's analytic account.</li>
+    <li><strong>Timesheet cost</strong>: <code>account.analytic.line</code> records linked to the project × employee <code>timesheet_cost</code> rate.</li>
+    <li><strong>Purchase cost</strong>: posted vendor bill lines whose analytic distribution includes the project's analytic account.</li>
+    <li>Partial analytic allocations (e.g. 60% to this project) are respected — only the allocated % is counted.</li>
+</ul>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Project, Accounting, Timesheets</span>
+</p>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

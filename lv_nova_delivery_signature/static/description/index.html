@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #1D4ED8; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #1D4ED8; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #1D4ED8; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Delivery Signature (Mobile &amp; Tablet)</h2>
+
+<p>
+    Let the customer or driver sign directly on the delivery order using
+    a finger, stylus or mouse. The signature is stored on the picking,
+    logged in the chatter, and printed automatically at the bottom of
+    the Delivery Slip PDF — replacing blank paper signature lines with
+    a tamper-evident digital record.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>✍ Touch-friendly signature pad</h4>
+        <p>Odoo's built-in signature widget works with any touchscreen, stylus or mouse. No external app needed.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🔒 Require before validating</h4>
+        <p>Enable "Require Signature" on any operation type (Delivery Orders, Field Service, etc.). Odoo blocks validation until a signature is captured.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📄 Printed on the PDF</h4>
+        <p>The signature image appears at the bottom of the Delivery Slip PDF. If no digital signature was captured, blank lines are printed instead.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📋 Chatter audit trail</h4>
+        <p>Each signature capture is logged as a note in the picking's chatter with timestamp and signer name.</p>
+    </div>
+</div>
+
+<h3>How it works</h3>
+<ol>
+    <li>Optionally go to <strong>Inventory → Configuration → Operations Types</strong> and enable <strong>"Require signature before validation"</strong> for Delivery Orders.</li>
+    <li>Open a delivery order. A new <strong>"Delivery Signature"</strong> tab appears.</li>
+    <li>Enter the signer's name in "Signed By" (optional but recommended).</li>
+    <li>Have the customer or driver draw their signature in the pad using a finger, stylus or mouse.</li>
+    <li>Validate the delivery as usual. The signature is stored and timestamped automatically.</li>
+    <li>Print the <strong>Delivery Slip</strong> — the signature appears at the bottom.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Inventory</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>The signature is stored as a PNG image in the <code>delivery_signature</code> field (<code>fields.Image</code>, max 600×300 px) on <code>stock.picking</code>.</li>
+    <li>No new database tables. Two new fields on <code>stock.picking</code> (<code>delivery_signature</code>, <code>signed_by</code>, <code>signature_date</code>) and one on <code>stock.picking.type</code> (<code>signature_required</code>).</li>
+    <li>The "Require signature" check only applies to the <code>button_validate</code> method — it does not interfere with programmatic validation (e.g. from WMS integrations).</li>
+    <li>Works on mobile browser (iOS Safari, Android Chrome) using the HTML5 canvas signature widget.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

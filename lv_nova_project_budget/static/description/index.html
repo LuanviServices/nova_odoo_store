@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #7C3AED; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #7C3AED; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #7C3AED; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+        .progress-demo { background: #e9ecef; border-radius: 6px; height: 12px; margin: 4px 0; }
+        .progress-ok      { background: #198754; border-radius: 6px; height: 12px; }
+        .progress-warning { background: #ffc107; border-radius: 6px; height: 12px; }
+        .progress-danger  { background: #dc3545; border-radius: 6px; height: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Project Budget with Alerts</h2>
+
+<p>
+    Set hour and monetary budgets on any project, track spending in real time,
+    and get automatic email alerts before the budget is gone. A color-coded
+    banner on the project form and a budget overview list give managers full
+    visibility without leaving Odoo.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>⏱ Hour budget</h4>
+        <p>Set a maximum number of hours. Logged timesheets count toward the budget automatically.</p>
+    </div>
+    <div class="feature-box">
+        <h4>💰 Monetary budget</h4>
+        <p>Set a maximum spend. Combines timesheet labor cost (hours × employee rate) and vendor bills via analytic account.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🔔 Automatic alerts</h4>
+        <p>Daily cron sends email to the project manager at 80% and again at 100%. Each alert fires only once (no spam).</p>
+    </div>
+    <div class="feature-box">
+        <h4>📊 Budget overview</h4>
+        <p>Color-coded list of all budgeted projects: green (on track), orange (&gt;80%), red (exceeded). Print per project.</p>
+    </div>
+</div>
+
+<h3>Progress bar examples</h3>
+<p><strong>On track (45%)</strong></p>
+<div class="progress-demo"><div class="progress-ok" style="width:45%;"/></div>
+<p><strong>Warning (85%)</strong></p>
+<div class="progress-demo"><div class="progress-warning" style="width:85%;"/></div>
+<p><strong>Exceeded (110%)</strong></p>
+<div class="progress-demo"><div class="progress-danger" style="width:100%;"/></div>
+
+<h3>How to use</h3>
+<ol>
+    <li>Open any project → <strong>Budget tab</strong> → enable "Enable Budget".</li>
+    <li>Set your <strong>Hour Budget</strong> and/or <strong>Monetary Budget</strong>.</li>
+    <li>As timesheets are logged and vendor bills are posted, the budget progress updates automatically.</li>
+    <li>When 80% is reached, the project manager receives an email. Another alert fires at 100%.</li>
+    <li>A red or orange banner appears on the project form so the manager is informed at a glance.</li>
+    <li>Go to <strong>Project → Budgets</strong> to see all budgeted projects in one list.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Project, Timesheets, Accounting</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Alert emails are sent once per threshold and reset automatically if spending drops below 80% (e.g. after a correction).</li>
+    <li>Monetary spend = timesheet cost (hours × <code>employee.timesheet_cost</code>) + posted vendor bill lines whose analytic distribution includes the project's analytic account.</li>
+    <li>No new database tables — only adds fields to <code>project.project</code>.</li>
+    <li>The 80% threshold is a Python constant editable in <code>models/project_project.py</code>.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

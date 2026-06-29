@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_project_budget" model="ir.actions.report">
+        <field name="name">Project Budget Report</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lv_nova_project_budget.report_project_budget</field>
+        <field name="report_file">lv_nova_project_budget.report_project_budget</field>
+        <field name="print_report_name">'Budget_%s' % object.name.replace(' ','_')</field>
+        <field name="binding_model_id" ref="project.model_project_project"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #1B5E20; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #1B5E20; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #1B5E20; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Advanced Excel Export with Templates</h2>
+
+<p>
+    Export any Odoo list to a professionally formatted Excel file in two clicks.
+    Define reusable templates per model — choose which fields to include,
+    set custom headers, column widths and colours, enable totals rows and
+    alternating row shading. Comes with ready-made templates for Sale Orders,
+    Customer Invoices and Purchase Orders.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>🎨 Formatted output</h4>
+        <p>Custom header colour, font colour, alternating row shading, frozen header row and auto-fit or fixed column widths.</p>
+    </div>
+    <div class="feature-box">
+        <h4>Σ Totals row</h4>
+        <p>Mark any numeric column as "Sum in footer" and a totals row is automatically added at the bottom.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🔗 Dotted field paths</h4>
+        <p>Export related fields using dotted paths like <code>partner_id.name</code> or <code>user_id.email</code> — no custom code needed.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📋 Reusable templates</h4>
+        <p>Create once, reuse forever. Templates are model-specific and auto-selected when you open the export wizard.</p>
+    </div>
+</div>
+
+<h3>Included templates (ready to use)</h3>
+<ul>
+    <li><strong>Sale Orders</strong>: Order, Date, Customer, Salesperson, Untaxed, Tax, Total, Status — with totals row.</li>
+    <li><strong>Customer Invoices</strong>: Invoice, Dates, Customer, Untaxed, Total, Amount Due, Payment Status — with totals.</li>
+    <li><strong>Purchase Orders</strong>: PO Number, Date, Vendor, Total, Status — with totals row.</li>
+</ul>
+
+<h3>How to use</h3>
+<ol>
+    <li>Go to any list view (Sale Orders, Invoices, etc.) and select the records you want to export.</li>
+    <li>Click <strong>Action → Export to Excel</strong>.</li>
+    <li>The matching template is pre-selected. Click <strong>Generate Excel</strong>.</li>
+    <li>Download the formatted .xlsx file.</li>
+</ol>
+
+<h3>Create your own template</h3>
+<ol>
+    <li>Go to <strong>Settings → Excel Export Templates</strong>.</li>
+    <li>Create a new template, select the model, set colours and header options.</li>
+    <li>Add columns: enter the field name (or dotted path), set a custom header, format and width.</li>
+    <li>Save — the template is immediately available in the export wizard for that model.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: openpyxl (bundled with Odoo)</span>
+</p>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

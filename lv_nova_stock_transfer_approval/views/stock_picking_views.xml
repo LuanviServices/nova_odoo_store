@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         Inherit picking form — approval buttons + status banners
+         ================================================================ -->
+    <record id="view_picking_form_transfer_approval" model="ir.ui.view">
+        <field name="name">stock.picking.form.transfer.approval</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <!-- ── Header buttons ────────────────────────────────────── -->
+            <xpath expr="//header" position="inside">
+
+                <button name="action_submit_transfer_for_approval"
+                        type="object"
+                        string="Submit for Approval"
+                        class="btn-primary"
+                        invisible="not transfer_approval_required
+                                   or transfer_approval_state == 'approved'
+                                   or transfer_approval_state == 'pending'
+                                   or state in ('done','cancel')"/>
+
+                <button name="action_approve_transfer"
+                        type="object"
+                        string="✔ Approve Transfer"
+                        class="btn-success"
+                        invisible="not current_user_can_approve
+                                   or transfer_approval_state != 'pending'"/>
+
+                <button name="action_reject_transfer"
+                        type="object"
+                        string="✘ Reject Transfer"
+                        class="btn-danger"
+                        invisible="not current_user_can_approve
+                                   or transfer_approval_state != 'pending'"/>
+
+                <button name="action_reset_transfer_approval"
+                        type="object"
+                        string="Reset Approval"
+                        class="btn-secondary"
+                        invisible="transfer_approval_state not in ('rejected',)"
+                        groups="stock.group_stock_manager"/>
+
+                <!-- Approval status badge in the status bar area -->
+                <field name="transfer_approval_state"
+                       widget="badge"
+                       invisible="not transfer_approval_required"
+                       decoration-warning="transfer_approval_state == 'pending'"
+                       decoration-success="transfer_approval_state == 'approved'"
+                       decoration-danger="transfer_approval_state == 'rejected'"
+                       decoration-muted="transfer_approval_state == 'not_required'"/>
+
+            </xpath>
+
+            <!-- ── Invisible helper fields ───────────────────────────── -->
+            <xpath expr="//sheet" position="inside">
+                <field name="transfer_approval_required"  invisible="1"/>
+                <field name="current_user_can_approve"    invisible="1"/>
+
+                <!-- Pending banner -->
+                <div class="alert alert-warning mb-3"
+                     invisible="transfer_approval_state != 'pending'">
+                    <i class="fa fa-clock-o me-2"/>
+                    <strong>Waiting for Approval</strong> —
+                    This transfer is pending approval from the
+                    <strong><field name="dest_warehouse_id" readonly="1" class="d-inline"/></strong>
+                    warehouse manager.
+                </div>
+
+                <!-- Approved banner -->
+                <div class="alert alert-success mb-3"
+                     invisible="transfer_approval_state != 'approved'">
+                    <i class="fa fa-check-circle me-2"/>
+                    <strong>Approved</strong> by
+                    <field name="approved_by" readonly="1" class="d-inline"/>
+                    on <field name="approval_date" readonly="1" class="d-inline"/>.
+                    You can now validate this transfer.
+                </div>
+
+                <!-- Rejected banner -->
+                <div class="alert alert-danger mb-3"
+                     invisible="transfer_approval_state != 'rejected'">
+                    <i class="fa fa-times-circle me-2"/>
+                    <strong>Rejected</strong> by
+                    <field name="approved_by" readonly="1" class="d-inline"/>
+                    on <field name="approval_date" readonly="1" class="d-inline"/>.
+                    <t t-if="rejection_reason">
+                        <br/><strong>Reason:</strong>
+                        <field name="rejection_reason" readonly="1" class="d-inline"/>
+                    </t>
+                </div>
+
+                <!-- Approval required (not submitted yet) -->
+                <div class="alert alert-info mb-3"
+                     invisible="not transfer_approval_required
+                                or transfer_approval_state != 'not_required'
+                                or state in ('done','cancel')">
+                    <i class="fa fa-info-circle me-2"/>
+                    This transfer requires approval from
+                    <strong><field name="dest_warehouse_id" readonly="1" class="d-inline"/></strong>
+                    before it can be validated. Click
+                    <strong>Submit for Approval</strong> when ready.
+                </div>
+            </xpath>
+
+            <!-- ── Approval info in additional info tab ──────────────── -->
+            <xpath expr="//page[@name='extra']" position="inside">
+                <group string="Transfer Approval"
+                       invisible="not transfer_approval_required">
+                    <field name="dest_warehouse_id"    readonly="1"/>
+                    <field name="transfer_approval_state" readonly="1"
+                           widget="badge"
+                           decoration-warning="transfer_approval_state == 'pending'"
+                           decoration-success="transfer_approval_state == 'approved'"
+                           decoration-danger="transfer_approval_state == 'rejected'"/>
+                    <field name="approved_by"          readonly="1"
+                           invisible="not approved_by"/>
+                    <field name="approval_date"        readonly="1"
+                           invisible="not approval_date"/>
+                    <field name="rejection_reason"     readonly="1"
+                           invisible="not rejection_reason"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- ================================================================
+         Internal transfers list — add approval status column
+         ================================================================ -->
+    <record id="view_picking_internal_list_approval" model="ir.ui.view">
+        <field name="name">stock.picking.internal.list.approval</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="transfer_approval_state"
+                       string="Approval"
+                       optional="show"
+                       widget="badge"
+                       decoration-warning="transfer_approval_state == 'pending'"
+                       decoration-success="transfer_approval_state == 'approved'"
+                       decoration-danger="transfer_approval_state == 'rejected'"
+                       invisible="not transfer_approval_required"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

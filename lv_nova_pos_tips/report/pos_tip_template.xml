@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_pos_tips_document">
+        <t t-call="web.external_layout">
+            <t t-set="data" t-value="doc.get_report_data()"/>
+
+            <div class="page">
+
+                <!-- ── Header ───────────────────────────────────────── -->
+                <div class="row mb-4">
+                    <div class="col-7">
+                        <h3 class="mb-1">POS Tip Report</h3>
+                        <p class="text-muted mb-0">
+                            Period: <strong><t t-esc="doc.date_from"/></strong>
+                            to <strong><t t-esc="doc.date_to"/></strong>
+                        </p>
+                        <t t-if="doc.config_id">
+                            <p class="text-muted mb-0">
+                                Point of Sale: <t t-esc="doc.config_id.name"/>
+                            </p>
+                        </t>
+                    </div>
+                    <div class="col-5 text-end">
+                        <p class="mb-0">
+                            Printed:
+                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ── Grand Total KPI strip ─────────────────────────── -->
+                <table class="table table-bordered text-center mb-4" style="font-size:13px;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Orders with Tips</th>
+                            <th>Total Sales</th>
+                            <th>Total Tips</th>
+                            <th>Avg Tip %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="font-weight:700; font-size:14px;">
+                            <td t-esc="data['order_count']"/>
+                            <td t-esc="doc._fmt(data['grand_total_sales'])"/>
+                            <td style="color:#198754;"
+                                t-esc="doc._fmt(data['grand_total_tips'])"/>
+                            <td t-esc="'%.1f %%' % data['grand_avg_pct']"/>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- ── Summary by cashier ───────────────────────────── -->
+                <h5>Summary by Cashier / Waiter</h5>
+                <table class="table table-sm table-bordered mb-4" style="font-size:12px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Cashier / Waiter</th>
+                            <th class="text-end"># Orders</th>
+                            <th class="text-end">Sales</th>
+                            <th class="text-end">Tips</th>
+                            <th class="text-end">Avg Tip %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="data['by_cashier']" t-as="row">
+                            <tr>
+                                <td><strong t-esc="row['cashier']"/></td>
+                                <td class="text-end" t-esc="row['order_count']"/>
+                                <td class="text-end" t-esc="doc._fmt(row['sales_total'])"/>
+                                <td class="text-end" style="color:#198754; font-weight:600;"
+                                    t-esc="doc._fmt(row['tip_total'])"/>
+                                <td class="text-end" t-esc="'%.1f %%' % row['tip_avg_pct']"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot class="table-light" style="font-weight:700;">
+                        <tr>
+                            <td>TOTAL</td>
+                            <td class="text-end" t-esc="data['order_count']"/>
+                            <td class="text-end" t-esc="doc._fmt(data['grand_total_sales'])"/>
+                            <td class="text-end" style="color:#198754;"
+                                t-esc="doc._fmt(data['grand_total_tips'])"/>
+                            <td class="text-end" t-esc="'%.1f %%' % data['grand_avg_pct']"/>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <!-- ── Detail per cashier ───────────────────────────── -->
+                <t t-foreach="data['by_cashier']" t-as="row">
+                    <h5 class="mt-4">
+                        <t t-esc="row['cashier']"/>
+                        <span class="text-muted" style="font-size:12px; font-weight:normal;">
+                            — <t t-esc="row['order_count']"/> order(s),
+                            tips: <t t-esc="doc._fmt(row['tip_total'])"/>
+                        </span>
+                    </h5>
+                    <table class="table table-sm table-hover table-bordered"
+                           style="font-size:11px;">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Date/Time</th>
+                                <th>Order Ref</th>
+                                <th class="text-end">Order Total</th>
+                                <th class="text-end">Tip Amount</th>
+                                <th class="text-end">Tip %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="row['orders']" t-as="order">
+                                <tr>
+                                    <td t-esc="str(order.date_order)[:16]"/>
+                                    <td t-esc="order.name"/>
+                                    <td class="text-end"
+                                        t-esc="doc._fmt(order.amount_total - order.tip_amount)"/>
+                                    <td class="text-end" style="color:#198754; font-weight:600;"
+                                        t-esc="doc._fmt(order.tip_amount)"/>
+                                    <td class="text-end"
+                                        t-esc="'%.1f %%' % order.tip_percent"/>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot class="table-light" style="font-weight:700;">
+                            <tr>
+                                <td colspan="3">Subtotal</td>
+                                <td class="text-end" style="color:#198754;"
+                                    t-esc="doc._fmt(row['tip_total'])"/>
+                                <td class="text-end"
+                                    t-esc="'%.1f %%' % row['tip_avg_pct']"/>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </t>
+
+                <t t-if="not data['by_cashier']">
+                    <div class="alert alert-info mt-3">
+                        No orders with tips found for the selected period.
+                    </div>
+                </t>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="report_pos_tips">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="lv_nova_pos_tips.report_pos_tips_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

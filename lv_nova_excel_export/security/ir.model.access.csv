@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_excel_export_template_user,excel export template user,model_excel_export_template,base.group_user,1,0,0,0
+access_excel_export_template_manager,excel export template manager,model_excel_export_template,base.group_system,1,1,1,1
+access_excel_export_template_line_user,excel export template line user,model_excel_export_template_line,base.group_user,1,0,0,0
+access_excel_export_template_line_manager,excel export template line manager,model_excel_export_template_line,base.group_system,1,1,1,1
+access_excel_export_wizard,excel export wizard,model_excel_export_wizard,base.group_user,1,1,1,1

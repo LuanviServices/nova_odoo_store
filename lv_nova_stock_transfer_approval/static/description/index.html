@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #7B341E; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #7B341E; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #7B341E; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+        .flow { display: flex; align-items: center; gap: 10px; margin: 12px 0;
+                flex-wrap: wrap; font-size: 13px; }
+        .step { background: #f4f4f4; border-radius: 6px; padding: 6px 12px; }
+        .arrow { color: #999; font-size: 18px; }
+    </style>
+</head>
+<body>
+
+<h2>Inter-Warehouse Transfer Approval</h2>
+
+<p>
+    Prevent stock from moving between warehouses without authorisation.
+    Enable approval on a per-warehouse basis — any internal transfer
+    <em>arriving</em> at that warehouse must be approved before it can
+    be validated. The responsible manager is notified via Odoo chatter,
+    can approve or reject (with a mandatory reason), and the transfer
+    is blocked until the decision is made.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>🏭 Per-warehouse toggle</h4>
+        <p>Enable approval on the destination warehouse. You can also assign a specific approver; if empty, any Stock Manager can approve.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🔔 Chatter notifications</h4>
+        <p>The approver is notified when a transfer is submitted. The requester is notified when it's approved or rejected.</p>
+    </div>
+    <div class="feature-box">
+        <h4>✘ Rejection with reason</h4>
+        <p>Rejecting a transfer opens a wizard requiring a mandatory explanation. The reason is visible on the transfer and in the chatter.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🔒 Blocked validation</h4>
+        <p>Odoo shows a clear error if someone tries to validate a transfer that is still pending or was rejected.</p>
+    </div>
+</div>
+
+<h3>Approval flow</h3>
+<div class="flow">
+    <div class="step">Draft Transfer</div>
+    <div class="arrow">→</div>
+    <div class="step">Submit for Approval</div>
+    <div class="arrow">→</div>
+    <div class="step">Waiting Approval 🟡</div>
+    <div class="arrow">→</div>
+    <div class="step">Approved ✅</div>
+    <div class="arrow">→</div>
+    <div class="step">Validate</div>
+</div>
+<div class="flow" style="margin-top:0;">
+    <div style="opacity:0; width:110px;"/>
+    <div class="arrow" style="opacity:0;">→</div>
+    <div class="step">Waiting Approval 🟡</div>
+    <div class="arrow">→</div>
+    <div class="step">Rejected ❌</div>
+    <div class="arrow">→</div>
+    <div class="step">Reset → Resubmit</div>
+</div>
+
+<h3>How to set up</h3>
+<ol>
+    <li>Go to <strong>Inventory → Configuration → Warehouses</strong>.</li>
+    <li>Open the destination warehouse → <strong>Transfer Approval tab</strong>.</li>
+    <li>Enable <strong>"Require approval for incoming internal transfers"</strong>.</li>
+    <li>Optionally assign a specific approver. Leave empty for any Stock Manager.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Inventory</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Only applies to <code>picking_type_code == 'internal'</code> transfers.</li>
+    <li>The check is based on the <em>destination location's warehouse</em>, not the source.</li>
+    <li>No new database tables — only new fields on <code>stock.picking</code> and <code>stock.warehouse</code>.</li>
+    <li>The approval state is tracked and visible in the chatter history.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

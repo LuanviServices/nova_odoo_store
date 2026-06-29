@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- ── Template 1: Sale Orders ──────────────────────────────── -->
+        <record id="excel_template_sale_order" model="excel.export.template">
+            <field name="name">Sale Orders</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="sheet_title">Sale Orders Export</field>
+            <field name="header_bg_color">1F4E79</field>
+            <field name="header_font_color">FFFFFF</field>
+            <field name="alt_row_color">DDEEFF</field>
+        </record>
+        <record id="excel_tl_so_name" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_sale_order"/>
+            <field name="sequence">10</field>
+            <field name="field_name">name</field>
+            <field name="header">Order</field>
+            <field name="width">18</field>
+            <field name="fmt">text</field>
+            <field name="bold">True</field>
+        </record>
+        <record id="excel_tl_so_date" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_sale_order"/>
+            <field name="sequence">20</field>
+            <field name="field_name">date_order</field>
+            <field name="header">Date</field>
+            <field name="width">14</field>
+            <field name="fmt">date</field>
+        </record>
+        <record id="excel_tl_so_partner" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_sale_order"/>
+            <field name="sequence">30</field>
+            <field name="field_name">partner_id.name</field>
+            <field name="header">Customer</field>
+            <field name="width">28</field>
+            <field name="fmt">text</field>
+        </record>
+        <record id="excel_tl_so_user" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_sale_order"/>
+            <field name="sequence">40</field>
+            <field name="field_name">user_id.name</field>
+            <field name="header">Salesperson</field>
+            <field name="width">20</field>
+            <field name="fmt">text</field>
+        </record>
+        <record id="excel_tl_so_untaxed" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_sale_order"/>
+            <field name="sequence">50</field>
+            <field name="field_name">amount_untaxed</field>
+            <field name="header">Untaxed</field>
+            <field name="width">14</field>
+            <field name="fmt">monetary</field>
+            <field name="total">True</field>
+        </record>
+        <record id="excel_tl_so_tax" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_sale_order"/>
+            <field name="sequence">60</field>
+            <field name="field_name">amount_tax</field>
+            <field name="header">Tax</field>
+            <field name="width">12</field>
+            <field name="fmt">monetary</field>
+            <field name="total">True</field>
+        </record>
+        <record id="excel_tl_so_total" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_sale_order"/>
+            <field name="sequence">70</field>
+            <field name="field_name">amount_total</field>
+            <field name="header">Total</field>
+            <field name="width">14</field>
+            <field name="fmt">monetary</field>
+            <field name="total">True</field>
+            <field name="bold">True</field>
+        </record>
+        <record id="excel_tl_so_state" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_sale_order"/>
+            <field name="sequence">80</field>
+            <field name="field_name">state</field>
+            <field name="header">Status</field>
+            <field name="width">12</field>
+            <field name="fmt">text</field>
+        </record>
+
+        <!-- ── Template 2: Customer Invoices ────────────────────────── -->
+        <record id="excel_template_account_move" model="excel.export.template">
+            <field name="name">Customer Invoices</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="sheet_title">Invoices Export</field>
+            <field name="header_bg_color">1B5E20</field>
+            <field name="header_font_color">FFFFFF</field>
+            <field name="alt_row_color">E8F5E9</field>
+        </record>
+        <record id="excel_tl_inv_name" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_account_move"/>
+            <field name="sequence">10</field>
+            <field name="field_name">name</field>
+            <field name="header">Invoice</field>
+            <field name="width">20</field>
+            <field name="fmt">text</field>
+            <field name="bold">True</field>
+        </record>
+        <record id="excel_tl_inv_date" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_account_move"/>
+            <field name="sequence">20</field>
+            <field name="field_name">invoice_date</field>
+            <field name="header">Invoice Date</field>
+            <field name="width">14</field>
+            <field name="fmt">date</field>
+        </record>
+        <record id="excel_tl_inv_due" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_account_move"/>
+            <field name="sequence">30</field>
+            <field name="field_name">invoice_date_due</field>
+            <field name="header">Due Date</field>
+            <field name="width">14</field>
+            <field name="fmt">date</field>
+        </record>
+        <record id="excel_tl_inv_partner" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_account_move"/>
+            <field name="sequence">40</field>
+            <field name="field_name">partner_id.name</field>
+            <field name="header">Customer</field>
+            <field name="width">30</field>
+            <field name="fmt">text</field>
+        </record>
+        <record id="excel_tl_inv_untaxed" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_account_move"/>
+            <field name="sequence">50</field>
+            <field name="field_name">amount_untaxed</field>
+            <field name="header">Untaxed</field>
+            <field name="width">14</field>
+            <field name="fmt">monetary</field>
+            <field name="total">True</field>
+        </record>
+        <record id="excel_tl_inv_total" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_account_move"/>
+            <field name="sequence">60</field>
+            <field name="field_name">amount_total</field>
+            <field name="header">Total</field>
+            <field name="width">14</field>
+            <field name="fmt">monetary</field>
+            <field name="total">True</field>
+            <field name="bold">True</field>
+        </record>
+        <record id="excel_tl_inv_residual" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_account_move"/>
+            <field name="sequence">70</field>
+            <field name="field_name">amount_residual</field>
+            <field name="header">Amount Due</field>
+            <field name="width">14</field>
+            <field name="fmt">monetary</field>
+            <field name="total">True</field>
+        </record>
+        <record id="excel_tl_inv_state" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_account_move"/>
+            <field name="sequence">80</field>
+            <field name="field_name">payment_state</field>
+            <field name="header">Payment Status</field>
+            <field name="width">16</field>
+            <field name="fmt">text</field>
+        </record>
+
+        <!-- ── Template 3: Purchase Orders ──────────────────────────── -->
+        <record id="excel_template_purchase_order" model="excel.export.template">
+            <field name="name">Purchase Orders</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="sheet_title">Purchase Orders Export</field>
+            <field name="header_bg_color">4A235A</field>
+            <field name="header_font_color">FFFFFF</field>
+            <field name="alt_row_color">F3E5F5</field>
+        </record>
+        <record id="excel_tl_po_name" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_purchase_order"/>
+            <field name="sequence">10</field>
+            <field name="field_name">name</field>
+            <field name="header">PO Number</field>
+            <field name="width">18</field>
+            <field name="fmt">text</field>
+            <field name="bold">True</field>
+        </record>
+        <record id="excel_tl_po_date" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_purchase_order"/>
+            <field name="sequence">20</field>
+            <field name="field_name">date_order</field>
+            <field name="header">Order Date</field>
+            <field name="width">14</field>
+            <field name="fmt">date</field>
+        </record>
+        <record id="excel_tl_po_vendor" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_purchase_order"/>
+            <field name="sequence">30</field>
+            <field name="field_name">partner_id.name</field>
+            <field name="header">Vendor</field>
+            <field name="width">28</field>
+            <field name="fmt">text</field>
+        </record>
+        <record id="excel_tl_po_total" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_purchase_order"/>
+            <field name="sequence">40</field>
+            <field name="field_name">amount_total</field>
+            <field name="header">Total</field>
+            <field name="width">14</field>
+            <field name="fmt">monetary</field>
+            <field name="total">True</field>
+            <field name="bold">True</field>
+        </record>
+        <record id="excel_tl_po_state" model="excel.export.template.line">
+            <field name="template_id" ref="excel_template_purchase_order"/>
+            <field name="sequence">50</field>
+            <field name="field_name">state</field>
+            <field name="header">Status</field>
+            <field name="width">12</field>
+            <field name="fmt">text</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         1. Inherit POS order list to add tip columns
+         ================================================================ -->
+    <record id="view_pos_order_list_tips" model="ir.ui.view">
+        <field name="name">pos.order.list.tips</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="before">
+                <field name="cashier_name" string="Cashier" optional="show"/>
+                <field name="tip_amount"   string="Tip"     optional="show"
+                       widget="monetary"/>
+                <field name="tip_percent"  string="Tip %"   optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================================================================
+         2. Tip report wizard action + menu under Point of Sale
+         ================================================================ -->
+    <record id="action_pos_tip_report_wizard" model="ir.actions.act_window">
+        <field name="name">Tip Report</field>
+        <field name="res_model">pos.tip.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_pos_tip_report"
+              name="Tip Report"
+              parent="point_of_sale.menu_point_root"
+              action="action_pos_tip_report_wizard"
+              sequence="40"
+              groups="point_of_sale.group_pos_manager"/>
+
+</odoo>

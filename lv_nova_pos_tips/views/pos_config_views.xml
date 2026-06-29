@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pos_config_form_tips" model="ir.ui.view">
+        <field name="name">pos.config.form.tips</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Add a "Tips" section after the payment section -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Tips" name="tips_config">
+                    <group string="Tip Product">
+                        <field name="tip_product_id"
+                               options="{'no_create': True}"
+                               help="Service product used to add tips as a line on the receipt."/>
+                    </group>
+                    <group string="Suggested Tip Percentages"
+                           invisible="not tip_product_id">
+                        <group>
+                            <field name="tip_pct_1" string="1st suggestion (%)"/>
+                            <field name="tip_pct_2" string="2nd suggestion (%)"/>
+                            <field name="tip_pct_3" string="3rd suggestion (%)"/>
+                        </group>
+                        <group>
+                            <field name="tip_allow_custom"/>
+                        </group>
+                    </group>
+                    <div class="text-muted" style="font-size:12px; padding:8px;"
+                         invisible="not tip_product_id">
+                        <i class="fa fa-info-circle me-1"/>
+                        The cashier adds a tip by selecting the tip product and entering
+                        the tip amount (or one of the suggested percentages × order total).
+                        The suggested percentages are shown as quick-entry buttons in the
+                        order notes.
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

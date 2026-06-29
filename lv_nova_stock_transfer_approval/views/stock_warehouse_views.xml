@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_warehouse_form_approval" model="ir.ui.view">
+        <field name="name">stock.warehouse.form.approval</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Transfer Approval" name="transfer_approval">
+                    <group>
+                        <field name="transfer_approval_required"
+                               widget="boolean_toggle"
+                               string="Require approval for incoming internal transfers"/>
+                    </group>
+                    <group invisible="not transfer_approval_required">
+                        <field name="transfer_approver_id"
+                               options="{'no_create': True}"
+                               help="Leave empty to allow any Stock Manager to approve."/>
+                    </group>
+                    <p class="text-muted" style="font-size:12px; padding:0 8px 8px;"
+                       invisible="not transfer_approval_required">
+                        When enabled, any internal transfer whose
+                        <strong>destination</strong> is a location in this
+                        warehouse will require approval before it can be
+                        validated. The transfer requester must click
+                        <strong>Submit for Approval</strong>; the approver
+                        above will be notified via Odoo chatter.
+                    </p>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

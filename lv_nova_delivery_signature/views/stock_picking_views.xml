@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_form_signature" model="ir.ui.view">
+        <field name="name">stock.picking.form.signature</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <!-- ── Smart button showing signature status ──────────────── -->
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button type="object"
+                        name="action_view_signature_attachment"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o"
+                        invisible="not is_signed">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Signed</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <!-- ── Warning banner when signature is required but missing ─ -->
+            <xpath expr="//sheet" position="inside">
+                <field name="is_signed"          invisible="1"/>
+                <field name="signature_required" invisible="1"/>
+
+                <div class="alert alert-warning mb-2"
+                     invisible="not signature_required or is_signed
+                                or state in ('done','cancel')">
+                    <i class="fa fa-exclamation-triangle me-2"/>
+                    <strong>Signature Required</strong> —
+                    Please capture the customer or driver signature below
+                    before validating this transfer.
+                </div>
+
+                <div class="alert alert-success mb-2"
+                     invisible="not is_signed">
+                    <i class="fa fa-check-circle me-2"/>
+                    <strong>Signed</strong>
+                    <t t-if="signed_by"> by <strong><field name="signed_by" readonly="1" class="d-inline"/></strong></t>
+                    <t t-if="signature_date"> on <field name="signature_date" readonly="1" class="d-inline"/></t>.
+                </div>
+            </xpath>
+
+            <!-- ── Signature section — added after the Additional Info tab ─ -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Delivery Signature"
+                      name="delivery_signature_page">
+
+                    <!-- Signed by field -->
+                    <group invisible="state in ('done','cancel') and not is_signed">
+                        <field name="signed_by"
+                               placeholder="Customer / driver name…"
+                               readonly="state in ('done','cancel')"/>
+                    </group>
+
+                    <!-- Signature pad -->
+                    <div invisible="state in ('done','cancel') and not is_signed">
+                        <field name="delivery_signature"
+                               widget="signature"
+                               string="Signature"
+                               readonly="state in ('done','cancel')"
+                               style="max-width:480px;"/>
+                        <p class="text-muted mt-1" style="font-size:12px;"
+                           invisible="is_signed">
+                            <i class="fa fa-info-circle me-1"/>
+                            Draw the signature above using a mouse, finger or stylus.
+                        </p>
+                    </div>
+
+                    <!-- Show read-only signed date when done -->
+                    <group invisible="not is_signed">
+                        <field name="signature_date" readonly="1"/>
+                    </group>
+
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

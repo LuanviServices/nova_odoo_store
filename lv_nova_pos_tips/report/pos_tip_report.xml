@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_pos_tips" model="ir.actions.report">
+        <field name="name">POS Tip Report</field>
+        <field name="model">pos.tip.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lv_nova_pos_tips.report_pos_tips</field>
+        <field name="report_file">lv_nova_pos_tips.report_pos_tips</field>
+        <field name="print_report_name">'Tip_Report_%s_%s' % (object.date_from, object.date_to)</field>
+    </record>
+
+</odoo>

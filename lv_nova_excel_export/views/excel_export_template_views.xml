@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── Template list ───────────────────────────────────────────── -->
+    <record id="view_excel_export_template_list" model="ir.ui.view">
+        <field name="name">excel.export.template.list</field>
+        <field name="model">excel.export.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="sheet_title"/>
+                <field name="freeze_header"/>
+                <field name="alternating_rows"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ── Template form ───────────────────────────────────────────── -->
+    <record id="view_excel_export_template_form" model="ir.ui.view">
+        <field name="name">excel.export.template.form</field>
+        <field name="model">excel.export.template</field>
+        <field name="arch" type="xml">
+            <form string="Excel Export Template">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Template name…"/></h1>
+                    </div>
+                    <group>
+                        <group string="General">
+                            <field name="model_id" options="{'no_create': True}"/>
+                            <field name="sheet_title"
+                                   placeholder="Leave empty to use template name"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Appearance">
+                            <field name="include_company_header"/>
+                            <field name="freeze_header"/>
+                            <field name="alternating_rows"/>
+                            <field name="header_bg_color"
+                                   placeholder="1F4E79 (hex without #)"/>
+                            <field name="header_font_color"
+                                   placeholder="FFFFFF"/>
+                            <field name="alt_row_color"
+                                   placeholder="DDEEFF"
+                                   invisible="not alternating_rows"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Columns" name="columns">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="field_name"
+                                           placeholder="e.g. partner_id.name"/>
+                                    <field name="header"
+                                           placeholder="Auto from field label"/>
+                                    <field name="fmt"/>
+                                    <field name="width"/>
+                                    <field name="bold"/>
+                                    <field name="total"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Action + menu ───────────────────────────────────────────── -->
+    <record id="action_excel_export_template" model="ir.actions.act_window">
+        <field name="name">Excel Export Templates</field>
+        <field name="res_model">excel.export.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_excel_export_template"
+              name="Excel Export Templates"
+              parent="base_setup.action_general_configuration"
+              action="action_excel_export_template"
+              sequence="70"
+              groups="base.group_system"/>
+
+    <!-- ── Server actions bound to common models ───────────────────── -->
+    <record id="action_excel_export_sale_order" model="ir.actions.server">
+        <field name="name">Export to Excel</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+action = env['excel.export.wizard'].with_context(
+    active_model='sale.order',
+    active_ids=env.context.get('active_ids', []),
+).create({}).action_open_wizard()
+        </field>
+    </record>
+
+    <record id="action_excel_export_account_move" model="ir.actions.server">
+        <field name="name">Export to Excel</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+action = env['excel.export.wizard'].with_context(
+    active_model='account.move',
+    active_ids=env.context.get('active_ids', []),
+).create({}).action_open_wizard()
+        </field>
+    </record>
+
+    <record id="action_excel_export_purchase_order" model="ir.actions.server">
+        <field name="name">Export to Excel</field>
+        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+action = env['excel.export.wizard'].with_context(
+    active_model='purchase.order',
+    active_ids=env.context.get('active_ids', []),
+).create({}).action_open_wizard()
+        </field>
+    </record>
+
+</odoo>

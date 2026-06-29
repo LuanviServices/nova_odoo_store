@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #9D174D; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #9D174D; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #9D174D; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+        table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; }
+        th { background: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+<h2>POS Tips — Per-Waiter Report &amp; Tip Tracking</h2>
+
+<p>
+    Track tips in your restaurant or hospitality POS. Configure a tip product
+    and three suggested tip percentages, then generate a detailed tip report
+    per cashier or waiter for any date range — showing how many tips each
+    person collected, the total amount and the average percentage.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>💡 Tip configuration</h4>
+        <p>Set a tip product and three suggested percentages (e.g. 10%, 15%, 20%) in the POS settings. Cashiers can also enter a custom amount.</p>
+    </div>
+    <div class="feature-box">
+        <h4>👤 Per-waiter breakdown</h4>
+        <p>The PDF report groups tips by cashier or waiter, showing orders, sales, tip total and average tip % per person.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📊 Summary + detail</h4>
+        <p>Grand total strip at the top, then a summary table per cashier, then the individual order lines for full drill-down.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📅 Any date range</h4>
+        <p>Filter by POS terminal and date range. View orders directly in Odoo or print the PDF in one click.</p>
+    </div>
+</div>
+
+<h3>Example report output</h3>
+<table>
+    <tr><th>Cashier</th><th>Orders</th><th>Sales</th><th>Tips</th><th>Avg %</th></tr>
+    <tr><td>Maria G.</td><td>14</td><td>$1,240.00</td><td>$186.00</td><td>15.0%</td></tr>
+    <tr><td>Carlos P.</td><td>9</td><td>$870.00</td><td>$104.40</td><td>12.0%</td></tr>
+    <tr><td><strong>TOTAL</strong></td><td><strong>23</strong></td><td><strong>$2,110.00</strong></td><td><strong>$290.40</strong></td><td><strong>13.8%</strong></td></tr>
+</table>
+
+<h3>How to set up</h3>
+<ol>
+    <li>Create a <strong>service product</strong> called "Tip" (no taxes, available in POS).</li>
+    <li>Go to <strong>Point of Sale → Configuration → Point of Sale → Tips tab</strong>.</li>
+    <li>Select the tip product and set the three suggested percentages.</li>
+    <li>During a POS session, the cashier adds the tip product with the desired amount to the order.</li>
+    <li>Go to <strong>Point of Sale → Tip Report</strong> to generate the per-waiter PDF.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Point of Sale</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Tip amounts are computed from order lines where the product matches the configured tip product — no JS customization needed.</li>
+    <li>Cashier tracking uses <code>pos.order.employee_id</code> if Staff Login is enabled, falling back to <code>user_id</code>.</li>
+    <li>The report covers orders in state <code>done</code>, <code>paid</code>, or <code>invoiced</code>.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

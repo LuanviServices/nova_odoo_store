@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_excel_export_wizard_form" model="ir.ui.view">
+        <field name="name">excel.export.wizard.form</field>
+        <field name="model">excel.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export to Excel">
+
+                <!-- CHOOSE state -->
+                <group invisible="state != 'choose'">
+                    <group>
+                        <field name="template_id"
+                               domain="[('model_name','=',active_model)]"
+                               options="{'no_create': True}"/>
+                        <field name="record_count" readonly="1"
+                               string="Records selected"/>
+                    </group>
+                    <field name="active_model"   invisible="1"/>
+                    <field name="active_ids_str" invisible="1"/>
+                    <field name="state"          invisible="1"/>
+                </group>
+
+                <!-- DONE state — download link -->
+                <group invisible="state != 'done'">
+                    <div class="alert alert-success">
+                        <strong>✓ Excel file ready!</strong>
+                        Click the button below to download it.
+                    </div>
+                    <field name="file_data"
+                           string="Download"
+                           widget="binary"
+                           filename="file_name"
+                           readonly="1"/>
+                    <field name="file_name" invisible="1"/>
+                </group>
+
+                <footer>
+                    <button name="action_export"
+                            type="object"
+                            string="Generate Excel"
+                            class="btn-primary"
+                            invisible="state != 'choose'"/>
+                    <button string="Close"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_hr_finiquito_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+
+                <!-- ── Title ────────────────────────────────────────── -->
+                <div class="text-center mb-4">
+                    <h2 style="text-transform:uppercase; letter-spacing:2px;">
+                        ACTA DE FINIQUITO LABORAL
+                    </h2>
+                    <p class="text-muted" style="font-size:11px;">
+                        Documento de Liquidación de Haberes
+                    </p>
+                </div>
+
+                <!-- ── Parties ──────────────────────────────────────── -->
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <p style="font-size:11px; color:#666; margin-bottom:2px;">
+                            <strong>EMPLEADOR</strong>
+                        </p>
+                        <p class="mb-1"><strong t-esc="doc.company_id.name"/></p>
+                        <p class="mb-0 text-muted" style="font-size:11px;"
+                           t-if="doc.company_id.vat">
+                            RUC / NIT: <t t-esc="doc.company_id.vat"/>
+                        </p>
+                        <p class="mb-0 text-muted" style="font-size:11px;"
+                           t-if="doc.company_id.street">
+                            <t t-esc="doc.company_id.street"/>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p style="font-size:11px; color:#666; margin-bottom:2px;">
+                            <strong>TRABAJADOR</strong>
+                        </p>
+                        <p class="mb-1"><strong t-esc="doc.employee_id.name"/></p>
+                        <p class="mb-0 text-muted" style="font-size:11px;"
+                           t-if="doc.employee_id.job_id">
+                            Cargo: <t t-esc="doc.employee_id.job_id.name"/>
+                        </p>
+                        <p class="mb-0 text-muted" style="font-size:11px;"
+                           t-if="doc.employee_id.identification_id">
+                            ID: <t t-esc="doc.employee_id.identification_id"/>
+                        </p>
+                    </div>
+                </div>
+
+                <hr style="border-color:#ccc;"/>
+
+                <!-- ── Employment period ────────────────────────────── -->
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <p style="font-size:11px; color:#666;">Start Date</p>
+                        <strong t-esc="doc.date_start"/>
+                    </div>
+                    <div class="col-4">
+                        <p style="font-size:11px; color:#666;">Termination Date</p>
+                        <strong t-esc="doc.date_end"/>
+                    </div>
+                    <div class="col-4">
+                        <p style="font-size:11px; color:#666;">Years of Service</p>
+                        <strong t-esc="'%.2f' % doc.service_years"/>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <p style="font-size:11px; color:#666;">Termination Type</p>
+                        <strong t-esc="dict(doc.fields_get(['termination_type'])['termination_type']['selection']).get(doc.termination_type, doc.termination_type)"/>
+                    </div>
+                    <div class="col-4">
+                        <p style="font-size:11px; color:#666;">Last Monthly Salary</p>
+                        <strong t-esc="doc._fmt(doc.last_monthly_salary)"/>
+                    </div>
+                    <div class="col-4">
+                        <p style="font-size:11px; color:#666;">Reference</p>
+                        <strong t-esc="doc.name"/>
+                    </div>
+                </div>
+
+                <!-- ── Component breakdown ──────────────────────────── -->
+                <h5 class="mt-2 mb-2">Liquidación de Haberes</h5>
+                <table class="table table-sm table-bordered" style="font-size:11px;">
+                    <thead style="background:#1F4E79; color:#fff;">
+                        <tr>
+                            <th>Rubro / Component</th>
+                            <th class="text-end">Detalle</th>
+                            <th class="text-end">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Earnings -->
+                        <t t-foreach="doc.line_ids.filtered(lambda l: not l.is_deduction)"
+                           t-as="line">
+                            <tr>
+                                <td t-esc="line.name"/>
+                                <td class="text-end text-muted"
+                                    style="font-size:10px;"
+                                    t-esc="line.formula or ''"/>
+                                <td class="text-end"
+                                    t-esc="doc._fmt(line.amount)"/>
+                            </tr>
+                        </t>
+                        <!-- Deductions -->
+                        <t t-if="doc.line_ids.filtered(lambda l: l.is_deduction)">
+                            <tr>
+                                <td colspan="3"
+                                    style="background:#fff5f5; font-weight:bold;
+                                           font-size:10px; padding:4px 8px;">
+                                    DEDUCCIONES
+                                </td>
+                            </tr>
+                            <t t-foreach="doc.line_ids.filtered(lambda l: l.is_deduction)"
+                               t-as="line">
+                                <tr style="color:#dc3545;">
+                                    <td t-esc="line.name"/>
+                                    <td class="text-end" style="font-size:10px;"
+                                        t-esc="line.formula or ''"/>
+                                    <td class="text-end"
+                                        t-esc="'(%s)' % doc._fmt(line.amount)"/>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background:#E8F4FD;">
+                            <td><strong>Total Haberes</strong></td>
+                            <td/>
+                            <td class="text-end">
+                                <strong t-esc="doc._fmt(doc.total_earnings)"/>
+                            </td>
+                        </tr>
+                        <t t-if="doc.total_deductions">
+                            <tr style="color:#dc3545;">
+                                <td><strong>Total Deducciones</strong></td>
+                                <td/>
+                                <td class="text-end">
+                                    <strong t-esc="'(%s)' % doc._fmt(doc.total_deductions)"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr style="background:#1F4E79; color:#fff; font-size:14px;">
+                            <td><strong>VALOR NETO A RECIBIR</strong></td>
+                            <td/>
+                            <td class="text-end">
+                                <strong t-esc="doc._fmt(doc.total_net)"/>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <!-- ── Notes ────────────────────────────────────────── -->
+                <t t-if="doc.notes">
+                    <p style="font-size:11px; color:#444; margin-top:8px;">
+                        <strong>Observaciones:</strong>
+                        <t t-esc="doc.notes"/>
+                    </p>
+                </t>
+
+                <!-- ── Declaration ──────────────────────────────────── -->
+                <p style="font-size:11px; margin-top:12px; text-align:justify;">
+                    Con la firma de este documento, el trabajador declara haber
+                    recibido a su entera satisfacción todos los valores
+                    correspondientes por concepto de liquidación de haberes,
+                    no teniendo ningún reclamo adicional que hacer a la empresa
+                    empleadora por los conceptos aquí liquidados.
+                </p>
+
+                <!-- ── Signature lines ──────────────────────────────── -->
+                <div class="row mt-5">
+                    <div class="col-5 text-center">
+                        <div style="border-top:1px solid #333; width:80%;
+                                    margin:0 auto; padding-top:6px;">
+                            <strong t-esc="doc.company_id.name"/>
+                            <p style="font-size:10px; color:#666; margin:0;">
+                                Empleador / Representante Legal
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-2"/>
+                    <div class="col-5 text-center">
+                        <div style="border-top:1px solid #333; width:80%;
+                                    margin:0 auto; padding-top:6px;">
+                            <strong t-esc="doc.employee_id.name"/>
+                            <p style="font-size:10px; color:#666; margin:0;">
+                                Trabajador — CI / ID:
+                                <t t-esc="doc.employee_id.identification_id or '____________'"/>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-muted text-end" style="font-size:9px; margin-top:20px;">
+                    Generado el
+                    <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                    — lv_nova_hr_finiquito
+                </p>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="report_hr_finiquito">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="lv_nova_hr_finiquito.report_hr_finiquito_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

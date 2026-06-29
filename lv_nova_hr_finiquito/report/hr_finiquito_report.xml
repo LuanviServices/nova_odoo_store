@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_hr_finiquito" model="ir.actions.report">
+        <field name="name">Finiquito</field>
+        <field name="model">hr.finiquito</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lv_nova_hr_finiquito.report_hr_finiquito</field>
+        <field name="report_file">lv_nova_hr_finiquito.report_hr_finiquito</field>
+        <field name="print_report_name">'Finiquito_%s_%s' % (object.employee_id.name.replace(' ','_'), object.name.replace('/','_'))</field>
+        <field name="binding_model_id" ref="model_hr_finiquito"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

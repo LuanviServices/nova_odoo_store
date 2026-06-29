@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #065F46; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #065F46; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #065F46; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; }
+        th { background: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+<h2>Employee Termination &amp; Finiquito (LATAM)</h2>
+
+<p>
+    Calculate all termination payment components automatically from the
+    employee's contract, salary and years of service. Generate a
+    professional "Acta de Finiquito" PDF ready for signatures — no
+    more error-prone spreadsheets. Designed for Ecuador with flexibility
+    for Colombia, Peru and similar regimes.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>🧮 Auto-calculation</h4>
+        <p>One click computes all components: proportional vacation, 13th/14th month, reserve funds, severance and indemnification.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📋 Termination types</h4>
+        <p>Desahucio, Visto Bueno, Voluntary Resignation, Mutual Agreement, End of Contract — each activates the correct components.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📄 Printable Acta de Finiquito</h4>
+        <p>Professional PDF with both parties' data, the full component breakdown, legal declaration text and signature lines.</p>
+    </div>
+    <div class="feature-box">
+        <h4>✅ Approval workflow</h4>
+        <p>Draft → Confirmed → Paid. HR Officers compute; Managers confirm. Full chatter audit trail.</p>
+    </div>
+</div>
+
+<h3>Components calculated automatically</h3>
+<table>
+    <tr><th>Component</th><th>Formula (Ecuador reference)</th><th>Applies to</th></tr>
+    <tr><td>Proportional Vacation</td><td>1.25 days/month × daily salary</td><td>All types</td></tr>
+    <tr><td>13th Month (Prop.)</td><td>(Salary / 12) × months worked</td><td>All types</td></tr>
+    <tr><td>14th Month (Prop.)</td><td>(SBU / 12) × months worked</td><td>All types</td></tr>
+    <tr><td>Severance Notice (Desahucio)</td><td>25% × salary × years</td><td>Desahucio only</td></tr>
+    <tr><td>Indemnification</td><td>1 month salary × years</td><td>Configurable</td></tr>
+    <tr><td>Reserve Funds (Fondos de Reserva)</td><td>8.33% × salary × months</td><td>After 1 year</td></tr>
+</table>
+
+<h3>How to use</h3>
+<ol>
+    <li>Go to <strong>Employees → Finiquitos → New</strong>.</li>
+    <li>Select the employee — the contract, start date and salary fill automatically.</li>
+    <li>Set the termination date and type.</li>
+    <li>Toggle which components to include and click <strong>Compute Finiquito</strong>.</li>
+    <li>Review and add deductions if needed. Confirm and print.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Employees, Contracts</span>
+    <span class="tag">Ecuador / Colombia / Peru / LATAM</span>
+</p>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

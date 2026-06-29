@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── Sequence ─────────────────────────────────────────────────── -->
+    <record id="seq_hr_finiquito" model="ir.sequence">
+        <field name="name">HR Finiquito</field>
+        <field name="code">hr.finiquito</field>
+        <field name="prefix">FIN/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- ── List view ────────────────────────────────────────────────── -->
+    <record id="view_hr_finiquito_list" model="ir.ui.view">
+        <field name="name">hr.finiquito.list</field>
+        <field name="model">hr.finiquito</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'paid'"
+                  decoration-warning="state == 'confirmed'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="termination_type"/>
+                <field name="service_years" string="Years"/>
+                <field name="total_net" widget="monetary" sum="Total"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'paid'"
+                       decoration-warning="state == 'confirmed'"
+                       decoration-info="state == 'draft'"
+                       decoration-muted="state == 'cancelled'"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ── Form view ────────────────────────────────────────────────── -->
+    <record id="view_hr_finiquito_form" model="ir.ui.view">
+        <field name="name">hr.finiquito.form</field>
+        <field name="model">hr.finiquito</field>
+        <field name="arch" type="xml">
+            <form string="Employee Finiquito">
+                <header>
+                    <button name="action_compute"
+                            type="object"
+                            string="🧮 Compute Finiquito"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_confirm"
+                            type="object"
+                            string="Confirm"
+                            class="btn-primary"
+                            invisible="state != 'draft'"
+                            groups="hr.group_hr_manager"/>
+                    <button name="action_print"
+                            type="object"
+                            string="🖨 Print Finiquito"
+                            class="btn-secondary"
+                            invisible="state == 'draft'"/>
+                    <button name="action_mark_paid"
+                            type="object"
+                            string="Mark as Paid"
+                            class="btn-secondary"
+                            invisible="state != 'confirmed'"
+                            groups="hr.group_hr_manager"/>
+                    <button name="action_draft"
+                            type="object"
+                            string="Reset to Draft"
+                            class="btn-secondary"
+                            invisible="state not in ('confirmed','cancelled')"
+                            groups="hr.group_hr_manager"/>
+                    <button name="action_cancel"
+                            type="object"
+                            string="Cancel"
+                            class="btn-secondary"
+                            invisible="state in ('paid','cancelled')"
+                            groups="hr.group_hr_manager"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Employee">
+                            <field name="employee_id"
+                                   options="{'no_create': True}"/>
+                            <field name="contract_id"
+                                   options="{'no_create': True}"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Service Period">
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="termination_type"/>
+                            <field name="service_years" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Salary &amp; Basis">
+                            <field name="last_monthly_salary"/>
+                            <field name="sbu"/>
+                            <field name="pending_vacation_days"
+                                   help="Leave 0 to auto-calculate proportional vacation."/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group string="Components to Include">
+                            <field name="include_vacation"/>
+                            <field name="include_decimotercer"/>
+                            <field name="include_decimocuarto"/>
+                            <field name="include_desahucio"/>
+                            <field name="include_indemnizacion"/>
+                            <field name="include_fondos_reserva"/>
+                        </group>
+                    </group>
+
+                    <!-- Component lines -->
+                    <notebook>
+                        <page string="Finiquito Components" name="components">
+                            <field name="line_ids">
+                                <list editable="bottom"
+                                      decoration-danger="is_deduction">
+                                    <field name="name"/>
+                                    <field name="quantity" optional="show"/>
+                                    <field name="unit"     optional="show"/>
+                                    <field name="basis"    optional="hide"/>
+                                    <field name="formula"  optional="show"/>
+                                    <field name="amount"   widget="monetary" sum="Sum"/>
+                                    <field name="is_deduction"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                </list>
+                            </field>
+                            <!-- Summary -->
+                            <group class="oe_subtotal_footer mt-3">
+                                <field name="total_earnings"   widget="monetary"/>
+                                <field name="total_deductions" widget="monetary"/>
+                                <div class="oe_subtotal_footer_separator"/>
+                                <field name="total_net" widget="monetary"
+                                       class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Additional notes or conditions…"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Search ───────────────────────────────────────────────────── -->
+    <record id="view_hr_finiquito_search" model="ir.ui.view">
+        <field name="name">hr.finiquito.search</field>
+        <field name="model">hr.finiquito</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="name"/>
+                <filter string="Draft" name="draft"
+                        domain="[('state','=','draft')]"/>
+                <filter string="Confirmed" name="confirmed"
+                        domain="[('state','=','confirmed')]"/>
+                <filter string="Paid" name="paid"
+                        domain="[('state','=','paid')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Employee" name="by_employee"
+                            context="{'group_by':'employee_id'}"/>
+                    <filter string="Termination Type" name="by_type"
+                            context="{'group_by':'termination_type'}"/>
+                    <filter string="Year" name="by_year"
+                            context="{'group_by':'date_end:year'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ── Action + Menu ────────────────────────────────────────────── -->
+    <record id="action_hr_finiquito" model="ir.actions.act_window">
+        <field name="name">Finiquitos</field>
+        <field name="res_model">hr.finiquito</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smart_action">
+                Create the first termination / finiquito calculation.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hr_finiquito"
+              name="Finiquitos"
+              parent="hr.menu_hr_root"
+              action="action_hr_finiquito"
+              sequence="90"
+              groups="hr.group_hr_user"/>
+
+</odoo>

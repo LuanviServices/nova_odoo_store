@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #B45309; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #B45309; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #B45309; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; }
+        th { background: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+<h2>Margin-Based Commission Rules</h2>
+
+<p>
+    Most commission plans pay the same rate no matter how much discount a
+    salesperson gives away. This module flips that: commission rate is tied
+    to the <strong>profit margin</strong> of each line, so reps are rewarded
+    for protecting margin — not just for closing deals at any price.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>📊 Margin brackets</h4>
+        <p>Define tiers like 0–10% margin → 1%, 10–25% → 4%, 25%+ → 8%. As many brackets as you need.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🧮 Per-line calculation</h4>
+        <p>Each order line gets its own margin %, matched against the bracket, with its own commission amount — visible right on the quotation.</p>
+    </div>
+    <div class="feature-box">
+        <h4>👤 Per-salesperson scale</h4>
+        <p>Assign a default scale to each salesperson; it auto-fills on new quotations and can be overridden per order.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📄 Commission PDF</h4>
+        <p>Print a detailed report showing cost, margin, rate and commission per line, plus the scale brackets used.</p>
+    </div>
+</div>
+
+<h3>Example scale</h3>
+<table>
+    <tr><th>Margin Range</th><th>Commission Rate</th></tr>
+    <tr><td>Below 0% (sold at a loss)</td><td>0%</td></tr>
+    <tr><td>0% – 10%</td><td>1%</td></tr>
+    <tr><td>10% – 25%</td><td>4%</td></tr>
+    <tr><td>25% and above</td><td>8%</td></tr>
+</table>
+<p style="font-size:13px; color:#666;">
+    A rep who sells at 30% margin earns 8% commission; a rep who discounts
+    down to 5% margin earns only 1% — naturally discouraging excessive discounting.
+</p>
+
+<h3>How it works</h3>
+<ol>
+    <li>Go to <strong>Sales → Configuration → Margin Commission Scales</strong> and define your brackets.</li>
+    <li>Assign a default scale to each salesperson under their user profile, "Margin Commission" tab.</li>
+    <li>On any quotation, the scale auto-fills from the salesperson (or set it manually).</li>
+    <li>Each order line shows its margin %, the matched commission rate, and the commission amount — visible to Sales Managers.</li>
+    <li>Print the <strong>Commission Report</strong> for payroll or reconciliation.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Sales</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Margin is computed as line subtotal minus (<code>product.standard_price</code> × quantity).</li>
+    <li>Commission fields are computed on the fly — no new database tables beyond the scale configuration.</li>
+    <li>Margin and commission columns are visible only to users in the Sales Manager group, keeping cost data confidential from regular salespeople.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

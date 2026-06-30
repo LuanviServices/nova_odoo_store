@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_margin_commission_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+
+                <div class="row mb-4">
+                    <div class="col-7">
+                        <h3 class="mb-1">Margin Commission Report</h3>
+                        <p class="fw-bold mb-0" t-esc="doc.name"/>
+                        <p class="text-muted mb-0" t-if="doc.partner_id">
+                            Customer: <t t-esc="doc.partner_id.name"/>
+                        </p>
+                        <p class="text-muted mb-0" t-if="doc.user_id">
+                            Salesperson: <t t-esc="doc.user_id.name"/>
+                        </p>
+                    </div>
+                    <div class="col-5 text-end">
+                        <p class="mb-0">
+                            <strong>Scale: </strong>
+                            <t t-esc="doc.margin_commission_scale_id.name or '—'"/>
+                        </p>
+                        <p class="mb-0">
+                            <strong>Date: </strong>
+                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- KPI summary -->
+                <table class="table table-bordered text-center mb-4" style="font-size:13px;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Sales Subtotal</th>
+                            <th>Total Cost</th>
+                            <th>Total Margin</th>
+                            <th>Margin %</th>
+                            <th>Total Commission</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="subtotal" t-value="sum(doc.order_line.filtered(lambda l: not l.display_type and l.product_id).mapped('price_subtotal'))"/>
+                        <t t-set="cost" t-value="sum(doc.order_line.filtered(lambda l: not l.display_type and l.product_id).mapped('line_cost'))"/>
+                        <tr style="font-weight:700; font-size:14px;">
+                            <td t-esc="doc._fmt(subtotal)"/>
+                            <td style="color:#dc3545;" t-esc="doc._fmt(cost)"/>
+                            <td style="color:#198754;" t-esc="doc._fmt(doc.total_margin)"/>
+                            <td t-esc="'%.1f %%' % doc.total_margin_pct"/>
+                            <td style="color:#0d6efd;" t-esc="doc._fmt(doc.total_commission)"/>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Line detail -->
+                <h5>Line Detail</h5>
+                <table class="table table-sm table-hover table-bordered" style="font-size:11px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product</th>
+                            <th class="text-end">Qty</th>
+                            <th class="text-end">Subtotal</th>
+                            <th class="text-end">Cost</th>
+                            <th class="text-end">Margin</th>
+                            <th class="text-end">Margin %</th>
+                            <th class="text-end">Rate</th>
+                            <th class="text-end">Commission</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.order_line.filtered(lambda l: not l.display_type and l.product_id)"
+                           t-as="line">
+                            <tr>
+                                <td t-esc="line.product_id.display_name"/>
+                                <td class="text-end" t-esc="'%.2f' % line.product_uom_qty"/>
+                                <td class="text-end" t-esc="doc._fmt(line.price_subtotal)"/>
+                                <td class="text-end" t-esc="doc._fmt(line.line_cost)"/>
+                                <td class="text-end"
+                                    t-attf-style="color:#{line.line_margin &gt;= 0 and '#198754' or '#dc3545'}"
+                                    t-esc="doc._fmt(line.line_margin)"/>
+                                <td class="text-end"
+                                    t-attf-style="font-weight:bold; color:#{line.line_margin_pct &gt;= 15 and '#198754' or line.line_margin_pct &gt;= 0 and '#856404' or '#dc3545'}"
+                                    t-esc="'%.1f %%' % line.line_margin_pct"/>
+                                <td class="text-end" t-esc="'%.2f %%' % line.commission_rate"/>
+                                <td class="text-end" style="color:#0d6efd; font-weight:600;"
+                                    t-esc="doc._fmt(line.commission_amount)"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot class="table-light" style="font-weight:700;">
+                        <tr>
+                            <td colspan="7">Total Commission</td>
+                            <td class="text-end" style="color:#0d6efd;"
+                                t-esc="doc._fmt(doc.total_commission)"/>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <!-- Scale brackets used -->
+                <t t-if="doc.margin_commission_scale_id">
+                    <h5 class="mt-4">Commission Scale: <t t-esc="doc.margin_commission_scale_id.name"/></h5>
+                    <table class="table table-sm table-bordered" style="font-size:11px; max-width:400px;">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Margin Range</th>
+                                <th class="text-end">Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="doc.margin_commission_scale_id.line_ids.sorted('margin_from')" t-as="bl">
+                                <tr>
+                                    <td>
+                                        <t t-esc="'%.1f %%' % bl.margin_from"/> –
+                                        <t t-if="bl.margin_to"><t t-esc="'%.1f %%' % bl.margin_to"/></t>
+                                        <t t-else="">and above</t>
+                                    </td>
+                                    <td class="text-end" t-esc="'%.2f %%' % bl.commission_rate"/>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="report_margin_commission">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="lv_nova_margin_commission.report_margin_commission_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_margin_commission_scale_form" model="ir.ui.view">
+        <field name="name">margin.commission.scale.form</field>
+        <field name="model">margin.commission.scale</field>
+        <field name="arch" type="xml">
+            <form string="Margin Commission Scale">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Standard Margin Scale"/></h1>
+                    </div>
+                    <group>
+                        <field name="active"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="below_minimum_rate"/>
+                    </group>
+                    <notebook>
+                        <page string="Margin Brackets" name="brackets">
+                            <p class="text-muted">
+                                Define rate tiers by profit margin %. Brackets
+                                should not overlap. Leave "Margin To" empty
+                                on the last bracket for "and above".
+                            </p>
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="margin_from"/>
+                                    <field name="margin_to"
+                                           placeholder="empty = no upper limit"/>
+                                    <field name="commission_rate"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_margin_commission_scale_list" model="ir.ui.view">
+        <field name="name">margin.commission.scale.list</field>
+        <field name="model">margin.commission.scale</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="below_minimum_rate"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_margin_commission_scale" model="ir.actions.act_window">
+        <field name="name">Margin Commission Scales</field>
+        <field name="res_model">margin.commission.scale</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smart_action">
+                Create your first margin commission scale
+            </p>
+            <p>
+                Example: 0–10% margin → 1% commission,
+                10–25% margin → 4%, 25%+ margin → 8%.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_margin_commission_scale"
+              name="Margin Commission Scales"
+              action="action_margin_commission_scale"
+              parent="sale.menu_sale_config"
+              sequence="52"/>
+
+</odoo>

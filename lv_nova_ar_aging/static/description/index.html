@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #1F4E79; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #1F4E79; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #1F4E79; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; }
+        th { background: #f4f4f4; }
+        .ok       { background: #dcfce7; }
+        .warning  { background: #fef9c3; }
+        .critical { background: #fee2e2; }
+    </style>
+</head>
+<body>
+
+<h2>Accounts Receivable Aging Report</h2>
+
+<p>
+    The essential credit control tool. Generate an AR aging report as of
+    any date, see every outstanding invoice bucketed by how overdue it is,
+    and quickly identify which customers need attention. Color-coded risk
+    levels make it easy to prioritise collections.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>📊 Classic aging grid</h4>
+        <p>Current, 1-30, 31-60, 61-90, 91+ days — one row per customer, one column per bucket. Configurable bucket thresholds.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🎨 Risk colour coding</h4>
+        <p>Green (OK), yellow (Warning), red (Critical) per customer based on the oldest outstanding bucket.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📄 Two-section PDF</h4>
+        <p>Summary grid on page 1, then a full invoice-by-invoice drill-down per customer on subsequent pages.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📈 Distribution bar</h4>
+        <p>A visual stacked bar shows what % of your total AR sits in each aging bucket at a glance.</p>
+    </div>
+</div>
+
+<h3>Example aging grid</h3>
+<table>
+    <tr>
+        <th>Customer</th><th>Current</th><th>1-30d</th>
+        <th>31-60d</th><th>61-90d</th><th>91+d</th><th>Total</th><th>Risk</th>
+    </tr>
+    <tr class="ok">
+        <td>Acme Corp</td><td>$1,200</td><td>$400</td>
+        <td>—</td><td>—</td><td>—</td><td>$1,600</td><td>🟢</td>
+    </tr>
+    <tr class="warning">
+        <td>Beta Ltd</td><td>—</td><td>$800</td>
+        <td>$600</td><td>—</td><td>—</td><td>$1,400</td><td>🟡</td>
+    </tr>
+    <tr class="critical">
+        <td>Gamma Inc</td><td>—</td><td>—</td>
+        <td>$300</td><td>$900</td><td>$2,100</td><td>$3,300</td><td>🔴</td>
+    </tr>
+</table>
+
+<h3>How to use</h3>
+<ol>
+    <li>Go to <strong>Accounting → Customers → AR Aging Report</strong>.</li>
+    <li>Set the "As of" date (today by default), choose company and optionally filter customers.</li>
+    <li>Adjust the bucket thresholds if needed (default: 30/60/90 days).</li>
+    <li>Click <strong>Print PDF Report</strong> for the full document, or <strong>View Overdue Invoices</strong> to open the list.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Accounting / Invoicing</span>
+</p>
+
+<h3>Technical notes</h3>
+<ul>
+    <li>Data source: <code>account.move.line</code> where <code>account_type = asset_receivable</code>, <code>state = posted</code>, <code>reconciled = False</code>, <code>amount_residual ≠ 0</code>.</li>
+    <li>Overdue days are computed relative to the <em>as of date</em>, not today — useful for historical reporting.</li>
+    <li>No new database tables — pure wizard-based computation.</li>
+    <li>Risk thresholds: OK = oldest ≤ bucket_2, Warning = oldest ≤ bucket_3, Critical = oldest &gt; bucket_3.</li>
+</ul>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ar_aging_wizard_form" model="ir.ui.view">
+        <field name="name">ar.aging.wizard.form</field>
+        <field name="model">ar.aging.wizard</field>
+        <field name="arch" type="xml">
+            <form string="AR Aging Report">
+                <group>
+                    <group string="Filters">
+                        <field name="as_of_date"/>
+                        <field name="company_id"
+                               groups="base.group_multi_company"
+                               options="{'no_create': True}"/>
+                        <field name="partner_ids"
+                               widget="many2many_tags"
+                               placeholder="Leave empty for all customers"/>
+                        <field name="include_undue"/>
+                    </group>
+                    <group string="Aging Buckets (days overdue)">
+                        <field name="bucket_1" string="Bucket 1 (1 to N days)"/>
+                        <field name="bucket_2" string="Bucket 2 (N+1 to M days)"/>
+                        <field name="bucket_3" string="Bucket 3 (M+1 to P days)"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_print_pdf"
+                            type="object"
+                            string="🖨 Print PDF Report"
+                            class="btn-primary"/>
+                    <button name="action_view_overdue_invoices"
+                            type="object"
+                            string="View Overdue Invoices"
+                            class="btn-secondary"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action + Menu -->
+    <record id="action_ar_aging_wizard" model="ir.actions.act_window">
+        <field name="name">AR Aging Report</field>
+        <field name="res_model">ar.aging.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_ar_aging_report"
+              name="AR Aging Report"
+              parent="account.menu_finance_receivables"
+              action="action_ar_aging_wizard"
+              sequence="50"
+              groups="account.group_account_invoice"/>
+
+</odoo>

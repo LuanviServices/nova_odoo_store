@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================================
+         TEMPLATE views
+         ================================================================ -->
+    <record id="view_recurring_task_template_list" model="ir.ui.view">
+        <field name="name">recurring.task.template.list</field>
+        <field name="model">recurring.task.template</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="not active">
+                <field name="name"/>
+                <field name="frequency"/>
+                <field name="user_id"/>
+                <field name="next_due_date"/>
+                <field name="instance_count" string="Total"/>
+                <field name="done_count"     string="Done"/>
+                <field name="overdue_count"  string="Overdue"
+                       decoration-danger="overdue_count > 0"/>
+                <field name="completion_rate" string="Rate %"
+                       widget="percentage"
+                       decoration-success="completion_rate >= 80"
+                       decoration-warning="completion_rate >= 50 and completion_rate &lt; 80"
+                       decoration-danger="completion_rate &lt; 50 and instance_count > 0"/>
+                <field name="active" optional="hide"/>
+                <button name="action_generate_now" type="object"
+                        icon="fa-refresh" title="Generate next instance now"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_recurring_task_template_form" model="ir.ui.view">
+        <field name="name">recurring.task.template.form</field>
+        <field name="model">recurring.task.template</field>
+        <field name="arch" type="xml">
+            <form string="Recurring Task Template">
+                <header>
+                    <button name="action_generate_now"
+                            type="object"
+                            string="Generate Next Instance"
+                            class="btn-primary"
+                            invisible="not active"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box">
+                        <button type="object"
+                                name="%(lv_nova_recurring_tasks.action_recurring_task_instance)d"
+                                class="oe_stat_button"
+                                icon="fa-tasks"
+                                context="{'search_default_template_id': active_id,
+                                          'default_template_id': active_id}">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="instance_count"/>
+                                </span>
+                                <span class="o_stat_text">Instances</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button"
+                                icon="fa-check-circle"
+                                type="object"
+                                name="%(lv_nova_recurring_tasks.action_recurring_task_instance)d"
+                                context="{'search_default_template_id': active_id,
+                                          'search_default_done': 1}">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="completion_rate"/>%
+                                </span>
+                                <span class="o_stat_text">Completed</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Task name…"/></h1>
+                    </div>
+                    <group>
+                        <group string="Schedule">
+                            <field name="frequency"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="advance_days"/>
+                            <field name="last_generated_date" readonly="1"/>
+                            <field name="next_due_date"       readonly="1"/>
+                        </group>
+                        <group string="Assignment">
+                            <field name="user_id"/>
+                            <field name="team_ids" widget="many2many_tags"/>
+                            <field name="priority" widget="priority"/>
+                            <field name="tag_ids"  widget="many2many_tags"
+                                   options="{'color_field': 'color'}"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group string="Instructions / Checklist">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================================
+         INSTANCE views
+         ================================================================ -->
+
+    <record id="view_recurring_task_instance_kanban" model="ir.ui.view">
+        <field name="name">recurring.task.instance.kanban</field>
+        <field name="model">recurring.task.instance</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state"
+                    class="o_kanban_small_column"
+                    records_draggable="0">
+                <field name="state"/>
+                <field name="due_date"/>
+                <field name="user_id"/>
+                <field name="priority"/>
+                <field name="days_overdue"/>
+                <field name="frequency"/>
+                <templates>
+                    <t t-name="card">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click
+                            #{record.state.raw_value == 'overdue' and 'border-danger'
+                              or record.state.raw_value == 'done' and 'border-success'
+                              or ''}">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <field name="priority" widget="priority"/>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <span class="badge rounded-pill"
+                                      t-attf-class="#{record.state.raw_value == 'overdue' and 'text-bg-danger'
+                                                     or record.state.raw_value == 'done' and 'text-bg-success'
+                                                     or record.state.raw_value == 'skipped' and 'text-bg-secondary'
+                                                     or 'text-bg-warning'}">
+                                    <field name="state"/>
+                                </span>
+                                <span class="ms-2 text-muted" style="font-size:11px;">
+                                    <field name="frequency"/>
+                                </span>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <span style="font-size:11px;">
+                                        Due: <field name="due_date"/>
+                                    </span>
+                                    <t t-if="record.days_overdue.raw_value > 0">
+                                        <span class="text-danger ms-1" style="font-size:11px;">
+                                            (<field name="days_overdue"/>d overdue)
+                                        </span>
+                                    </t>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_recurring_task_instance_list" model="ir.ui.view">
+        <field name="name">recurring.task.instance.list</field>
+        <field name="model">recurring.task.instance</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="state == 'overdue'"
+                  decoration-success="state == 'done'"
+                  decoration-muted="state == 'skipped'">
+                <field name="due_date"/>
+                <field name="name"/>
+                <field name="frequency"/>
+                <field name="user_id"/>
+                <field name="priority" widget="priority"/>
+                <field name="state" widget="badge"
+                       decoration-danger="state == 'overdue'"
+                       decoration-success="state == 'done'"
+                       decoration-warning="state == 'pending'"
+                       decoration-muted="state == 'skipped'"/>
+                <field name="days_overdue" string="Days Late"
+                       decoration-danger="days_overdue > 0"/>
+                <field name="completed_by" optional="hide"/>
+                <field name="completion_date" optional="hide"/>
+                <button name="action_mark_done" type="object"
+                        icon="fa-check" title="Mark Done"
+                        invisible="state in ('done','skipped')"/>
+                <button name="action_mark_skipped" type="object"
+                        icon="fa-forward" title="Skip"
+                        invisible="state in ('done','skipped')"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_recurring_task_instance_form" model="ir.ui.view">
+        <field name="name">recurring.task.instance.form</field>
+        <field name="model">recurring.task.instance</field>
+        <field name="arch" type="xml">
+            <form string="Recurring Task">
+                <header>
+                    <button name="action_mark_done" type="object"
+                            string="✔ Mark as Done" class="btn-success"
+                            invisible="state in ('done','skipped')"/>
+                    <button name="action_mark_skipped" type="object"
+                            string="Skip" class="btn-secondary"
+                            invisible="state in ('done','skipped')"/>
+                    <button name="action_reset_pending" type="object"
+                            string="Reset to Pending" class="btn-secondary"
+                            invisible="state == 'pending'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="pending,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="template_id" readonly="1"/>
+                            <field name="frequency"   readonly="1"/>
+                            <field name="due_date"/>
+                            <field name="user_id"/>
+                            <field name="priority" widget="priority"/>
+                        </group>
+                        <group string="Completion" invisible="state not in ('done',)">
+                            <field name="completed_by"    readonly="1"/>
+                            <field name="completion_date" readonly="1"/>
+                            <field name="completion_notes"/>
+                        </group>
+                    </group>
+                    <group string="Instructions">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_recurring_task_instance_search" model="ir.ui.view">
+        <field name="name">recurring.task.instance.search</field>
+        <field name="model">recurring.task.instance</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="template_id"/>
+                <field name="user_id"/>
+                <filter string="My Tasks"      name="mine"
+                        domain="[('user_id','=',uid)]"/>
+                <filter string="Overdue"       name="overdue"
+                        domain="[('state','=','overdue')]"/>
+                <filter string="Due Today"     name="today"
+                        domain="[('due_date','=',context_today().strftime('%Y-%m-%d')),
+                                 ('state','=','pending')]"/>
+                <filter string="Pending"       name="pending"
+                        domain="[('state','=','pending')]"/>
+                <filter string="Done"          name="done"
+                        domain="[('state','=','done')]"/>
+                <separator/>
+                <filter string="Template"      name="template_id"
+                        context="{'group_by':'template_id'}"/>
+                <filter string="Due Date"      name="by_date"
+                        context="{'group_by':'due_date:week'}"/>
+                <filter string="Assigned To"   name="by_user"
+                        context="{'group_by':'user_id'}"/>
+                <field name="template_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ================================================================
+         ACTIONS
+         ================================================================ -->
+    <record id="action_recurring_task_template" model="ir.actions.act_window">
+        <field name="name">Task Templates</field>
+        <field name="res_model">recurring.task.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_recurring_task_instance" model="ir.actions.act_window">
+        <field name="name">Task Board</field>
+        <field name="res_model">recurring.task.instance</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="context">{'search_default_pending': 1,
+                               'search_default_overdue': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smart_action">
+                No recurring task instances yet.
+                Create a template and click "Generate Next Instance".
+            </p>
+        </field>
+    </record>
+
+    <record id="action_recurring_task_overdue" model="ir.actions.act_window">
+        <field name="name">Overdue Tasks</field>
+        <field name="res_model">recurring.task.instance</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state','=','overdue')]</field>
+        <field name="context">{'search_default_overdue': 1}</field>
+    </record>
+
+    <!-- ================================================================
+         MENUS
+         ================================================================ -->
+    <menuitem id="menu_recurring_tasks_root"
+              name="Recurring Tasks"
+              sequence="80"
+              web_icon="lv_nova_recurring_tasks,static/description/icon.png"
+              groups="base.group_user"/>
+
+    <menuitem id="menu_recurring_task_board"
+              name="Task Board"
+              parent="menu_recurring_tasks_root"
+              action="action_recurring_task_instance"
+              sequence="10"/>
+
+    <menuitem id="menu_recurring_task_overdue"
+              name="Overdue"
+              parent="menu_recurring_tasks_root"
+              action="action_recurring_task_overdue"
+              sequence="20"/>
+
+    <menuitem id="menu_recurring_task_templates"
+              name="Templates"
+              parent="menu_recurring_tasks_root"
+              action="action_recurring_task_template"
+              sequence="30"/>
+
+</odoo>

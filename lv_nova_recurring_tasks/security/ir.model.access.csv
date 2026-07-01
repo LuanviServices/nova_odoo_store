@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_recurring_task_template_user,recurring task template user,model_recurring_task_template,base.group_user,1,1,1,0
+access_recurring_task_template_manager,recurring task template manager,model_recurring_task_template,base.group_system,1,1,1,1
+access_recurring_task_instance_user,recurring task instance user,model_recurring_task_instance,base.group_user,1,1,1,0
+access_recurring_task_instance_manager,recurring task instance manager,model_recurring_task_instance,base.group_system,1,1,1,1
+access_recurring_task_tag_user,recurring task tag user,model_recurring_task_tag,base.group_user,1,1,1,0
+access_recurring_task_tag_manager,recurring task tag manager,model_recurring_task_tag,base.group_system,1,1,1,1

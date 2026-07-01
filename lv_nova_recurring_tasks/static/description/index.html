@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #333; max-width: 900px; }
+        h2 { color: #7C3AED; }
+        h3 { color: #444; margin-top: 24px; }
+        .feature-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .feature-box { border: 1px solid #ddd; border-radius: 8px; padding: 14px 18px;
+                       flex: 1; min-width: 200px; background: #fafafa; }
+        .feature-box h4 { margin: 0 0 6px; font-size: 14px; color: #7C3AED; }
+        .feature-box p  { margin: 0; font-size: 13px; line-height: 1.5; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .tag { display: inline-block; background: #7C3AED; color: #fff;
+               border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+        table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; }
+        th { background: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+<h2>Recurring Tasks Manager</h2>
+
+<p>
+    Stop relying on sticky notes, calendar reminders or spreadsheets
+    for regular operational tasks. Define recurring task templates,
+    let Odoo generate the instances automatically, and track completion
+    from a Kanban board. Know at a glance what's overdue, due today and
+    coming up — and measure reliability with completion rate stats.
+</p>
+
+<div class="feature-grid">
+    <div class="feature-box">
+        <h4>📅 Six frequencies</h4>
+        <p>Daily, weekly, bi-weekly, monthly, quarterly and yearly templates. Each auto-generates the next task at the right time.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🗂 Kanban board</h4>
+        <p>Tasks grouped by state: Pending, Done, Overdue, Skipped. Color-coded cards make it easy to spot what needs attention.</p>
+    </div>
+    <div class="feature-box">
+        <h4>📊 Completion stats</h4>
+        <p>Each template tracks how many instances were completed on time. Completion rate shown on the template list and in the PDF report.</p>
+    </div>
+    <div class="feature-box">
+        <h4>🔔 Auto-overdue</h4>
+        <p>Daily cron marks tasks as overdue automatically if they pass their due date without being completed or skipped.</p>
+    </div>
+</div>
+
+<h3>Frequency options</h3>
+<table>
+    <tr><th>Frequency</th><th>Auto-generate N days ahead (default)</th><th>Use case</th></tr>
+    <tr><td>Daily</td><td>Same day</td><td>Opening/closing checklists, daily reports</td></tr>
+    <tr><td>Weekly</td><td>2 days ahead</td><td>Weekly team standups, backups</td></tr>
+    <tr><td>Monthly</td><td>5 days ahead</td><td>Invoice reconciliation, stock counts</td></tr>
+    <tr><td>Quarterly</td><td>7 days ahead</td><td>Compliance filings, audits</td></tr>
+    <tr><td>Yearly</td><td>14 days ahead</td><td>Annual reviews, renewals</td></tr>
+</table>
+
+<h3>How to use</h3>
+<ol>
+    <li>Go to <strong>Recurring Tasks → Templates → New</strong>.</li>
+    <li>Enter the task name, instructions, frequency and assignee.</li>
+    <li>Odoo generates instances automatically each day via cron. You can also click <strong>Generate Next Instance</strong> manually.</li>
+    <li>Open <strong>Task Board</strong> to see all pending/overdue tasks in a Kanban view.</li>
+    <li>Click <strong>Mark as Done</strong> or <strong>Skip</strong> on each task.</li>
+</ol>
+
+<h3>Compatibility</h3>
+<p>
+    <span class="tag">Odoo 18.0</span>
+    <span class="tag">Community</span>
+    <span class="tag">Enterprise</span>
+    <span class="tag">Requires: Discuss (mail)</span>
+</p>
+
+<h3>Support</h3>
+<p>
+    For questions or bug reports, please use the support button on the App Store
+    or email <strong>luanviservicesinfo@gmail.com</strong>.
+</p>
+
+</body>
+</html>

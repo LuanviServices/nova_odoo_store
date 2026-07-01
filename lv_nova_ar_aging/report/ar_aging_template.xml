@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_ar_aging_document">
+        <t t-call="web.external_layout">
+            <t t-set="rows"   t-value="doc.get_aging_data()"/>
+            <t t-set="totals" t-value="doc.get_totals(rows)"/>
+            <t t-set="labels" t-value="doc._get_bucket_labels()"/>
+            <t t-set="grand_total" t-value="sum(totals)"/>
+
+            <div class="page">
+
+                <!-- ── Header ─────────────────────────────────────── -->
+                <div class="row mb-3">
+                    <div class="col-7">
+                        <h3 class="mb-1">Accounts Receivable Aging</h3>
+                        <p class="text-muted mb-0">
+                            As of: <strong t-esc="doc.as_of_date"/>
+                        </p>
+                        <p class="text-muted mb-0">
+                            Company: <t t-esc="doc.company_id.name"/>
+                        </p>
+                    </div>
+                    <div class="col-5 text-end">
+                        <p class="mb-0">
+                            Printed:
+                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                        </p>
+                        <p class="mb-0">
+                            Customers: <strong t-esc="len(rows)"/>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ── Legend ─────────────────────────────────────── -->
+                <div style="font-size:10px; margin-bottom:8px;">
+                    <span style="background:#dcfce7;border-radius:3px;
+                                 padding:2px 8px; margin-right:6px;">
+                        ● OK — oldest bucket ≤ <t t-esc="doc.bucket_2"/> days
+                    </span>
+                    <span style="background:#fef9c3;border-radius:3px;
+                                 padding:2px 8px; margin-right:6px;">
+                        ● Warning — oldest bucket ≤ <t t-esc="doc.bucket_3"/> days
+                    </span>
+                    <span style="background:#fee2e2;border-radius:3px;
+                                 padding:2px 8px;">
+                        ● Critical — oldest bucket &gt; <t t-esc="doc.bucket_3"/> days
+                    </span>
+                </div>
+
+                <!-- ── Main aging grid ────────────────────────────── -->
+                <table class="table table-sm table-bordered"
+                       style="font-size:10.5px;">
+                    <thead style="background:#1F4E79; color:#fff;">
+                        <tr>
+                            <th style="width:26%;">Customer</th>
+                            <t t-foreach="labels" t-as="lbl">
+                                <th class="text-end" t-esc="lbl"/>
+                            </t>
+                            <th class="text-end">Total</th>
+                            <th class="text-center" style="width:7%;">Risk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="rows" t-as="row">
+                            <t t-set="risk_bg"
+                               t-value="row['risk'] == 'critical' and '#fee2e2'
+                                        or row['risk'] == 'warning' and '#fef9c3'
+                                        or '#f8fff9'"/>
+                            <t t-set="risk_label"
+                               t-value="row['risk'] == 'critical' and '🔴'
+                                        or row['risk'] == 'warning' and '🟡'
+                                        or '🟢'"/>
+                            <tr t-attf-style="background:#{risk_bg}">
+                                <td class="fw-bold" t-esc="row['partner'].name"/>
+                                <t t-foreach="row['buckets']" t-as="bkt">
+                                    <td class="text-end"
+                                        t-attf-style="color:#{bkt > 0 and '#dc3545' or '#999'}"
+                                        t-esc="doc._fmt(bkt)"/>
+                                </t>
+                                <td class="text-end fw-bold"
+                                    t-esc="doc._fmt(row['total'])"/>
+                                <td class="text-center"
+                                    t-esc="risk_label"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot style="background:#E8F4FD; font-weight:700;">
+                        <tr>
+                            <td>TOTAL</td>
+                            <t t-foreach="totals" t-as="t_val">
+                                <td class="text-end"
+                                    t-esc="doc._fmt(t_val)"/>
+                            </t>
+                            <td class="text-end"
+                                t-esc="doc._fmt(grand_total)"/>
+                            <td/>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <!-- ── Bucket concentration bar ───────────────────── -->
+                <t t-if="grand_total">
+                    <h6 class="mt-3">Aging Distribution</h6>
+                    <div style="display:flex; height:16px; border-radius:4px;
+                                overflow:hidden; margin-bottom:4px;">
+                        <t t-set="colors"
+                           t-value="['#198754','#ffc107','#fd7e14','#dc3545','#6f42c1']"/>
+                        <t t-foreach="range(5)" t-as="bi">
+                            <t t-set="pct" t-value="totals[bi] / grand_total * 100 if grand_total else 0"/>
+                            <t t-if="pct > 0.5">
+                                <div t-attf-style="width:#{pct:.1f}%;
+                                                   background:#{colors[bi]};"/>
+                            </t>
+                        </t>
+                    </div>
+                    <div style="display:flex; gap:12px; font-size:9px;">
+                        <t t-foreach="range(5)" t-as="bi">
+                            <t t-set="pct" t-value="totals[bi] / grand_total * 100 if grand_total else 0"/>
+                            <span t-attf-style="color:#{colors[bi]}">
+                                <t t-esc="labels[bi]"/>:
+                                <t t-esc="'%.1f %%' % pct"/>
+                            </span>
+                        </t>
+                    </div>
+                </t>
+
+                <!-- ── Per-customer detail (page break per customer) ── -->
+                <t t-if="rows">
+                    <p style="page-break-before:always;"/>
+                    <h5 class="mb-3">Invoice Detail by Customer</h5>
+
+                    <t t-foreach="rows" t-as="row">
+                        <t t-set="risk_bg"
+                           t-value="row['risk'] == 'critical' and '#fee2e2'
+                                    or row['risk'] == 'warning' and '#fef9c3'
+                                    or '#f8fff9'"/>
+                        <div t-attf-style="background:#{risk_bg};
+                                           border-left:4px solid #1F4E79;
+                                           padding:4px 8px; margin-bottom:4px;">
+                            <strong t-esc="row['partner'].name"/>
+                            <span class="text-muted" style="font-size:10px; margin-left:8px;">
+                                Total: <t t-esc="doc._fmt(row['total'])"/>
+                                — Oldest: <t t-esc="row['oldest_days']"/> days
+                            </span>
+                        </div>
+                        <table class="table table-sm table-hover table-bordered mb-3"
+                               style="font-size:10px;">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Invoice</th>
+                                    <th>Ref</th>
+                                    <th>Inv. Date</th>
+                                    <th>Due Date</th>
+                                    <th class="text-end">Days Overdue</th>
+                                    <th class="text-end">Amount Due</th>
+                                    <th>Bucket</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="row['lines']" t-as="ln">
+                                    <tr>
+                                        <td t-esc="ln['name']"/>
+                                        <td t-esc="ln['ref']"/>
+                                        <td t-esc="str(ln['date']) if ln['date'] else ''"/>
+                                        <td t-esc="str(ln['due_date']) if ln['due_date'] else ''"/>
+                                        <td class="text-end"
+                                            t-attf-style="color:#{ln['days'] > doc.bucket_3 and '#dc3545' or ln['days'] > doc.bucket_2 and '#856404' or 'inherit'}"
+                                            t-esc="ln['days'] if ln['days'] > 0 else 'Current'"/>
+                                        <td class="text-end fw-bold"
+                                            t-esc="doc._fmt(ln['amount'])"/>
+                                        <td t-esc="labels[ln['bucket']]"/>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <tfoot class="table-light" style="font-weight:700;">
+                                <tr>
+                                    <td colspan="5">Customer Total</td>
+                                    <td class="text-end"
+                                        t-esc="doc._fmt(row['total'])"/>
+                                    <td/>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </t>
+                </t>
+
+                <t t-if="not rows">
+                    <div class="alert alert-info mt-4">
+                        No outstanding receivables found for the selected filters.
+                    </div>
+                </t>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="report_ar_aging">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="lv_nova_ar_aging.report_ar_aging_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_recurring_tasks_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+
+                <div class="row mb-3">
+                    <div class="col-7">
+                        <h3 class="mb-1">Recurring Task Report</h3>
+                        <p class="fw-bold mb-0" t-esc="doc.name"/>
+                        <p class="text-muted mb-0">
+                            Frequency: <t t-esc="dict(doc.fields_get(['frequency'])['frequency']['selection']).get(doc.frequency, doc.frequency)"/>
+                        </p>
+                        <p class="text-muted mb-0" t-if="doc.user_id">
+                            Assigned to: <t t-esc="doc.user_id.name"/>
+                        </p>
+                    </div>
+                    <div class="col-5 text-end">
+                        <p class="mb-0">
+                            Printed:
+                            <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                        </p>
+                        <p class="mb-0">
+                            Next due: <strong t-esc="doc.next_due_date"/>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- KPI strip -->
+                <table class="table table-bordered text-center mb-4" style="font-size:13px;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Total Instances</th>
+                            <th>Done</th>
+                            <th>Overdue</th>
+                            <th>Completion Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="font-size:15px; font-weight:700;">
+                            <td t-esc="doc.instance_count"/>
+                            <td style="color:#198754;" t-esc="doc.done_count"/>
+                            <td style="color:#dc3545;" t-esc="doc.overdue_count"/>
+                            <td t-attf-style="color:#{doc.completion_rate >= 80 and '#198754' or doc.completion_rate >= 50 and '#856404' or '#dc3545'}">
+                                <t t-esc="'%.1f %%' % doc.completion_rate"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Instance history -->
+                <h5>Instance History</h5>
+                <table class="table table-sm table-hover table-bordered" style="font-size:11px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Completed By</th>
+                            <th>Completed On</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.instance_ids.sorted('due_date', reverse=True)" t-as="inst">
+                            <t t-set="st" t-value="inst.state"/>
+                            <tr t-attf-style="background:#{st == 'overdue' and '#fee2e2' or st == 'done' and '#f0fdf4' or st == 'skipped' and '#f5f5f5' or 'inherit'}">
+                                <td t-esc="inst.due_date"/>
+                                <td>
+                                    <span t-attf-style="font-weight:bold; color:#{st == 'done' and '#198754' or st == 'overdue' and '#dc3545' or st == 'skipped' and '#6c757d' or '#856404'}">
+                                        <t t-esc="dict(inst.fields_get(['state'])['state']['selection']).get(st, st)"/>
+                                    </span>
+                                </td>
+                                <td t-esc="inst.completed_by.name if inst.completed_by else '—'"/>
+                                <td t-esc="str(inst.completion_date)[:16] if inst.completion_date else '—'"/>
+                                <td t-esc="inst.completion_notes or '—'"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="report_recurring_tasks">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="lv_nova_recurring_tasks.report_recurring_tasks_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>
